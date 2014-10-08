@@ -1,0 +1,140 @@
+ <% thiscustomer =  Customer.where(name: params[:customer_id]).first %>
+ 
+ 
+ <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">New Call</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+<div class="row">
+       <div class="col-lg-12">
+<%= form_for :call, url: calls_path do |f| %>
+
+<div class="row">
+	<div class="col-lg-6">
+  <p>
+    <%= f.label :caller %><br>
+    <%= f.text_field :caller %>
+  </p>
+  </div>
+  <div class="col-lg-6">
+  
+  <p>
+    <%= f.label :company %><br>
+    <%= f.text_field :company %>
+  </p>
+  
+  <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </p>
+  
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+   <p>
+    <%= f.label :category %><br>
+    <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+  </p>
+  </div>
+ </div>
+ <div class="row">
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area(:text, :rows => 5, :class => "logarea", :placeholder => 'Enter text.') %>
+  </p>
+ </div>
+
+ 
+
+ 
+ 
+ 
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+</div>
+</div>
+
+
+<% if thiscustomer != nil %>
+<div class="row">
+       <div class="col-lg-12">
+      <h1>Previous conversations with <% Customer.find(params[:customer_id]) %></h1>
+      
+      
+      
+      </div>
+ </div>
+<% end %>
+
+
+<% content_for :head do %>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  
+  
+  
+  $(function() {
+    var availableTags = [
+      
+<% Customer.all.each do |c| %>
+
+"<%= c.name %>",
+
+
+<% end %>
+
+     
+    ];
+    $( "#call_caller" ).autocomplete({
+      source: availableTags
+    });
+    
+    $( "#call_caller" ).on( "autocompleteselect", function( event, ui ){
+    	
+    	//console.log(ui.item.label);
+    	
+    	//window.location.href = '/calls/new/'+ui.item.label;
+    	
+    	
+    	
+    	var custdatacall = $.ajax({
+   			url:'/calls/update/'+ui.item.label, //Defined in your routes file
+   			//data:('id=' + ui.item.label  )
+		} )
+  		.done(function(data) {
+  			  console.log( "success" );
+  			 console.log( data );
+  			 
+  			 document.getElementById("call_company").value = data.company;
+  			 document.getElementById("call_email").value = data.email;
+  			 document.getElementById("call_phone").value = data.phone_number;
+  			 
+ 		 })
+  		.fail(function() {
+ 		   console.log( "error" );
+  		})
+  		.always(function() {
+   			console.log( "complete" );
+		 });
+    	
+    	
+    	
+    	 
+    }  );
+    
+  });
+  </script> 
+  
+<% end %>
+
+
