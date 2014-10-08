@@ -1,13 +1,24 @@
 Testlog::Application.routes.draw do
   resources :calls
-  resources :category
-  resources :category_hints
+resources :customer
+resources :category
+resources :category_hint
   
   match 'customer' => 'customer#index'
+  match 'customer/destroy' => 'customer#destroy'
+  
+   match 'admin/categories' => 'admin#categories'
+  match 'category/destroy' => 'category#destroy'
+  match 'admin/category_hints' => 'admin#category_hints'
+  match 'category_hint/destroy' => 'category_hint#destroy'
   
 match 'calls/new/:id' => 'calls#new', :as => :customer
 
 match 'calls/update/:id' => 'calls#update', :as => :customer
+
+match 'category/hints/:id' => 'category#hints', :as => :categoryname
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

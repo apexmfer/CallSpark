@@ -39,7 +39,13 @@ class CallsController < ApplicationController
   
   end
   
+  def destroy
+      Call.find(params["id"]).destroy
   
+
+      redirect_to '/calls', alert: 'Call destroyed'
+    
+  end
   
 private
   def call_params

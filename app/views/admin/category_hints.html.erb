@@ -1,0 +1,105 @@
+<h2>Category Hints</h2>
+
+<% if CategoryHint.all.first %>
+
+<table class="table table-hover collection">
+      <thead>
+        <tr>
+          <th>Category</th>
+         <th>Text</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+          <%
+          pagenum = params[:id].to_i
+          recordsPerPage = 20
+          offset = pagenum * recordsPerPage
+          %>
+
+        <% # Event.limit(recordsPerPage).offset(offset).each do |item| %>
+          <% CategoryHint.all.each do |item| %>
+     
+          <% category = Category.where(:id => item.parent_id).first %>
+
+
+        <tr>
+        	
+        	
+        	
+  
+    <td> <%= category.name %> </td>
+    <td> <%= item.text %> </td>
+   
+
+    <td>
+
+     
+
+     <%= form_tag({controller: "category_hint",action: "destroy"}, method: "post") do %>  
+      <%= hidden_field_tag 'hint_id', item[:id] %>
+      <%= submit_tag("Delete") %>
+      <%   end %>
+
+    
+
+    </td>
+    </tr>
+
+    <% end  %>
+
+       
+       
+      </tbody>
+    </table>
+
+
+ <% else  %>
+
+<div class="alert alert-danger">No events are listed!</div>
+
+
+ <% end  %>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">List a new category</h3>
+  </div>
+  <div class="panel-body">
+    
+
+
+<%= form_for :newhint, url: {controller: "category_hint",action: "create"}, html: {id:"main-form",class: "form-group"} do |f| %>
+<div class="form-group" id="input-name">
+   <label for="InputName">Category</label>
+ 
+   <%= f.select("parent_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }) %>
+  </div>
+
+
+<div class="form-group" id="input-name">
+   <label for="InputName">Text</label>
+  <%= f.text_field :text   , class: "form-control", placeholder:"Hint text"%>
+  </div>
+
+
+
+
+ <% f.submit "Category_Hint#Create" , class: "btn btn-success", style:"width:100%" %>
+  <% submit_tag  :onclick => "return validateform();", class: "btn btn-success", style:"width:100%" %>
+ <button type="submit" id="submit-btn" class="btn btn-success" style="width:100%">Submit</button>
+
+
+</div>
+
+<% end %>
+
+  </div>
+</div>
+
+
+
+

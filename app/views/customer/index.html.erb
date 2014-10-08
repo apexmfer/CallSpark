@@ -1,9 +1,31 @@
 
 <h1>All Customers</h1>
 
-<% Customer.all.each do |c| %>
-
-<%= c.name %>
 
 
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+    
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Customer.all.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+      
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

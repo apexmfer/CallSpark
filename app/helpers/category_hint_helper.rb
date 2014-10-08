@@ -1,0 +1,2 @@
+module CategoryHintHelper
+end
