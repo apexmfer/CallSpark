@@ -5,7 +5,9 @@
 <table class="table table-hover collection">
       <thead>
         <tr>
+        	<th>ID</th>
           <th>Category</th>
+          <th>Parent</th>
          <th>Text</th>
         </tr>
       </thead>
@@ -21,15 +23,21 @@
         <% # Event.limit(recordsPerPage).offset(offset).each do |item| %>
           <% CategoryHint.all.each do |item| %>
      
-          <% category = Category.where(:id => item.parent_id).first %>
-
+          <% category = Category.where(:id => item.category_id).first %>
+		<% parent = CategoryHint.where(:id => item.parent_id).first %>
 
         <tr>
         	
         	
         	
-  
+  	<td> <%= item.id %> </td>
     <td> <%= category.name %> </td>
+    
+    <% if parent != nil %>
+    <td> <%= parent.id %> </td>
+     <% else %>
+    <td> N/A </td>
+    <% end %>
     <td> <%= item.text %> </td>
    
 
@@ -73,11 +81,19 @@
 
 
 <%= form_for :newhint, url: {controller: "category_hint",action: "create"}, html: {id:"main-form",class: "form-group"} do |f| %>
+
 <div class="form-group" id="input-name">
    <label for="InputName">Category</label>
  
-   <%= f.select("parent_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }) %>
+   <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }) %>
   </div>
+  
+  <div class="form-group" id="input-name">
+   <label for="InputName">Parent Hint</label>
+ 
+   <%= f.select("parent_id", CategoryHint.all.collect {|p| [ p.text, p.id ] }, { include_blank: true }) %>
+  </div>
+
 
 
 <div class="form-group" id="input-name">

@@ -12,10 +12,18 @@ class CallsController < ApplicationController
     render json: customer
   end
   
+    def history
+    customername = params['id'];
+    
+    customer = Customer.where( :name => customername).first
+    
+    render json: Call.where(customer_id: customer.id).reverse
+  end
+  
   def create
     #render text: params[:call].inspect
     
-    @customer = Customer.where(name: call_params[:customername]).first
+    @customer = Customer.where(name: params[:call][:caller]).first
     
     if @customer == nil
       @customer = Customer.new(:name => params[:call][:caller],
@@ -23,6 +31,13 @@ class CallsController < ApplicationController
       :phone_number => params[:call][:phone],
       :email => params[:call][:email]
       )
+      
+    else
+      
+    @customer.company =  params[:call][:company];
+     @customer.phone_number =  params[:call][:phone];
+     @customer.email =  params[:call][:email];
+      
     end
     
     @customer.save

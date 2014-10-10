@@ -24,9 +24,7 @@ class CategoryController < ApplicationController
     
     category = Category.where( :name => categoryname).first
     
-    
-    
-    render json: CategoryHint.where( :parent_id => category.id )
+    render json: CategoryHint.where( :category_id => category.id )
     
     
   end

@@ -74,11 +74,11 @@
 
 
 
-<div id="previousconversationcontainer">
+
 <div class="row">
        <div class="col-lg-12">
       <h1>Previous conversations</h1>
-      
+      <div id="previousconversationcontainer">
       
       
       </div>
@@ -88,9 +88,7 @@
 
 <% content_for :head do %>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
+ 
   <script>
   
 
@@ -116,11 +114,7 @@
     
     $( "#call_caller" ).on( "autocompleteselect", function( event, ui ){
     	
-    	//console.log(ui.item.label);
-    	
-    	//window.location.href = '/calls/new/'+ui.item.label;
-    	
-    	
+        	
     	
     	var custdatacall = $.ajax({
    			url:'/calls/update/'+ui.item.label, //Defined in your routes file
@@ -144,10 +138,50 @@
     	
     	
     	
+    	 var previouscalls = $.ajax({
+   			url:'/calls/history/'+ui.item.label, //Defined in your routes file
+   			
+		} )
+  		.done(function(data) {
+  			  			     	
+     	  var myNode = document.getElementById("previousconversationcontainer");
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}
+  			
+  			
+  			console.log( "datagot call history" );
+  			 console.log( data );
+  			 
+  			  for(var i=0;i<data.length;i++){
+  			 	 var newdiv = document.createElement( "div" );
+  			 	 newdiv.className+=" alert alert-info";
+  				 newdiv.innerHTML = data[i].text ; 	
+  				  $("#previousconversationcontainer").append( newdiv );  
+  				  
+  				  var timelabel = document.createElement( "div" );
+  			 	 timelabel.className+=" label label-primary pull-right";
+  				 timelabel.innerHTML = jQuery.timeago(data[i].created_at) ;   				 
+  				 	
+  			  newdiv.appendChild( timelabel );  			 			  
+  			 }
+  			 
+  			 
+ 		 })
+  		.fail(function() {
+ 		   console.log( "error" );
+  		})
+  		.always(function() {
+   			console.log( "complete" );
+		 });
+    	
+    	
     	 
     }  );
     
      $( "#call_category_id" ).on( "change", function( event, ui ){
+     	
+     	
      	
      	  var myNode = document.getElementById("hintscontainer");
 			while (myNode.firstChild) {
@@ -169,8 +203,8 @@
   			 //document.getElementById("call_company").value = data.company;
   			 
   			 for(var i=0;i<data.length;i++){
-  			 	 var newdiv = document.createElement( "Hello" );
-  			 	 newdiv.className+=" alert alert-info";
+  			 	 var newdiv = document.createElement( "div" );
+  			 	 newdiv.className+=" alert alert-success";
   				 newdiv.innerHTML = data[i].text;  			 
   			  $("#hintscontainer").append( newdiv );
   			

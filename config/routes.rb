@@ -1,6 +1,8 @@
 Testlog::Application.routes.draw do
+  
+  resources :customer
   resources :calls
-resources :customer
+
 resources :category
 resources :category_hint
   
@@ -12,11 +14,12 @@ resources :category_hint
   match 'admin/category_hints' => 'admin#category_hints'
   match 'category_hint/destroy' => 'category_hint#destroy'
   
-match 'calls/new/:id' => 'calls#new', :as => :customer
+match 'calls/new/:id' => 'calls#new'
 
-match 'calls/update/:id' => 'calls#update', :as => :customer
+match 'calls/update/:id' => 'calls#update'
+match 'calls/history/:id' => 'calls#history'
 
-match 'category/hints/:id' => 'category#hints', :as => :categoryname
+match 'category/hints/:id' => 'category#hints'
 
 
 
