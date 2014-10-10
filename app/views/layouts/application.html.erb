@@ -52,6 +52,10 @@
 
     <div id="wrapper">
 
+
+
+  
+  
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -71,6 +75,12 @@
 			
             <ul class="nav navbar-top-links navbar-right">
             	
+            	
+            	 <% if current_user %>
+     		 
+   
+    
+    
             	<a href="<%= url_for :controller => 'calls', :action => 'new' %>">
             	<li type="button" class="btn btn-default">            	
          	   	New Call            	
@@ -250,20 +260,29 @@
                 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> Andy <i class="fa fa-caret-down"> </i>
+                        <i class="fa fa-user fa-fw"></i> <%= current_user.email %> <i class="fa fa-caret-down"> </i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                     
+                        <li><a href ="<%= url_for user_path(current_user.id) %> "><i class="fa fa-eye fa-fw"> </i> View Profile </a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                       
+                          <li><a href ="<%= url_for edit_user_path(current_user.id) %> "><i class="fa fa-gear fa-fw"> </i> Edit Profile </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><%= link_to "Logout", :logout, method: :post %>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
+                
+                 <% else %>
+     		 <%= link_to "Register", new_user_path %> |
+     		 <%= link_to "Login", :login %>
+   			 <% end %>
+    
+    
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -332,6 +351,13 @@
             <!-- /.navbar-static-side -->
         </nav>
 	<div id="page-wrapper">
+		
+		<div>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
+  </div>
+  
+  
 	        <%= yield %>
  		</div>
         <!-- /#page-wrapper -->

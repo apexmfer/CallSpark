@@ -45,7 +45,8 @@ class CallsController < ApplicationController
     
   
     @call = Call.new(:customer_id => @customer.id,
-     :text => params[:call][:text] 
+     :text => params[:call][:text],
+     :user_id => current_user.id
     
       )
  
