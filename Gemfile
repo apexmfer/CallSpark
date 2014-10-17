@@ -23,8 +23,8 @@ end
 gem 'jquery-rails'
 
 gem 'strong_parameters'
-
-gem "therubyracer"
+  gem 'libv8', '3.3.10.4'
+  gem 'therubyracer', '0.10.2'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 
