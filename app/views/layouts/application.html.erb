@@ -355,8 +355,8 @@
 	<div id="page-wrapper">
 		
 		<div>
-    <p id="notice"><%= flash[:notice] %></p>
-    <p id="alert"><%= flash[:alert] %></p>
+    <p id="notice" class="alert alert-warning absolutecenter" ><%= flash[:notice] %></p>
+ <!--   <p id="alert" class="alert alert-warning" ><%= flash[:alert] %></p>  -->
   </div>
   
   
@@ -383,3 +383,22 @@
 </body>
 
 </html>
+
+
+<script>
+$( document ).ready(function() {
+	
+	if( document.getElementById("notice").innerHTML == ""  ){
+		
+		$("#notice").hide();
+	}
+	
+	setTimeout(function(){
+ $("#notice").fadeOut("slow");
+ }, 4000);
+ 
+});
+ 
+
+</script>
+

@@ -12,3 +12,8 @@
  *= require_bootstrap.min
  *= require_tree .
  */
+
+.absolutecenter{
+	position:absolute;
+	left:50%;
+}
