@@ -6,4 +6,16 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+  
+  
+  
+  
+  def name
+   
+   return firstname + ' ' + lastname
+     
+ end
+ 
+ 
+ 
 end

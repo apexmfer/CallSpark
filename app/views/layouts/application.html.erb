@@ -322,8 +322,24 @@
                         <li>
                             <a href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-table fa-fw"></i> Customers </a>
                         </li>
+                      
+                      
+                       <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Support Tools<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="https://rockwellautomation.custhelp.com/" target="_blank">AB Knowledgebase</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.rockwellautomation.com/rockwellautomation/support/selection.page" target="_blank">AB Product Info</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                      
+                      
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Admin Tools<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-star fa-fw"></i> Admin Tools<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<%= url_for :controller => 'admin', :action => 'categories' %>">Categories</a>

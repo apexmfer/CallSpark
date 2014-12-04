@@ -14,6 +14,18 @@ class Call < ActiveRecord::Base
   
  end
  
+  def getCustomer
+   
+   return Customer.where(id: customer_id).first
+     
+ end
+ 
+ def getUser
+   
+   return User.where(id: user_id).first
+     
+ end
+ 
  
   def getCategoryName
    

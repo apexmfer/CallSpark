@@ -2,5 +2,51 @@
 
 <% this_customer = Customer.find(params[:id])  %>
 
-<h2> <%= this_customer.name %> </h2>
+<h2>Calls from <%= this_customer.name %> </h2>
 
+<table class="table">
+  <thead>
+    <tr>
+    
+     <th>Respondant</th>
+      <th>Topic</th>
+       <th>Time</th>
+    
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Call.where(:customer_id => this_customer.id).all.reverse.each do |call| %>
+    
+    
+      <% answerer = User.where(:id => call.user_id).first  %>
+    
+      <tr>
+      	
+      
+        
+        <% if answerer != nil %>
+        	<td> <%= answerer.firstname %> </td>
+         <% else%>
+      		<td> </td>
+        <% end %>
+      	
+        <td><%= call.getCategoryName %></td>
+        
+        <td><%= time_ago_in_words(call.created_at) %> ago</td>
+      
+        <td><%= link_to 'Show', call %></td>
+        <td><%= link_to 'Edit', edit_call_path(call) %></td>
+        
+       
+        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      
+      
+      
+    <% end %>
+  </tbody>
+</table>
