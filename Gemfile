@@ -31,11 +31,8 @@ gem 'strong_parameters'
 #gem 'libv8', '3.16.14.3'
 
 #gem "therubyracer"
-
-gem 'less', '2.2.2'
-
-gem "less-rails"
-gem 'twitter-bootstrap-rails', '~> 2.1.7'
+#gem "less-rails"
+#gem 'twitter-bootstrap-rails', '~> 2.1.7'
 
 gem 'sorcery'
 
