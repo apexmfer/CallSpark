@@ -13,7 +13,13 @@
 Caller: <%= this_call.getCustomer.name %>
 </p>
 <p> 
-Company: <%= this_call.getCustomer.company.name %>
+	
+Company: <%= 
+if(this_call.getCustomer.company != nil)
+this_call.getCustomer.company.name 
+end
+%>
+
 </p>
 
 <% if this_call.getUser %>
