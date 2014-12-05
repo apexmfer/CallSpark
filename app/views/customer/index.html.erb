@@ -9,8 +9,8 @@
       <th>Name</th>
       <th>Calls in past year</th>    
       <th>Company</th>
-      <th>Email</th>
       <th>Phone</th>
+      <th>Email</th>      
       <th></th>
       <th></th>
       <th></th>
@@ -24,7 +24,16 @@
         
         <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
         
-        <td><%= customer.company %></td>
+        
+        <td>
+        	<%= 
+        	if(customer.company != nil)
+        	customer.company.name 
+        	end
+        	%>
+        </td>
+        
+        
         <td><%= customer.phone_number %></td>
         <td><%= customer.email %></td>
       

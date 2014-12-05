@@ -5,7 +5,7 @@ Testlog::Application.routes.draw do
 resources :user_sessions
 resources :users
 
-
+ resources :company
   resources :customer
   resources :calls
 

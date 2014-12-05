@@ -9,7 +9,9 @@ class CallsController < ApplicationController
     
     customer = Customer.where( :name => customername).first
     
-    render json: customer
+    data = [customer,customer.company]
+    
+    render json: data
   end
   
     def history
@@ -24,17 +26,32 @@ class CallsController < ApplicationController
     #render text: params[:call].inspect
     
     @customer = Customer.where(name: params[:call][:caller]).first
+    @company = Company.where(name: params[:call][:company]).first
+    
     
     if @customer == nil
+      
+      
+      
+      if @company == nil
+        
+        @company = Company.new(:name => params[:call][:company],
+        :BPID => params[:call][:BPID],
+        )
+         @company.save
+      end
+      
+      
+      
       @customer = Customer.new(:name => params[:call][:caller],
-     :company => params[:call][:company] ,
+     :company_id => @company.id,
       :phone_number => params[:call][:phone],
       :email => params[:call][:email]
       )
       
     else
       
-    @customer.company =  params[:call][:company];
+    @customer.company_id =  @company.id;
      @customer.phone_number =  params[:call][:phone];
      @customer.email =  params[:call][:email];
       
@@ -42,9 +59,10 @@ class CallsController < ApplicationController
     
     @customer.save
     
-    
+   
   
     @call = Call.new(:customer_id => @customer.id,
+    :category_id => params[:call][:category_id],
      :text => params[:call][:text],
      :user_id => current_user.id
     

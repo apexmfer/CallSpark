@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
       #redirect_back_or_to(:users, notice: 'Login successful')
       redirect_to(:root, notice: 'Login Successful!')
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:notice] = 'Login failed'
       render action: 'new'
     end
   end

@@ -79,13 +79,16 @@
             	 <% if current_user %>
      		 
    
-    
-    
-            	<a href="<%= url_for :controller => 'calls', :action => 'new' %>">
-            	<li type="button" class="btn btn-default">            	
-         	   	New Call            	
-            	</li>
-            	</a>
+    			
+   			
+            
+            	        	<button type="button" class="btn btn-default">
+            	        		
+            	        			<a href="<%= url_for :controller => 'calls', :action => 'new' %>">
+            	        		New Call     
+            	        		</a>
+            	        		 </button>
+            	
             	
             	<!--
                 <li class="dropdown">
@@ -322,7 +325,9 @@
                         <li>
                             <a href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-table fa-fw"></i> Customers </a>
                         </li>
-                      
+                      <li>
+                            <a href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-table fa-fw"></i> Companies </a>
+                        </li>
                       
                        <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Support Tools<span class="fa arrow"></span></a>
