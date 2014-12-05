@@ -36,7 +36,7 @@ class CallsController < ApplicationController
       if @company == nil
         
         @company = Company.new(:name => params[:call][:company],
-        :BPID => params[:call][:BPID],
+        :BPID => params[:call][:BPID]
         )
          @company.save
       end
@@ -61,7 +61,7 @@ class CallsController < ApplicationController
     end
     
     @customer.save
-    
+     @company.save
    
   
     @call = Call.new(:customer_id => @customer.id,
