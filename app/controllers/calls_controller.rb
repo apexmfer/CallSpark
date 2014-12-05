@@ -51,7 +51,10 @@ class CallsController < ApplicationController
       
     else
       
+      if( @company != nil )
     @customer.company_id =  @company.id;
+      end
+    
      @customer.phone_number =  params[:call][:phone];
      @customer.email =  params[:call][:email];
       
