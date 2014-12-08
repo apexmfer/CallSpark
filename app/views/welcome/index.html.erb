@@ -7,56 +7,59 @@
             </div>
             <!-- /.row -->
       
-         
-            <div class="row">
+        
+           <!--  <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                	
+                	
+                
+                 	    <div class="panel panel-default">
                         <div class="panel-heading">
                             Line Chart Example
                         </div>
-                        <!-- /.panel-heading -->
+                       
                         <div class="panel-body">
                             <div class="flot-chart">
                                 <div class="flot-chart-content" id="flot-line-chart" style="width:100%;height:300px;"></div>
                             </div>
                         </div>
-                        <!-- /.panel-body -->
+                       
                     </div>
-                    <!-- /.panel -->
+                   
                 </div>
-                <!-- /.col-lg-12 -->
+                
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Pie Chart Example
                         </div>
-                        <!-- /.panel-heading -->
+                     
                         <div class="panel-body">
                             <div class="flot-chart">
                                 <div class="flot-chart-content" id="flot-pie-chart" style="width:100%;height:300px;" ></div>
                             </div>
                         </div>
-                        <!-- /.panel-body -->
+                     
                     </div>
-                    <!-- /.panel -->
+                   
                 </div>
-                <!-- /.col-lg-6 -->
+             
               
-              
-              
-               </div>
+               </div> -->
+               
+               
                
                 <div class="row">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Bar Chart Example
+                            Call History
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-bar-chart" style="width:100%;height:300px;" ></div>
+                                <div class="flot-chart-content" id="flot-bar-chart" style="width:800px;height:400px;" ></div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -66,4 +69,68 @@
                  </div>
             <!-- /.row -->
       
+      
+      
+      	<script src="/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+      	
+
+<script>
+	
+	//Flot Bar Chart
+
+$(function() {
+
+    var barOptions = {
+        series: {
+            bars: {
+                show: true,
+                barWidth: 43200000
+            }
+        },
+        xaxis: {
+            mode: "time",
+            timeformat: "%m/%d",
+            minTickSize: [1, "day"]
+        },
+        grid: {
+            hoverable: true
+        },
+        legend: {
+            show: false
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "x: %x, y: %y"
+        }
+    };
+    var barData = {
+        label: "bar",
+        data: [
+        	<%  today= Time.now.end_of_day %>
+        	<% daysToSee = 11 %>
+        	
+        	<% daysToSee.times do %>     		
+        		
+        		<% 
+        		numcalls = Call.where(created_at: (today - 1.day)..today).length
+        		%>
+        		<% today = today - 1.day; %>
+        		
+        		[<%=(today - 12.hours).to_i;%>000,<%= numcalls %>],  	
+        		
+        	<% end %>
+        	
+           
+            
+        ]
+    };
+    $.plot($("#flot-bar-chart"), [barData], barOptions);
+
+});
+
+	
+</script>
+
+      	
+     
           
