@@ -42,6 +42,8 @@ match 'calls/history/:id' => 'calls#history'
 
 match 'category/hints/:id' => 'category#hints'
 
+get '/search' => 'search#index'
+
 
 
   # The priority is based upon order of creation:
