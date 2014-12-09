@@ -52,7 +52,7 @@ class CallsController < ApplicationController
     else
       
       if( @company != nil )
-    @customer.company_id =  @company.id;
+       @customer.company_id =  @company.id;
       end
     
      @customer.phone_number =  params[:call][:phone];
@@ -61,8 +61,10 @@ class CallsController < ApplicationController
     end
     
     @customer.save
-     @company.save
-   
+    
+        if( @company != nil )
+        @company.save
+         end
   
     @call = Call.new(:customer_id => @customer.id,
     :category_id => params[:call][:category_id],

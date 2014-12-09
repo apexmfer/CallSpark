@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% Customer.all.each do |customer| %>
+    <% Customer.all.reverse.each do |customer| %>
       <tr>
         <td><%= customer.name %></td>
         
