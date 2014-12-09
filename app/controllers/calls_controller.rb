@@ -29,10 +29,7 @@ class CallsController < ApplicationController
     @company = Company.where(name: params[:call][:company]).first
     
     
-    if @customer == nil
-      
-      
-      
+    
       if @company == nil
         
         @company = Company.new(:name => params[:call][:company],
@@ -40,6 +37,13 @@ class CallsController < ApplicationController
         )
          @company.save
       end
+      
+    
+    
+    
+    if @customer == nil
+      
+      
       
       
       

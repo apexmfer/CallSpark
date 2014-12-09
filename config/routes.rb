@@ -23,6 +23,7 @@ get 'login' => 'user_sessions#new', :as => :login
 post 'logout' => 'user_sessions#destroy', :as => :logout
   
   match 'customer' => 'customer#index'
+  match 'customer/update' => 'customer#update'
   match 'customer/destroy' => 'customer#destroy'
   
    match 'admin/categories' => 'admin#categories'
