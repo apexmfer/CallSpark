@@ -2,9 +2,21 @@
 <h1>Results for <%= params['query']  %></h1>
 
 
-<h2>Customers</h2>
-<table class="table">
+ <div class="panel panel-default 
+
+<% if(Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+	hidden
+<%  end %>
+
+">
+  <div class="panel-heading">Customers</div>
+  <div class="panel-body">
+
+
+  <div class="table-responsive">
+    <table id="customertable" class="table table-bordered table-hover table-striped">
   <thead>
+
     <tr>
       <th>Name</th>
       <th>Calls in past year</th>    
@@ -46,6 +58,60 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
+</div>
+
+ <div class="panel panel-default 
+
+<% if(Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+	hidden
+<% end %>
+
+">
+  <div class="panel-heading">Companies</div>
+  <div class="panel-body">
+  	
+  <div class="table-responsive">
+    <table id="companytable" class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+       <th>BPID</th>  
+     
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        
+        
+        <td><%= company.BPID %></td>
+             
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+    $('#customertable').dataTable();
+     $('#companytable').dataTable();
+} );
+
+</script>
+
 
 
 
