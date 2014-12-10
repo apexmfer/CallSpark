@@ -18,9 +18,12 @@ module ApplicationHelper
   end
   
   
-  
-  
-  
-  
+  def cssClassActive (contName)
+    
+    if( controller_name == contName)
+       return "class=active"
+     end
+      return ''
+  end
   
 end

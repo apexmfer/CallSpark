@@ -311,7 +311,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/"><i class="fa fa-dashboard fa-fw" style="color:<%= color(1) %>" ></i> Dashboard</a>
+                            <a <%= cssClassActive('welcome') %> href="/"><i class="fa fa-dashboard fa-fw" style="color:<%= color(1) %>" ></i> Dashboard</a>
                         </li>
                        <!-- <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -327,13 +327,13 @@
                        </li> 
                        -->
                         <li>
-                            <a href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
+                            <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
                         </li>
                         <li>
-                            <a href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
+                            <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
                         </li>
                       <li>
-                            <a href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
+                            <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
                         </li>
                       
                        <li>
