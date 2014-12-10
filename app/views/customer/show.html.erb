@@ -12,6 +12,14 @@
   <div class="panel-heading">Contact Information</div>
   <div class="panel-body">
   
+
+
+<% if this.customer.company != nil %>
+<p> 
+Company: <a href="<%= url_for this_customer.company %>"><%= this_customer.company.name %></a>
+</p>
+<% end %>
+
 <p> 
 Phone: <%= this_customer.phone_number %>
 </p>
@@ -19,7 +27,6 @@ Phone: <%= this_customer.phone_number %>
 <p> 
 Email: <%= this_customer.email %>
 </p>
-
 
 </div>
 </div>
