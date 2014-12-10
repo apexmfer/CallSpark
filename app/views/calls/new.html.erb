@@ -193,7 +193,7 @@
   			  for(var i=0;i<data.length;i++){
   			 	 var newdiv = document.createElement( "div" );
   			 	 newdiv.className+=" alert alert-info";
-  				 newdiv.innerHTML = data[i].text ; 	
+  				 newdiv.innerHTML = data[i].text.replace(/(?:\r\n|\r|\n)/g, '<br />');	
   				  $("#previousconversationcontainer").append( newdiv );  
   				  
   				  var timelabel = document.createElement( "div" );

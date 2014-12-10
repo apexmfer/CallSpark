@@ -52,7 +52,7 @@ Respondant: <%= this_call.getUser.name %>
  <div class="panel panel-default">
   <div class="panel-heading"> <%= this_call.getCategoryName  %> Support</div>
   <div class="panel-body">
-   <%= this_call.text %>
+   <%= simple_format(this_call.text) %>
   </div>
 </div>
  

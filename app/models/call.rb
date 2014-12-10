@@ -8,7 +8,7 @@ class Call < ActiveRecord::Base
    if(customer != nil)
        return customer.name
     else
-      return "N/A"
+      return ""
    end
    
   
