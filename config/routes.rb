@@ -11,7 +11,7 @@ resources :users
 
 resources :category
 resources :category_hint
-resources :event
+resources :supportlink
 
   get "user_sessions/new"
 
@@ -31,10 +31,14 @@ post 'logout' => 'user_sessions#destroy', :as => :logout
   
    match 'admin/events' => 'admin#events'
   match 'event/destroy' => 'event#destroy'
-  
-  
+    
   match 'admin/category_hints' => 'admin#category_hints'
   match 'category_hint/destroy' => 'category_hint#destroy'
+  
+   match 'admin/supportlinks' => 'admin#supportlinks'
+   match 'supportlink/destroy' => 'supportlink#destroy'
+   match 'supportlink/moveup' => 'supportlink#moveup'
+   match 'supportlink/movedown' => 'supportlink#movedown'
   
 match 'calls/new/:id' => 'calls#new'
 

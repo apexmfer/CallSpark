@@ -4,7 +4,7 @@
 
 <% @company = Company.where(id: @customer.company_id).first  %>
 
-<% 
+<%
 if(@company != nil)
 	companyname = @company.name
 end

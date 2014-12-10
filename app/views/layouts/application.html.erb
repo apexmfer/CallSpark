@@ -289,7 +289,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation" >
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -336,23 +336,27 @@
                             <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
                         </li>
                       
+                      <% if(Supportlink.all.length > 0) %>
                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Support Tools<span class="fa arrow" ></span></a>
-                            <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
+                            	<i class="fa fa-wrench fa-fw"></i> Support Tools<span id="toolsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
+                            <ul id="collapseTools" class="nav nav-second-level collapse in" aria-expanded="true">
+                            	
+                            	<% Supportlink.all.each do |link| %>
                                 <li>
-                                    <a href="https://rockwellautomation.custhelp.com/" target="_blank">AB Knowledgebase</a>
+                                    <a href="<%= link.url %>" target="_blank"><%= link.name %></a>
                                 </li>
-                                <li>
-                                    <a href="http://www.rockwellautomation.com/rockwellautomation/support/selection.page" target="_blank">AB Product Info</a>
-                                </li>
+                                 <% end %>
+
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                      
+                      <% end %>
                       
                         <li>
-                            <a href="#"><i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+                            	<i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" style="display:none"></span></a>
+                            <ul id="collapseAdmin" class="nav nav-second-level collapse in" >
                                 <li>
                                     <a href="<%= url_for :controller => 'admin', :action => 'categories' %>">Categories</a>
                                 </li>
@@ -360,7 +364,7 @@
                                     <a href="<%= url_for :controller => 'admin', :action => 'category_hints' %>">Category Hints</a>
                                 </li>
                                 <li>
-                                    <a href="<%= url_for :controller => 'admin', :action => 'events' %>">Events</a>
+                                    <a href="<%= url_for :controller => 'admin', :action => 'supportlinks' %>">Support Links</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -416,6 +420,9 @@
 <script>
 $( document ).ready(function() {
 	
+	
+	
+	
 	if( document.getElementById("notice").innerHTML == ""  ){
 		
 		$("#notice").hide();
@@ -426,6 +433,24 @@ $( document ).ready(function() {
  }, 4000);
  
 });
+
+
+
+$('#collapseAdmin').on('hide.bs.collapse', function () {
+ $('#adminArrow').show();
+})
+
+$('#collapseAdmin').on('show.bs.collapse', function () {
+ $('#adminArrow').hide();
+})
+ 
+ $('#collapseTools').on('hide.bs.collapse', function () {
+ $('#toolsArrow').show();
+})
+
+$('#collapseTools').on('show.bs.collapse', function () {
+ $('#toolsArrow').hide();
+})
  
 
 </script>

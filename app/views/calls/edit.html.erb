@@ -1,0 +1,52 @@
+
+
+<% call = Call.find(params[:id])  %>
+
+<% customer = Customer.where(id: call.customer_id).first  %>
+
+
+
+
+
+
+<h2>Update call from <%= customer.name %> </h2>
+
+
+<%= form_for call, url: { action: "update" } do |f| %>
+
+
+
+<div class="row">
+	
+  <div class="col-lg-6">
+  
+  
+<p> 
+Caller: <a href="<%= url_for call.getCustomer %>"> <%= call.getCustomer.name %> </a>
+</p>
+
+  
+<p> 
+Phone: <%= call.getCustomer.phone_number %>
+</p>
+
+<p> 
+Email: <%= call.getCustomer.email %>
+</p>
+
+
+    
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+  
+ 
+  </div>
+ </div>
+
+ 
+  <p>
+    <%= f.submit  "Submit Updates", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+  </p>
+<% end %>
