@@ -2,6 +2,30 @@
 
 <% this_customer = Customer.find(params[:id])  %>
 
+
+
+
+<h2><%= this_customer.name %> </h2>
+
+
+ <div class="panel panel-default">
+  <div class="panel-heading">Contact Information</div>
+  <div class="panel-body">
+  
+<p> 
+Phone: <%= this_customer.phone_number %>
+</p>
+
+<p> 
+Email: <%= this_customer.email %>
+</p>
+
+
+</div>
+</div>
+
+
+
 <h2>Calls from <%= this_customer.name %> </h2>
 
 <table class="table">

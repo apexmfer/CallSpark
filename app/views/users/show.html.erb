@@ -3,18 +3,56 @@
 <p>
   <b>Email:</b>
   <%= @user.email %>
-</p>
 
-<p>
-  <b>Crypted password:</b>
-  <%= @user.crypted_password %>
-</p>
 
-<p>
-  <b>Salt:</b>
-  <%= @user.salt %>
-</p>
+
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
+</p>
+
+
+
+<h2>Calls handled by <%= @user.name %> </h2>
+
+<table class="table">
+  <thead>
+    <tr>
+    
+     <th>Caller</th>
+      <th>Topic</th>
+       <th>Time</th>
+    
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Call.where(:user_id => @user.id).all.reverse.each do |call| %>
+    
+        
+      <tr>
+      	
+      	<td><%= call.getCustomerName %></td>
+            	
+        <td><%= call.getCategoryName %></td>
+        
+        <td><%= time_ago_in_words(call.created_at) %> ago</td>
+      
+        <td><%= link_to 'Show', call %></td>
+        <td><%= link_to 'Edit', edit_call_path(call) %></td>
+        
+       
+        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      
+      
+      
+    <% end %>
+  </tbody>
+</table>
