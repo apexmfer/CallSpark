@@ -3,8 +3,8 @@
 
 
 
-
-<table class="table">
+  <div class="table-responsive">
+    <table id="maintable" class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
     <th>Caller</th>
@@ -55,3 +55,13 @@
     <% end %>
   </tbody>
 </table>
+</div>
+
+
+
+<script>
+	$(document).ready(function() {
+    $('#maintable').dataTable();
+} );
+
+</script>

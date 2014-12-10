@@ -337,8 +337,8 @@
                         </li>
                       
                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Support Tools<span class="fa arrow" style="color:<%= color(3) %>"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Support Tools<span class="fa arrow" ></span></a>
+                            <ul class="nav nav-second-level collapse in" aria-expanded="true">
                                 <li>
                                     <a href="https://rockwellautomation.custhelp.com/" target="_blank">AB Knowledgebase</a>
                                 </li>
@@ -352,7 +352,7 @@
                       
                         <li>
                             <a href="#"><i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level collapse in" aria-expanded="true">
                                 <li>
                                     <a href="<%= url_for :controller => 'admin', :action => 'categories' %>">Categories</a>
                                 </li>

@@ -2,4 +2,68 @@
 
 <% this_company = Company.find(params[:id])  %>
 
-<h2>Calls from <%= this_company.name %> </h2>
+<h2><%= this_company.name %> </h2>
+
+
+ <div class="panel panel-default">
+  <div class="panel-heading">Company Information</div>
+  <div class="panel-body">
+  
+<p> 
+BPID: <%= this_company.BPID %>
+</p>
+
+</div>
+</div>
+
+
+
+
+<h3>Employees</h3>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Calls in past year</th>    
+      <th>Company</th>
+      <th>Phone</th>
+      <th>Email</th>      
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Customer.where(company_id: this_company.id).each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        
+        <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
+        
+        
+        <td>
+        	<%= 
+        	if(customer.company != nil)
+        	customer.company.name 
+        	end
+        	%>
+        </td>
+        
+        
+        <td><%= customer.phone_number %></td>
+        <td><%= customer.email %></td>
+      
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

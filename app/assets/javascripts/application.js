@@ -15,5 +15,7 @@
 //= require jquery.timeago
 //= require jquery-ui.min
 //= require bootstrap.min
+//= require plugins/dataTables/dataTables.bootstrap
+//= require plugins/dataTables/jquery.dataTables
 
 
