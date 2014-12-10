@@ -28,7 +28,7 @@
       <tr>
       	
       	<% if caller != nil %>
-      	<td><%= caller.name %></td>
+      	<td> <a href="<%= url_for caller %>"> <%= caller.name %> </a></td>
       	 <% else%>
        <td> UNKNOWN CALLER </td>
         <% end %>
