@@ -50,7 +50,11 @@ Respondant: <%= this_call.getUser.name %>
 
 
  <div class="panel panel-default">
-  <div class="panel-heading"> <%= this_call.getCategoryName  %> Support</div>
+  <div class="panel-heading"> 
+  	<%= this_call.getCategoryName  %> Support
+  	
+  	<div class="label label-primary pull-right"><%= time_ago_in_words(this_call.created_at) %> ago</div>
+  	</div>
   <div class="panel-body">
    <%= simple_format(this_call.text) %>
   </div>

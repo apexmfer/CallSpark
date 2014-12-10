@@ -8,7 +8,7 @@ class Call < ActiveRecord::Base
    if(customer != nil)
        return customer.name
     else
-      return ""
+      return "?"
    end
    
   
@@ -34,7 +34,7 @@ class Call < ActiveRecord::Base
    if(category != nil)
        return category.name
     else
-      return "N/A"
+      return ""
    end
    
   
