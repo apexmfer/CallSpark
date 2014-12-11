@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_bootstrap.min
+ *= require_animate
  *= require_tree .
  */
 

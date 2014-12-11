@@ -9,40 +9,45 @@
 
 <div class="row">
        <div class="col-lg-12">
-<%= form_for :call, url: calls_path do |f| %>
+<%= form_for :call, url: calls_path, html: {id: "newcallform"} do |f| %>
 
 <div class="row">
-	<div class="col-lg-6">
-  <p>
+	<div class="col-lg-3">
+		
+  <div class="form-group" id="callername_group">
     <%= f.label :caller %><br>
-    <%= f.text_field :caller %>
-  </p>
-    <p>
-    <%= f.label :category %><br>
-    <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
-  </p>
+    <%= f.text_field :caller, class:"form-control" %>
   </div>
-  <div class="col-lg-6">
   
-  <p>
+   <div class="form-group" id="category_group">
+    <%= f.label :category %><br>
+    <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+     </div>
+ 
+  </div>
+  <div class="col-lg-3">
+  	</div>
+  <div class="col-lg-3">
+  
+  <div class="form-group ">
     <%= f.label :company %><br>
-    <%= f.text_field :company %>
-  </p>
+    <%= f.text_field :company, class:"form-control" %>
+   </div>
   
-   <p>
+   <div class="form-group ">
     <%= f.label :BPID %><br>
-    <%= f.text_field :BPID %>
-  </p>
+    <%= f.text_field :BPID, class:"form-control" %>
+  </div>
   
-  <p>
+  <div class="form-group ">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </p>
+    <%= f.text_field :phone, class:"form-control" %>
+  </div>
   
-  <p>
+  <div class="form-group ">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
  
   </div>
  </div>
@@ -60,7 +65,9 @@
  
  
   <p>
-    <%= f.submit  "Save Call", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+  	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-2 col-md-offset-2">Save Call</a>
+    <% f.submit  "Save Call", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+    <div id="errormessage" class= "btn btn-danger savecall-button col-md-2 col-md-offset-2" style="display:none"></div>
   </p>
 <% end %>
 </div>
@@ -97,7 +104,6 @@
   <script>
   
 
-  
   
   
   
@@ -267,9 +273,65 @@
   
   
  
+  function submitform()
+  {
+  	
+  	errormessage = "";
+  	
+  	
+  	if($('#call_caller').val().length == 0)
+  	{
+  		errormessage = "Invalid caller name"
+  		$('#callername_group').addClass('has-error');
+  		$('#callername_group').addClass('animated bounce');
+  		
+  	}
+  	
+  	else if($('#call_category_id').val() == 0)
+  	{
+  		errormessage = "Please select a category topic"
+  		  		
+  		$('#category_group').addClass('has-error');
+  		$('#category_group').addClass('animated bounce');
+  	}
+  	
+  	else{}
+  	
+  	
+  	
+  	
+  	
+  	
+  	if(errormessage.length == 0)
+  	{
+  	$('#newcallform').submit();
+  	}
+  	else
+  	{
+  		
+  		$('#submitbutton').hide();
+  		$('#errormessage').show();
+  		$('#errormessage').addClass('animated shake');
+  		$('#errormessage').html(errormessage);
+  		
+  		
+  		setTimeout(
+  			function() 
+  				{
+  				  $('#errormessage').hide();
+  					$('#submitbutton').show();
+  					
+  					$('#category_group').removeClass('has-error');
+  					
+  					
+  					
+ 				 }, 1500);
   
   
-    
+  	}
+  	
+  }
+  
     
     
   </script> 
