@@ -8,5 +8,17 @@ class Customer < ActiveRecord::Base
       
   
     end
+    
+    
+    def noLastName
+      
+      if name.strip.split(" ").length <= 1
+          return true
+      end
+      
+      return false
+      
+    end
+    
    
 end

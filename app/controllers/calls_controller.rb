@@ -28,9 +28,9 @@ class CallsController < ApplicationController
     @customer = Customer.where(name: params[:call][:caller]).first
     @company = Company.where(name: params[:call][:company]).first
     
+    companyMatchNil = @company == nil
     
-    
-      if @company == nil
+      if companyMatchNil
         
         @company = Company.new(:name => params[:call][:company],
         :BPID => params[:call][:BPID]
@@ -41,12 +41,10 @@ class CallsController < ApplicationController
     
     
     
-    if @customer == nil
+    if @customer == nil or (@customer.noLastName and companyMatchNil)
       
       
-      
-      
-      
+            
       @customer = Customer.new(:name => params[:call][:caller],
      :company_id => @company.id,
       :phone_number => params[:call][:phone],
