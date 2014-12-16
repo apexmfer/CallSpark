@@ -1,11 +1,11 @@
 
 
-<% this_customer = Customer.find(params[:id])  %>
+<% customer = Customer.find(params[:id])  %>
 
 
 
 
-<h2><%= this_customer.name %> </h2>
+<h2><%= customer.name %> </h2>
 
 
  <div class="panel panel-default">
@@ -14,26 +14,31 @@
   
 
 
-<% if this_customer.company != nil %>
+<% if customer.company != nil %>
 <p> 
-Company: <a href="<%= url_for this_customer.company %>"><%= this_customer.company.name %></a>
+Company: <a href="<%= url_for customer.company %>"><%= customer.company.name %></a>
 </p>
 <% end %>
 
 <p> 
-Phone: <%= this_customer.phone_number %>
+Phone: <%= customer.phone_number %>
 </p>
 
 <p> 
-Email: <%= this_customer.email %>
+Email: <%= customer.email %>
 </p>
 
 </div>
 </div>
 
 
+ <a href = "<%= url_for edit_customer_path(customer) %>">
+        	<button type="button" class="btn btn-warning col-md-4 col-md-offset-4">Edit Customer Info</button>
+   </a>    
 
-<h2>Calls from <%= this_customer.name %> </h2>
+<br>
+
+<h2>Calls from <%= customer.name %> </h2>
 
 <table class="table">
   <thead>
@@ -50,7 +55,7 @@ Email: <%= this_customer.email %>
   </thead>
 
   <tbody>
-    <% Call.where(:customer_id => this_customer.id).all.reverse.each do |call| %>
+    <% Call.where(:customer_id => customer.id).all.reverse.each do |call| %>
     
     
       <% answerer = User.where(:id => call.user_id).first  %>

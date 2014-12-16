@@ -41,7 +41,7 @@ post 'logout' => 'user_sessions#destroy', :as => :logout
    match 'supportlink/movedown' => 'supportlink#movedown'
   
 match 'calls/new/:id' => 'calls#new'
-
+match 'calls/listinfo/:id' => 'calls#listinfo'
 match 'calls/update/:id' => 'calls#update'
 match 'calls/history/:id' => 'calls#history'
 

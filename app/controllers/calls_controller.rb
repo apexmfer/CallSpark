@@ -4,7 +4,7 @@ class CallsController < ApplicationController
      
   end
   
-  def update
+    def listinfo
     customername = params['id'];
     
     customer = Customer.where( :name => customername).first
@@ -12,6 +12,20 @@ class CallsController < ApplicationController
     data = [customer,customer.company]
     
     render json: data
+  end
+  
+  
+  def update
+    text = params['call']['text']
+    
+     call = Call.find(params['id'])    
+     
+
+    call.text = text    
+    call.save
+    
+    
+    redirect_to call
   end
   
     def history

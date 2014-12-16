@@ -22,7 +22,7 @@ class CustomerController < ApplicationController
     customer.company_id = company.id    
     customer.save
     
-    redirect_to '/customer', alert: 'Customer updated'
+    redirect_to customer
   end
   
    def destroy
