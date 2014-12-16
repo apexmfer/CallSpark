@@ -43,11 +43,24 @@
         
         <td><%= time_ago_in_words(call.created_at) %> ago</td>
       
-        <td><%= link_to 'Show', call %></td>
-        <td><%= link_to 'Edit', edit_call_path(call) %></td>
+        <td>
+        	<a href = "<%= url_for call %>">
+        	<button type="button" class="btn btn-primary">Show</button>
+        	</a>        	
+        </td>
         
-       
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        	<a href = "<%= url_for edit_call_path(call) %>">
+        	<button type="button" class="btn btn-warning">Edit</button>
+        	</a>        	
+        </td>
+        
+        <td>
+        	<a href = "<%= url_for call  %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">
+        	<button type="button" class="btn btn-danger">Destroy</button>
+        	</a>        	
+        </td>
+                         
       </tr>
       
       
