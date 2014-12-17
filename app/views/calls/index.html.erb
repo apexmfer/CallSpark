@@ -7,6 +7,7 @@
     <table id="maintable" class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
+   <th>Id</th>
     <th>Caller</th>
      <th>Answerer</th>
       <th>Topic</th>
@@ -26,6 +27,8 @@
       <% answerer = User.where(:id => call.user_id).first  %>
     
       <tr>
+      	 <td><%= call.id %></td>
+      	 
       	
       	<% if caller != nil %>
       	<td> <a href="<%= url_for caller %>"> <%= caller.name %> </a></td>
