@@ -38,49 +38,11 @@ class CallsController < ApplicationController
   
   def create
     #render text: params[:call].inspect
-    
-    @customer = Customer.where(name: params[:call][:caller]).first
-    @company = Company.where(name: params[:call][:company]).first
-    
-    companyMatchNil = @company == nil
-    
-      if companyMatchNil
         
-        @company = Company.new(:name => params[:call][:company],
-        :BPID => params[:call][:BPID]
-        )
-         @company.save
-      end
-      
     
-    
-    
-    if @customer == nil or (@customer.noLastName and companyMatchNil)
-      
-      
-            
-      @customer = Customer.new(:name => params[:call][:caller],
-     :company_id => @company.id,
-      :phone_number => params[:call][:phone],
-      :email => params[:call][:email]
-      )
-      
-    else
-      
-      if( @company != nil )
-       @customer.company_id =  @company.id;
-      end
-    
-     @customer.phone_number =  params[:call][:phone];
-     @customer.email =  params[:call][:email];
-      
-    end
-    
-    @customer.save
-    
-        if( @company != nil )
-        @company.save
-         end
+    @customer = spawnCustomer( params[:call])
+       
+         
   
     @call = Call.new(:customer_id => @customer.id,
     :category_id => params[:call][:category_id],

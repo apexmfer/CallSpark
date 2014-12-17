@@ -1,5 +1,19 @@
 class CustomerController < ApplicationController
   
+  
+  
+  
+  
+  
+  def create
+    
+    @customer = spawnCustomer( params[:customer])
+    
+    redirect_to @customer
+  end
+  
+  
+  
   def update
     
     

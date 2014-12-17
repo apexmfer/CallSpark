@@ -1,0 +1,289 @@
+ 
+ 
+ <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">New Customer</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+<div class="row">
+       <div class="col-lg-12">
+
+<%= form_for :customer, url: {controller: "customer",action: "create"}, html: {id:"newcustomerform",class: "form-group"} do |f| %>
+
+
+<div class="row">
+	<div class="col-lg-3">
+		
+  <div class="form-group" id="callername_group">
+    <%= f.label :caller %><br>
+    <%= f.text_field :caller, class:"form-control" %>
+  </div>
+    <div class="form-group ">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class:"form-control" %>
+  </div>
+  
+  <div class="form-group ">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
+   
+ 
+  </div>
+  <div class="col-lg-3">
+  	</div>
+  <div class="col-lg-3">
+  
+  <div class="form-group ">
+    <%= f.label :company %><br>
+    <%= f.text_field :company, class:"form-control" %>
+   </div>
+  
+   <div class="form-group ">
+    <%= f.label :BPID %><br>
+    <%= f.text_field :BPID, class:"form-control" %>
+  </div>
+  
+
+ 
+  </div>
+ </div>
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+  <p>
+  	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-2 col-md-offset-2">Save Call</a>
+    <% f.submit  "Save Customer", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+    <div id="errormessage" class= "btn btn-danger savecall-button col-md-2 col-md-offset-2" style="display:none"></div>
+  </p>
+<% end %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<% content_for :head do %>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+ 
+  <script>
+  
+
+  
+  
+  
+  $(function() {
+  	
+  	//SET AVAILABLE AUTOCOMPLETES FOR COMPANY
+  	 var availableCompanyTags = [
+      
+<% Company.all.each do |c| %>
+
+"<%= c.name %>",
+
+<% end %>     
+    ];
+    
+       
+    
+    $( "#customer_company" ).autocomplete({
+      source: availableCompanyTags
+    });
+  	
+  	
+  	
+  	//SET AVAILABLE AUTOCOMPLETES FOR CUSTOMER
+    var availableCustomerTags = [
+      
+<% Customer.all.each do |c| %>
+
+"<%= c.name %>",
+
+
+<% end %>
+
+     
+    ];
+    
+       
+    
+    $( "#customer_caller" ).autocomplete({
+      source: availableCustomerTags
+    });
+    
+    
+    
+    //DO ONEVENTS FOR CUSTOMER FIELD
+    
+    $( "#customer_caller" ).on( "autocompleteselect", function( event, ui ){
+    	
+        	
+    	
+    	var custdatacall = $.ajax({
+   			url:'/calls/listinfo/'+ui.item.label, //Defined in your routes file
+   			//data:('id=' + ui.item.label  )
+		} )
+  		.done(function(data) {
+  			  console.log( "success" );
+  			 console.log( data );
+  			 customer = data[0];
+  			 company = data[1];
+  			 
+  			 
+  			 document.getElementById("call_company").value = company.name;
+  			 document.getElementById("call_BPID").value = company.BPID;
+  			 
+  			 document.getElementById("call_email").value = customer.email;
+  			 document.getElementById("call_phone").value = customer.phone_number;
+  			 
+ 		 })
+  		.fail(function() {
+ 		   console.log( "error" );
+  		})
+  		.always(function() {
+   			console.log( "complete" );
+		 });
+    	
+    	
+    	
+    	 var previouscalls = $.ajax({
+   			url:'/calls/history/'+ui.item.label, //Defined in your routes file
+   			
+		} )
+  		.done(function(data) {
+  			  			     	
+     	  var myNode = document.getElementById("previousconversationcontainer");
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}
+  			
+  			
+  			 
+  			 
+  			 
+ 		 })
+  		.fail(function() {
+ 		   console.log( "error" );
+  		})
+  		.always(function() {
+   			console.log( "complete" );
+		 });
+    	
+    	
+    	 
+    }  );
+    
+     $( "#customer_category_id" ).on( "change", function( event, ui ){
+     	
+     	
+     	
+     	  var myNode = document.getElementById("hintscontainer");
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}
+     	
+    	
+    	var choice = $("#customer_category_id").find('option:selected').text() ;
+    	
+    	console.log(choice);
+    	
+    	var categoryselect = $.ajax({
+   			url:'/category/hints/'+choice, //Defined in your routes file
+   			//data:('id=' + ui.item.label  )
+		} )
+  		.done(function(data) {
+  			
+  			
+  			 
+ 		 })
+  		.fail(function() {
+ 		   console.log( "error" );
+  		})
+  		.always(function() {
+   			console.log( "complete" );
+		 });
+    	
+    	
+    	
+    	 
+    }  );
+    
+    
+  });
+  
+  
+  
+ 
+  function submitform()
+  {
+  	
+  	errormessage = "";
+  	
+  	
+  	if($('#customer_caller').val().length == 0)
+  	{
+  		errormessage = "Invalid caller name"
+  		$('#callername_group').addClass('has-error');
+  		$('#callername_group').addClass('animated bounce');
+  		
+  	}
+  	
+  	else if($('#customer_category_id').val() == 0)
+  	{
+  		errormessage = "Please select a category topic"
+  		  		
+  		$('#category_group').addClass('has-error');
+  		$('#category_group').addClass('animated bounce');
+  	}
+  	  	
+  	
+  	
+  	
+  	if(errormessage.length == 0)
+  	{
+  	$('#newcustomerform').submit();
+  	}
+  	else
+  	{
+  		
+  		$('#submitbutton').hide();
+  		$('#errormessage').show();
+  		$('#errormessage').addClass('animated shake');
+  		$('#errormessage').html(errormessage);
+  		
+  		
+  		setTimeout(
+  			function() 
+  				{
+  				  $('#errormessage').hide();
+  					$('#submitbutton').show();
+  					
+  					$('#category_group').removeClass('has-error');
+  					
+  					
+  					
+ 				 }, 1500);
+  
+  
+  	}
+  	
+  }
+  
+    
+    
+  </script> 
+  
+<% end %>
+
+
