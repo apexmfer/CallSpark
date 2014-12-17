@@ -34,7 +34,7 @@ Email: <%= customer.email %>
   <div class="col-lg-6">
   	
   	
-<% if customer.notes.length > 0 %>  	
+<% if customer.notes!= nil and customer.notes.length > 0 %>  	
   <div class="label label-primary ">Notes</div>
 <p> 
  <%= customer.notes %>
