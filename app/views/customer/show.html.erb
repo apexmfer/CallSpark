@@ -12,7 +12,9 @@
   <div class="panel-heading">Contact Information</div>
   <div class="panel-body">
   
-
+<div class="row">
+	
+  <div class="col-lg-6">
 
 <% if customer.company != nil %>
 <p> 
@@ -27,6 +29,23 @@ Phone: <%= customer.phone_number %>
 <p> 
 Email: <%= customer.email %>
 </p>
+
+</div>
+  <div class="col-lg-6">
+  	
+  	
+<% if customer.notes.length > 0 %>  	
+  <div class="label label-primary ">Notes</div>
+<p> 
+ <%= customer.notes %>
+ </p>
+ <% end %>
+ 
+
+</div>
+
+
+</div>
 
 </div>
 </div>

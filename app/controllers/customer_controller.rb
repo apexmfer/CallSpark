@@ -20,7 +20,7 @@ class CustomerController < ApplicationController
     companyname = params['customer']['companyname']
     phone = params['customer']['phone_number']
     email = params['customer']['email']
-    
+    notes = params['customer']['notes']
     
     company = Company.where(name: companyname).first
     
@@ -34,6 +34,7 @@ class CustomerController < ApplicationController
     customer.phone_number = phone
     customer.email = email
     customer.company_id = company.id    
+    customer.notes = notes    
     customer.save
     
     redirect_to customer

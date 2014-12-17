@@ -28,7 +28,7 @@ BPID: <%= this_company.BPID %>
     <tr>
       <th>Name</th>
       <th>Calls in past year</th>    
-      <th>Company</th>
+      <th>Notes</th>
       <th>Phone</th>
       <th>Email</th>      
       <th></th>
@@ -45,13 +45,7 @@ BPID: <%= this_company.BPID %>
         <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
         
         
-        <td>
-        	<%= 
-        	if(customer.company != nil)
-        	customer.company.name 
-        	end
-        	%>
-        </td>
+        <td><%= customer.notes %></td>
         
         
         <td><%= customer.phone_number %></td>
