@@ -59,7 +59,7 @@
  
  
   <p>
-  	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-2 col-md-offset-2">Save Call</a>
+  	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-2 col-md-offset-2">Save Customer</a>
     <% f.submit  "Save Customer", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
     <div id="errormessage" class= "btn btn-danger savecall-button col-md-2 col-md-offset-2" style="display:none"></div>
   </p>
@@ -141,11 +141,11 @@
   			 company = data[1];
   			 
   			 
-  			 document.getElementById("call_company").value = company.name;
-  			 document.getElementById("call_BPID").value = company.BPID;
+  			 document.getElementById("customer_company").value = company.name;
+  			 document.getElementById("customer_BPID").value = company.BPID;
   			 
-  			 document.getElementById("call_email").value = customer.email;
-  			 document.getElementById("call_phone").value = customer.phone_number;
+  			 document.getElementById("customer_email").value = customer.email;
+  			 document.getElementById("customer_phone").value = customer.phone_number;
   			 
  		 })
   		.fail(function() {
@@ -163,11 +163,7 @@
 		} )
   		.done(function(data) {
   			  			     	
-     	  var myNode = document.getElementById("previousconversationcontainer");
-			while (myNode.firstChild) {
-    			myNode.removeChild(myNode.firstChild);
-			}
-  			
+     	 
   			
   			 
   			 
@@ -187,11 +183,6 @@
      $( "#customer_category_id" ).on( "change", function( event, ui ){
      	
      	
-     	
-     	  var myNode = document.getElementById("hintscontainer");
-			while (myNode.firstChild) {
-    			myNode.removeChild(myNode.firstChild);
-			}
      	
     	
     	var choice = $("#customer_category_id").find('option:selected').text() ;
