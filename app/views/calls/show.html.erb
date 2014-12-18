@@ -25,7 +25,7 @@ Email: <%= call.getCustomer.email %>
 <%if(call.getCustomer.company != nil) %>
 <p> 	
 Company: 
- <a href="<%= url_for call.getCustomer %>"> <%=  call.getCustomer.company.name %> </a>
+ <a href="<%= url_for call.getCustomer.company %>"> <%=  call.getCustomer.company.name %> </a>
 
 </p>
 <%end%>
