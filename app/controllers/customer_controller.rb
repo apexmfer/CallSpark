@@ -33,6 +33,7 @@ class CustomerController < ApplicationController
     
     
     customer = Customer.find(params['id'])
+    customer.name = customer.name.titleize
     customer.phone_number = phone
     customer.email = email
     
