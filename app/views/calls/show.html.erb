@@ -22,20 +22,19 @@ Phone: <%= call.getCustomer.phone_number %>
 Email: <%= call.getCustomer.email %>
 </p>
 
-<p> 
-	
-	
-Company: <%= 
-if(call.getCustomer.company != nil)
-call.getCustomer.company.name 
-end
-%>
+<%if(call.getCustomer.company != nil) %>
+<p> 	
+Company: 
+ <a href="<%= url_for call.getCustomer %>"> <%=  call.getCustomer.company.name %> </a>
 
 </p>
+<%end%>
 
 <% if call.getUser %>
 <p> 
-Respondant: <%= call.getUser.name %>
+	
+Respondant:
+<a href="<%= url_for call.getUser %>"> <%= call.getUser.name %> </a>
 </p>
 
 <% end %>
