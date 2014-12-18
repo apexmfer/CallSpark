@@ -8,7 +8,7 @@ class SupportlinkController < ApplicationController
     greatestorder = Supportlink.all(:order => 'sortorder').last.sortorder
     end
     
-    newname = params['newlink']['name'].titleize
+    newname = format_as_company_name(params['newlink']['name'])
     
     @link = Supportlink.new(:name => newname,:url => params['newlink']['url'],:sortorder => greatestorder+1)
     
