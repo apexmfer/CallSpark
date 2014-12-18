@@ -7,6 +7,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Employees</th>  
+      <th>Calls in past year</th>  
        <th>BPID</th>  
      
       <th></th>
@@ -17,8 +19,27 @@
 
   <tbody>
     <% Company.all.each do |company| %>
+    
+     <%	     
+     employeecount = 0
+   	callcount = 0
+   	
+   	Customer.where(company_id: company.id).each do |cust|
+   		employeecount = employeecount + 1
+   		
+   		callcount = Call.where(customer_id: cust.id).length   		
+   	end
+   	
+   	
+    %>
+    
       <tr>
         <td><%= company.name %></td>
+        
+        <td><%= employeecount %></td>
+        
+        <td><%= callcount %></td>
+        
         
         
         <td><%= company.BPID %></td>
