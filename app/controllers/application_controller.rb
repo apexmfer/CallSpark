@@ -17,13 +17,28 @@ include ActionView::Helpers::NumberHelper
    return input.gsub(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
     
   end
+  
+  def capFirstLetter(word)
+    
+    word[0] = word[0].upcase
+    
+    return word
+    
+  end
+  
+  
+  def format_as_company_name(input)
+    
+    return input.split(" ").map{|word| capFirstLetter(word)}.join(" ")
+    
+  end
 
 
   #This creates a new customer with a form and does special checks to make a new company
   def spawnCustomer(params )
     
     caller = (params[:caller]).titleize 
-    companyname = (params[:company]).titleize 
+    companyname = format_as_company_name(params[:company]) 
     
     strippedphone = params[:phone].gsub(/\D/, '')
     phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number

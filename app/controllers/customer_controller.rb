@@ -17,7 +17,7 @@ class CustomerController < ApplicationController
   def update
     
     
-    companyname = params['customer']['companyname'].titleize    
+    companyname = format_as_company_name(params['customer']['companyname'])
     strippedphone = params['customer']['phone_number'].gsub(/\D/, '')
     phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
    email = params['customer']['email'].humanize.delete(' ') 
