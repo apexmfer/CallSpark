@@ -17,14 +17,16 @@ class CustomerController < ApplicationController
   def update
     
     
-    companyname = params['customer']['companyname']
-    phone = params['customer']['phone_number']
-    email = params['customer']['email']
-    notes = params['customer']['notes']
+    companyname = params['customer']['companyname'].titleize    
+    strippedphone = params['customer']['phone_number'].gsub(/\D/, '')
+    phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
+   email = params['customer']['email'].humanize.delete(' ') 
+    notes = sentencify(params['customer']['notes'])
     
     company = Company.where(name: companyname).first
+    companyMatchNil = (company == nil)
     
-    if(company == nil)
+    if companyMatchNil and companyname.length >= 1
        company = Company.new(name: companyname)
        company.save  
     end
@@ -33,7 +35,11 @@ class CustomerController < ApplicationController
     customer = Customer.find(params['id'])
     customer.phone_number = phone
     customer.email = email
+    
+    if(company != nil)
     customer.company_id = company.id    
+    end
+    
     customer.notes = notes    
     customer.save
     

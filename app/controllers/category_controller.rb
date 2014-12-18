@@ -2,7 +2,9 @@ class CategoryController < ApplicationController
   
   def create
     
-    @category = Category.new(:name => params['newcategory']['name'])
+    newname = (params['newcategory']['name']).titleize
+    
+    @category = Category.new(:name => newname)
     
     @category.save
     

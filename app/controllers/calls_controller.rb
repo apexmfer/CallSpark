@@ -16,12 +16,12 @@ class CallsController < ApplicationController
   
   
   def update
-    text = params['call']['text']
+    text = sentencify(params['call']['text'])
     
      call = Call.find(params['id'])    
      
 
-    call.text = text    
+    call.text = text 
     call.save
     
     
@@ -38,7 +38,7 @@ class CallsController < ApplicationController
   
   def create
     #render text: params[:call].inspect
-        
+        text = sentencify(params[:call][:text])
     
     @customer = spawnCustomer( params[:call])
        
@@ -46,7 +46,7 @@ class CallsController < ApplicationController
   
     @call = Call.new(:customer_id => @customer.id,
     :category_id => params[:call][:category_id],
-     :text => params[:call][:text],
+     :text => text,
      :user_id => current_user.id
     
       )

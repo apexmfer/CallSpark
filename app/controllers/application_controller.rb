@@ -10,49 +10,73 @@ end
 
 
 
+include ActionView::Helpers::NumberHelper
+
+  def sentencify(input)
+    
+   return input.gsub(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
+    
+  end
+
+
   #This creates a new customer with a form and does special checks to make a new company
   def spawnCustomer(params )
     
-    #Try to find existing matches first
-    customer = Customer.where(name: params[:caller]).first
+    caller = (params[:caller]).titleize 
+    companyname = (params[:company]).titleize 
     
-    company = Company.where(name: params[:company]).first
+    strippedphone = params[:phone].gsub(/\D/, '')
+    phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
+    email = (params[:email]).humanize.delete(' ') 
+    
+    
+    #Try to find existing matches first
+    customer = Customer.where(name: caller).first
+    
+    company = Company.where(name: companyname).first
     
     
     #If there is no company match, store this info and make a brand new company record
     companyMatchNil = (company == nil)
     
-      if companyMatchNil
+      if companyMatchNil and companyname.length >= 1
         
-        company = Company.new(:name => params[:company],
+        
+        company = Company.new(:name => companyname,
         :BPID => params[:BPID]
         )
-         company.save
+        
+           company.save
+        
+         
       end
       
-    
+     
     
     #If the customer is brand new or if (the company is new and the customer has no last name) then make a new customer
     #This prevents overwriting other existing customers when somebody is added with no last name
     if customer == nil or (customer.noLastName and companyMatchNil)
       
-      
+     company_id = nil
+      if company
+        company_id = company.id
+      end
             
-      customer = Customer.new(:name => params[:caller],
-     :company_id => company.id,
-      :phone_number => params[:phone],
-      :email => params[:email]
+      customer = Customer.new(:name => caller,
+     :company_id => company_id,
+      :phone_number => phone,
+      :email => email
       )
       
     else
-      
+    
       #Update the existing customer info
       if( company != nil )
        customer.company_id =  company.id;
       end
     
-     customer.phone_number =  params[:phone];
-     customer.email =  params[:email];
+     customer.phone_number =  phone;
+     customer.email = email;
       
     end
     

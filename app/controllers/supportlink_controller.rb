@@ -8,9 +8,9 @@ class SupportlinkController < ApplicationController
     greatestorder = Supportlink.all(:order => 'sortorder').last.sortorder
     end
     
+    newname = params['newlink']['name'].titleize
     
-    
-    @link = Supportlink.new(:name => params['newlink']['name'],:url => params['newlink']['url'],:sortorder => greatestorder+1)
+    @link = Supportlink.new(:name => newname,:url => params['newlink']['url'],:sortorder => greatestorder+1)
     
     @link.save
     
