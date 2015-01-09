@@ -19,7 +19,7 @@
   <tbody>
     <% Customer.all.reverse.each do |customer| %>
       <tr>
-        <td><%= customer.name %></td>
+        <td><a href="<%= url_for customer %>"> <%= customer.name %> </a>  </td>
         
         <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
         
