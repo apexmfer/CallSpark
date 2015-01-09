@@ -23,9 +23,7 @@
       <th>Company</th>
       <th>Phone</th>
       <th>Email</th>      
-      <th></th>
-      <th></th>
-      <th></th>
+      
     </tr>
   </thead>
 
@@ -34,7 +32,7 @@
   	
     <% Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |customer| %>
       <tr>
-        <td><%= customer.name %></td>
+        <td><a href="<%= url_for customer %>"> <%= customer.name %> </a> </td>
         
         <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
         
@@ -51,9 +49,6 @@
         <td><%= customer.phone_number %></td>
         <td><%= customer.email %></td>
       
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -79,23 +74,19 @@
       <th>Name</th>
        <th>BPID</th>  
      
-      <th></th>
-      <th></th>
-      <th></th>
+      
     </tr>
   </thead>
 
   <tbody>
     <% Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |company| %>
       <tr>
-        <td><%= company.name %></td>
+        <td> <a href="<%= url_for company %>"> <%= company.name %> </a> </td>
         
         
         <td><%= company.BPID %></td>
              
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     
       </tr>
     <% end %>
   </tbody>
