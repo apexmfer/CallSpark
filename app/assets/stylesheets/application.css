@@ -38,5 +38,18 @@ border-color: #ac2925;
 }
 
 
+#side-menu a
+{	
+  color: #000;
+  
+  
+}
 
+#side-menu a:visited
+{	
+  
+    color: #666;
+  
+  
+}
 
