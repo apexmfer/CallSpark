@@ -23,8 +23,10 @@
     <% Call.all.reverse.each do |call| %>
     
     
-    <% caller = Customer.find(call.customer_id)  %>
-      <% answerer = User.find(call.user_id)  %>
+    <% caller = Customer.find_by_id(call.customer_id)  %>
+      <% answerer = User.find_by_id(call.user_id)  %>
+      
+      <% if caller != nil && answerer != nil %>
     
       <tr>
       	 <td><%= call.id %></td>
@@ -67,7 +69,7 @@
       </tr>
       
       
-      
+      <% end %>
     <% end %>
   </tbody>
 </table>
