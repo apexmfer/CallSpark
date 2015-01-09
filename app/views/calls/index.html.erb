@@ -23,8 +23,8 @@
     <% Call.all.reverse.each do |call| %>
     
     
-    <% caller = Customer.where(:id => call.customer_id).first  %>
-      <% answerer = User.where(:id => call.user_id).first  %>
+    <% caller = Customer.find(call.customer_id)  %>
+      <% answerer = User.find(call.user_id)  %>
     
       <tr>
       	 <td><%= call.id %></td>

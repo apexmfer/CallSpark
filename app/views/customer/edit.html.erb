@@ -23,13 +23,17 @@ end
 	
   <div class="col-lg-6">
   
+    <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  
+  
   <p>
     <%= f.label :company %><br>
-    
-    
+        
     <%= text_field_tag 'customer[companyname]', companyname %>
-    
-    
+       
   </p>
     
   <p>

@@ -16,7 +16,7 @@ class CustomerController < ApplicationController
   
   def update
     
-    
+    name = params['customer']['name']
     companyname = format_as_company_name(params['customer']['companyname'])
     strippedphone = params['customer']['phone_number'].gsub(/\D/, '')
     phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
@@ -33,7 +33,7 @@ class CustomerController < ApplicationController
     
     
     customer = Customer.find(params['id'])
-    customer.name = customer.name.titleize
+    customer.name = name
     customer.phone_number = phone
     customer.email = email
     
