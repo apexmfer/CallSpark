@@ -13,7 +13,7 @@
       <th>Topic</th>
        <th>Time</th>
     
-     
+      <th></th>
     </tr>
   </thead>
 
@@ -46,8 +46,24 @@
         
         <td><%= time_ago_in_words(call.created_at) %> ago</td>
       
-       
-                         
+        <td>
+        	<a href = "<%= url_for call %>">
+        	<button type="button" class="btn btn-show">Show</button>
+        	</a>        	
+        </td>
+        
+    <!--   <td>
+        	<a href = "<%= url_for edit_call_path(call) %>">
+        	<button type="button" class="btn btn-edit">Edit</button>
+        	</a>        	
+        </td>
+        
+        <td>
+        	<a href = "<%= url_for call  %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">
+        	<button type="button" class="btn btn-destroy">Destroy</button>
+        	</a>        	
+        </td>
+                -->         
       </tr>
       
       
