@@ -19,6 +19,8 @@
     <%= f.text_field :caller, class:"form-control" %>
   </div>
   
+  <input id="hidden_caller_id" type="hidden" name="code"></p>
+  
    <div class="form-group" id="category_group">
     <%= f.label :category %><br>
     <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
@@ -132,7 +134,7 @@
       
 <% Customer.all.each do |c| %>
 
-"<%= c.name %>",
+{ value:"<%= c.id %>" , label: "<%= c.name %>"},
 
 
 <% end %>
@@ -143,7 +145,20 @@
        
     
     $( "#call_caller" ).autocomplete({
-      source: availableCustomerTags
+      source: availableCustomerTags,
+      			focus: function(event, ui) {
+					// prevent autocomplete from updating the textbox
+					event.preventDefault();
+					// manually update the textbox
+					$(this).val(ui.item.label);
+				},
+				select: function(event, ui) {
+					// prevent autocomplete from updating the textbox
+					event.preventDefault();
+					// manually update the textbox and hidden field
+					$(this).val(ui.item.label);
+					$("#hidden_caller_id").val(ui.item.value);
+				}
     });
     
     
@@ -152,10 +167,10 @@
     
     $( "#call_caller" ).on( "autocompleteselect", function( event, ui ){
     	
-        	
+        var cust_id = ui.item.value;
     	
     	var custdatacall = $.ajax({
-   			url:'/calls/listinfo/'+ui.item.label, //Defined in your routes file
+   			url:'/calls/listinfo/'+cust_id, //Defined in your routes file
    			//data:('id=' + ui.item.label  )
 		} )
   		.done(function(data) {
@@ -182,7 +197,7 @@
     	
     	
     	 var previouscalls = $.ajax({
-   			url:'/calls/history/'+ui.item.label, //Defined in your routes file
+   			url:'/calls/history/'+cust_id, //Defined in your routes file
    			
 		} )
   		.done(function(data) {

@@ -5,9 +5,9 @@ class CallsController < ApplicationController
   end
   
     def listinfo
-    customername = params['id'];
+    id = params['id']
     
-    customer = Customer.where( :name => customername).first
+    customer = Customer.find_by_id( id)
     
     data = [customer,customer.company]
     
@@ -29,9 +29,9 @@ class CallsController < ApplicationController
   end
   
     def history
-    customername = params['id'];
+     id = params['id']
     
-    customer = Customer.where( :name => customername).first
+    customer = Customer.find_by_id( id)
     
     render json: Call.where(customer_id: customer.id).reverse
   end
