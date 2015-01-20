@@ -25,25 +25,25 @@ end
   
     <p>
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name , class:"form-control"%>
   </p>
   
   
   <p>
     <%= f.label :company %><br>
         
-    <%= text_field_tag 'customer[companyname]', companyname %>
+    <%= text_field_tag 'customer[companyname]', companyname , class:"form-control"%>
        
   </p>
     
   <p>
     <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
+    <%= f.text_field :phone_number , class:"form-control"%>
   </p>
   
   <p>
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email , class:"form-control"%>
   </p>
  
   </div>
@@ -51,7 +51,7 @@ end
   <div class="col-lg-6">
   	<p>
     <%= f.label :notes %><br>
-    <%= f.text_area :notes ,:rows => 5 %>
+    <%= f.text_area :notes ,:rows => 5 , class:"form-control"%>
   </p>
   	 </div>
   	 

@@ -1,0 +1,41 @@
+
+<% @company = Company.find(params[:id])  %>
+
+
+
+<h2>Update <%= @company.name %> </h2>
+
+
+<%= form_for @company, url: { action: "update" } do |f| %>
+
+
+
+<div class="row">
+	
+  <div class="col-lg-6">
+  
+  <div class="form-group">
+    <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class:"form-control" %>
+  </p>
+  
+  
+ <p>
+    <%= f.label :BPID %><br>
+    <%= f.text_field :BPID, class:"form-control" %>
+  </p>
+ 
+ </div>
+  </div>
+  
+ 
+  	 
+  	
+ </div>
+
+ 
+  <p>
+    <%= f.submit  "Submit Updates", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+  </p>
+<% end %>
