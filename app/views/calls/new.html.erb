@@ -116,7 +116,7 @@
       
 <% Company.all.each do |c| %>
 
-"<%= c.name %>",
+"<%= raw c.name %>",
 
 <% end %>     
     ];
@@ -134,7 +134,7 @@
       
 <% Customer.all.each do |c| %>
 
-{ value:"<%= c.id %>" , label: "<%= c.name %>"},
+{ value:"<%= c.id %>" , label: "<%= raw c.name %>"},
 
 
 <% end %>
