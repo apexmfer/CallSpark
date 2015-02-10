@@ -1,5 +1,5 @@
- 
- 
+
+
  <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">New Call</h1>
@@ -13,44 +13,44 @@
 
 <div class="row">
 	<div class="col-lg-3">
-		
+
   <div class="form-group" id="callername_group">
     <%= f.label :caller %><br>
     <%= f.text_field :caller, class:"form-control" %>
   </div>
-  
+
   <input id="hidden_caller_id" type="hidden" name="code"></p>
-  
+
    <div class="form-group" id="category_group">
     <%= f.label :category %><br>
     <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
      </div>
- 
+
   </div>
   <div class="col-lg-3">
   	</div>
   <div class="col-lg-3">
-  
+
   <div class="form-group ">
     <%= f.label :company %><br>
     <%= f.text_field :company, class:"form-control" %>
    </div>
-  
+
    <div class="form-group ">
     <%= f.label :BPID %><br>
     <%= f.text_field :BPID, class:"form-control" %>
   </div>
-  
+
   <div class="form-group ">
     <%= f.label :phone %><br>
     <%= f.text_field :phone, class:"form-control" %>
   </div>
-  
+
   <div class="form-group ">
     <%= f.label :email %><br>
     <%= f.text_field :email, class:"form-control" %>
   </div>
- 
+
   </div>
  </div>
  <div class="row">
@@ -60,12 +60,12 @@
   </p>
  </div>
 
- 
 
- 
- 
- 
- 
+
+
+
+
+
   <p>
   	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-2 col-md-offset-2">Save Call</a>
     <% f.submit  "Save Call", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
@@ -81,7 +81,7 @@
        <div class="col-lg-12">
       <h1>Hints</h1>
       <div id="hintscontainer">
-      
+
       </div>
       </div>
  </div>
@@ -93,8 +93,8 @@
        <div class="col-lg-12">
       <h1>Previous conversations</h1>
       <div id="previousconversationcontainer">
-      
-      
+
+
       </div>
  </div>
 </div>
@@ -102,48 +102,48 @@
 
 <% content_for :head do %>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
- 
-  <script>
-  
 
-  
-  
-  
+  <script>
+
+
+
+
+
   $(function() {
-  	
+
   	//SET AVAILABLE AUTOCOMPLETES FOR COMPANY
   	 var availableCompanyTags = [
-      
+
 <% Company.all.each do |c| %>
 
 "<%= raw c.name %>",
 
-<% end %>     
+<% end %>
     ];
-    
-       
-    
+
+
+
     $( "#call_company" ).autocomplete({
       source: availableCompanyTags
     });
-  	
-  	
-  	
+
+
+
   	//SET AVAILABLE AUTOCOMPLETES FOR CUSTOMER
     var availableCustomerTags = [
-      
+
 <% Customer.all.each do |c| %>
 
-{ value:"<%= c.id %>" , label: "<%= raw c.name %>"},
+{ value:"<%= c.id %>" , label: "<%= raw c.getAutoCompleteName %>"},
 
 
 <% end %>
 
-     
+
     ];
-    
-       
-    
+
+
+
     $( "#call_caller" ).autocomplete({
       source: availableCustomerTags,
       			focus: function(event, ui) {
@@ -160,15 +160,15 @@
 					$("#hidden_caller_id").val(ui.item.value);
 				}
     });
-    
-    
-    
+
+
+
     //DO ONEVENTS FOR CUSTOMER FIELD
-    
+
     $( "#call_caller" ).on( "autocompleteselect", function( event, ui ){
-    	
+
         var cust_id = ui.item.value;
-    	
+
     	var custdatacall = $.ajax({
    			url:'/calls/listinfo/'+cust_id, //Defined in your routes file
    			//data:('id=' + ui.item.label  )
@@ -178,14 +178,14 @@
   			 console.log( data );
   			 customer = data[0];
   			 company = data[1];
-  			 
-  			 
+
+         document.getElementById("call_caller").value = customer.name;
   			 document.getElementById("call_company").value = company.name;
   			 document.getElementById("call_BPID").value = company.BPID;
-  			 
+
   			 document.getElementById("call_email").value = customer.email;
   			 document.getElementById("call_phone").value = customer.phone_number;
-  			 
+
  		 })
   		.fail(function() {
  		   console.log( "error" );
@@ -193,38 +193,38 @@
   		.always(function() {
    			console.log( "complete" );
 		 });
-    	
-    	
-    	
+
+
+
     	 var previouscalls = $.ajax({
    			url:'/calls/history/'+cust_id, //Defined in your routes file
-   			
+
 		} )
   		.done(function(data) {
-  			  			     	
+
      	  var myNode = document.getElementById("previousconversationcontainer");
 			while (myNode.firstChild) {
     			myNode.removeChild(myNode.firstChild);
 			}
-  			
-  			
+
+
   			console.log( "datagot call history" );
   			 console.log( data );
-  			 
+
   			  for(var i=0;i<data.length;i++){
   			 	 var newdiv = document.createElement( "div" );
   			 	 newdiv.className+=" alert alert-info";
-  				 newdiv.innerHTML = data[i].text.replace(/(?:\r\n|\r|\n)/g, '<br />');	
-  				  $("#previousconversationcontainer").append( newdiv );  
-  				  
+  				 newdiv.innerHTML = data[i].text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+  				  $("#previousconversationcontainer").append( newdiv );
+
   				  var timelabel = document.createElement( "div" );
   			 	 timelabel.className+=" label label-primary pull-right";
-  				 timelabel.innerHTML = jQuery.timeago(data[i].created_at) ;   				 
-  				 	
-  			  newdiv.appendChild( timelabel );  			 			  
+  				 timelabel.innerHTML = jQuery.timeago(data[i].created_at) ;
+
+  			  newdiv.appendChild( timelabel );
   			 }
-  			 
-  			 
+
+
  		 })
   		.fail(function() {
  		   console.log( "error" );
@@ -232,43 +232,43 @@
   		.always(function() {
    			console.log( "complete" );
 		 });
-    	
-    	
-    	 
+
+
+
     }  );
-    
+
      $( "#call_category_id" ).on( "change", function( event, ui ){
-     	
-     	
-     	
+
+
+
      	  var myNode = document.getElementById("hintscontainer");
 			while (myNode.firstChild) {
     			myNode.removeChild(myNode.firstChild);
 			}
-     	
-    	
+
+
     	var choice = $("#call_category_id").find('option:selected').text() ;
-    	
+
     	console.log(choice);
-    	
+
     	var categoryselect = $.ajax({
    			url:'/category/hints/'+choice, //Defined in your routes file
    			//data:('id=' + ui.item.label  )
 		} )
   		.done(function(data) {
   			  console.log( "success" );
-  			 			
+
   			 //document.getElementById("call_company").value = data.company;
-  			 
+
   			 for(var i=0;i<data.length;i++){
   			 	 var newdiv = document.createElement( "div" );
   			 	 newdiv.className+=" alert alert-success";
-  				 newdiv.innerHTML = data[i].text;  			 
+  				 newdiv.innerHTML = data[i].text;
   			  $("#hintscontainer").append( newdiv );
-  			
-  			  
+
+
   			 }
-  			 
+
  		 })
   		.fail(function() {
  		   console.log( "error" );
@@ -276,77 +276,75 @@
   		.always(function() {
    			console.log( "complete" );
 		 });
-    	
-    	
-    	
-    	 
+
+
+
+
     }  );
-    
-    
+
+
   });
-  
-  
-  
- 
+
+
+
+
   function submitform()
   {
-  	
+
   	errormessage = "";
-  	
-  	
+
+
   	if($('#call_caller').val().length == 0)
   	{
   		errormessage = "Invalid caller name"
   		$('#callername_group').addClass('has-error');
   		$('#callername_group').addClass('animated bounce');
-  		
+
   	}
-  	
+
   	else if($('#call_category_id').val() == 0)
   	{
   		errormessage = "Please select a category topic"
-  		  		
+
   		$('#category_group').addClass('has-error');
   		$('#category_group').addClass('animated bounce');
   	}
-  	  	
-  	
-  	
-  	
+
+
+
+
   	if(errormessage.length == 0)
   	{
   	$('#newcallform').submit();
   	}
   	else
   	{
-  		
+
   		$('#submitbutton').hide();
   		$('#errormessage').show();
   		$('#errormessage').addClass('animated shake');
   		$('#errormessage').html(errormessage);
-  		
-  		
+
+
   		setTimeout(
-  			function() 
+  			function()
   				{
   				  $('#errormessage').hide();
   					$('#submitbutton').show();
-  					
+
   					$('#category_group').removeClass('has-error');
-  					
-  					
-  					
+
+
+
  				 }, 1500);
-  
-  
+
+
   	}
-  	
+
   }
-  
-    
-    
-  </script> 
-  
+
+
+
+  </script>
+
 <% end %>
-
-
