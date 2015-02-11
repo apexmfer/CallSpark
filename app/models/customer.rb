@@ -21,8 +21,8 @@ class Customer < ActiveRecord::Base
     end
 
     def getAutoCompleteName
-      if noLastName
-          return name.to_s + " @ " + company.name.to_s
+      if noLastName and company != nil
+          return name + " @ " + company.name
       end
 
       return name
