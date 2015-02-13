@@ -11,36 +11,36 @@
  <div class="panel panel-default">
   <div class="panel-heading">Contact Information</div>
   <div class="panel-body">
-  
+
 <div class="row">
-	
+
   <div class="col-lg-6">
 
 <% if customer.company != nil %>
-<p> 
+<p>
 Company: <a href="<%= url_for customer.company %>"><%= customer.company.name %></a>
 </p>
 <% end %>
 
-<p> 
-Phone: <%= customer.phone_number %>
+<p>
+Phone: <%= customer.getFormattedPhone %>
 </p>
 
-<p> 
+<p>
 Email: <%= customer.email %>
 </p>
 
 </div>
   <div class="col-lg-6">
-  	
-  	
-<% if customer.notes!= nil and customer.notes.length > 0 %>  	
+
+
+<% if customer.notes!= nil and customer.notes.length > 0 %>
   <div class="label label-primary ">Notes</div>
-<p> 
+<p>
  <%= customer.notes %>
  </p>
  <% end %>
- 
+
 
 </div>
 
@@ -53,7 +53,7 @@ Email: <%= customer.email %>
 
  <a href = "<%= url_for edit_customer_path(customer) %>">
         	<button type="button" class="btn btn-warning col-md-4 col-md-offset-4">Edit Customer Info</button>
-   </a>    
+   </a>
 
 <br>
 
@@ -62,11 +62,11 @@ Email: <%= customer.email %>
 <table class="table">
   <thead>
     <tr>
-    
+
      <th>Respondant</th>
       <th>Topic</th>
        <th>Time</th>
-    
+
       <th></th>
       <th></th>
       <th></th>
@@ -75,33 +75,33 @@ Email: <%= customer.email %>
 
   <tbody>
     <% Call.where(:customer_id => customer.id).all.reverse.each do |call| %>
-    
-    
+
+
       <% answerer = User.where(:id => call.user_id).first  %>
-    
+
       <tr>
-      	
-      
-        
+
+
+
         <% if answerer != nil %>
         	<td> <%= answerer.firstname %> </td>
          <% else%>
       		<td> </td>
         <% end %>
-      	
+
         <td><%= call.getCategoryName %></td>
-        
+
         <td><%= time_ago_in_words(call.created_at) %> ago</td>
-      
+
         <td><%= link_to 'Show', call %></td>
         <td><%= link_to 'Edit', edit_call_path(call) %></td>
-        
-       
+
+
         <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-      
-      
-      
+
+
+
     <% end %>
   </tbody>
 </table>
