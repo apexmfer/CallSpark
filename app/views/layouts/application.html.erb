@@ -10,29 +10,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    
+
   <title>Call Log System</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
 
-    <!-- Bootstrap Core CSS 
+    <!-- Bootstrap Core CSS
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-     MetisMenu CSS 
+     MetisMenu CSS
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-     Timeline CSS 
+     Timeline CSS
     <link href="css/plugins/timeline.css" rel="stylesheet">
 
-     Custom CSS 
+     Custom CSS
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
-     Morris Charts CSS 
+     Morris Charts CSS
     <link href="css/plugins/morris.css" rel="stylesheet">
 
-     Custom Fonts 
+     Custom Fonts
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 -->
 
@@ -45,7 +45,7 @@
     <![endif]-->
 
 <%= yield :head %>
-	
+
 </head>
 
 <body>
@@ -54,8 +54,8 @@
 
 
 
-  
-  
+
+
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -68,22 +68,22 @@
                 <a class="navbar-brand" href="/" >Callspark</a>
             </div>
             <!-- /.navbar-header -->
-            
-            
-           
-			
-			
+
+
+
+
+
             <ul class="nav navbar-top-links navbar-right">
-            	
-            	
+
+
             	 <% if current_user %>
-     		 
-   
-    			
-   			
+
+
+
+
             <a href="<%= url_for :controller => 'calls', :action => 'new' %>">
 <button type="button" class="btn btn-default">New Call</button></a>
-            	
+
             	<!--
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -133,10 +133,10 @@
                             </a>
                         </li>
                     </ul>
-                   
+
                 </li>
                 -->
-                
+
                 <!--
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -214,19 +214,19 @@
                             </a>
                         </li>
                     </ul>
-                  
+
                 </li>
                  -->
-                
-                
+
+
                 <li class="dropdown">
-                  
+
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw" style="color:<%= color(1) %>"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                    	
-                    	
+
+
                     	<% Call.where(created_at: (Time.now - 1.days)..Time.now).reverse.take(10).each do |call| %>
                         <li>
                             <a href="<%= url_for call %>">
@@ -236,34 +236,34 @@
                                 </div>
                             </a>
                         </li>
-                                                
+
                         <li class="divider"></li>
                         <%  end   %>
-                        
-                        
+
+
                         <li>
                             <a class="text-center" href="/calls">
                                 <strong>See All Alerts</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
-                        
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
-                
-              
-                
+
+
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw" style="color:<%= color(4) %>"></i> <%= current_user.email %> <i class="fa fa-caret-down"> </i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                     
+
                         <li><a href ="<%= url_for user_path(current_user.id) %> "><i class="fa fa-eye fa-fw"> </i> View Profile </a>
                         </li>
-                       
+
                           <li><a href ="<%= url_for edit_user_path(current_user.id) %> "><i class="fa fa-gear fa-fw"> </i> Edit Profile </a>
                         </li>
                         <li class="divider"></li>
@@ -273,13 +273,13 @@
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
-                
+
                  <% else %>
      		 <%= link_to "Register", new_user_path %> |
      		 <%= link_to "Login", :login %>
    			 <% end %>
-    
-    
+
+
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -287,21 +287,21 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                        	
-                        	<%= form_tag('/search', method: "get",class:"input-group custom-search-form") do %>  					
-  						
+
+                        	<%= form_tag('/search', method: "get",class:"input-group custom-search-form") do %>
+
   								<%= text_field_tag('query',nil,placeholder: 'Search...', class:"form-control") %>
  						<span class="input-group-btn">
  						 		 <button class="btn btn-default" type="submit" >
-                                	
+
                                     <i class="fa fa-search"></i>
-                                   
+
                                 </button>
  						</span>
- 						
+
 							<% end %>
-                        		
-                        		
+
+
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -317,8 +317,8 @@
                                     <a href="morris.html">Morris.js Charts</a>
                                 </li>
                             </ul>
-                           
-                       </li> 
+
+                       </li>
                        -->
                         <li>
                             <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
@@ -329,14 +329,14 @@
                       <li>
                             <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
                         </li>
-                      
+
                       <% if(Supportlink.all.length > 0) %>
                        <li>
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
                             	<i class="fa fa-wrench fa-fw"></i> Support Tools<span id="toolsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
                             <ul id="collapseTools" class="nav nav-second-level collapse in" aria-expanded="true">
-                            	
-                            	<% Supportlink.all.each do |link| %>
+
+                            	<% Supportlink.order(:sortorder).each do |link| %>
                                 <li>
                                     <a href="<%= link.url %>" target="_blank"><%= link.name %></a>
                                 </li>
@@ -346,7 +346,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                       <% end %>
-                      
+
                         <li>
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
                             	<i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" ></span></a>
@@ -364,12 +364,12 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            
-                          
+
+
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                           
+
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
@@ -379,14 +379,14 @@
             <!-- /.navbar-static-side -->
         </nav>
 	<div id="page-wrapper">
-		
+
 		<div>
     <p id="notice" class="alert alert-warning absolutecenter" ><%= flash[:notice] %></p>
      <p id="alert" class="alert alert-danger absolutecenter" ><%= flash[:alert] %></p>
  <!--   <p id="alert" class="alert alert-warning" ><%= flash[:alert] %></p>  -->
   </div>
-  
-  
+
+
 	        <%= yield %>
  		</div>
         <!-- /#page-wrapper -->
@@ -397,7 +397,7 @@
     <!-- Metis Menu Plugin JavaScript
     <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
-    Morris Charts JavaScript 
+    Morris Charts JavaScript
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
@@ -414,26 +414,26 @@
 
 <script>
 $( document ).ready(function() {
-	
-	
+
+
 		if( document.getElementById("alert").innerHTML == ""  ){
-		
+
 		$("#alert").hide();
 	}
-	
+
 	setTimeout(function(){
  $("#alert").fadeOut("slow");
  }, 4000);
-	
+
 	if( document.getElementById("notice").innerHTML == ""  ){
-		
+
 		$("#notice").hide();
 	}
-	
+
 	setTimeout(function(){
  $("#notice").fadeOut("slow");
  }, 4000);
- 
+
 });
 
 
@@ -445,7 +445,7 @@ $('#collapseAdmin').on('hide.bs.collapse', function () {
 $('#collapseAdmin').on('show.bs.collapse', function () {
  $('#adminArrow').hide();
 })
- 
+
  $('#collapseTools').on('hide.bs.collapse', function () {
  $('#toolsArrow').show();
 })
@@ -453,7 +453,6 @@ $('#collapseAdmin').on('show.bs.collapse', function () {
 $('#collapseTools').on('show.bs.collapse', function () {
  $('#toolsArrow').hide();
 })
- 
+
 
 </script>
-
