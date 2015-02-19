@@ -12,7 +12,7 @@ class CompanyController < ApplicationController
         matchingCompany.name = name;
         matchingCompany.BPID = bpid;      
         matchingCompany.save
-        redirect_to company, notice: 'Company updated'
+        redirect_to matchingCompany, notice: 'Company updated'
       else
          redirect_to '/company', alert: 'No company match found!'
       end
