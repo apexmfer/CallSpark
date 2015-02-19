@@ -5,16 +5,16 @@ class CompanyController < ApplicationController
         bpid = params['company']['BPID']
       
       
-      company = Company.find(params['id'])
-      matchingCompany = Company.where(:name => name).first
+      matchingCompany = Company.find(params['id'])
+     # matchingCompany = Company.where(:name => name).first
       
-      if(matchingCompany == nil)
+      if(matchingCompany != nil)
         company.name = name;
         company.BPID = bpid;      
         company.save
         redirect_to company, notice: 'Company updated'
       else
-         redirect_to '/company', alert: 'A company already exists with that name!'
+         redirect_to '/company', alert: 'No company match found!'
       end
       
     end
