@@ -9,9 +9,9 @@ class CompanyController < ApplicationController
      # matchingCompany = Company.where(:name => name).first
       
       if(matchingCompany != nil)
-        company.name = name;
-        company.BPID = bpid;      
-        company.save
+        matchingCompany.name = name;
+        matchingCompany.BPID = bpid;      
+        matchingCompany.save
         redirect_to company, notice: 'Company updated'
       else
          redirect_to '/company', alert: 'No company match found!'
