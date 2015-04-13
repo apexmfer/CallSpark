@@ -1,3 +1,16 @@
-== CallSpark Call Logger ==
+== CallSpark Call Logger
 
-An call logging app used for small businesses to track inbound phone calls.
+A call logging app used for small businesses to track inbound phone calls.
+
+FEATURES
+1. Sorcery user registration and login
+2. Create new calls and define custom call topics, customers, and call text
+3. Customer names auto-complete once they have been used before, saving valuable time for future calls
+4. Previous conversation text auto-magically appears (AJAX) when a previous caller is being logged again, allowing the respodant to know what was talked about in the past
+5. Search company name and customer name strings to bring up historical data about clients
+6. Graphs call logging rate on main dashboard
+7. Add custom shared bookmarks to help respondants find helpful information faster
+
+
+
+Created by Indie Bucket software (Andy Mazzola)
