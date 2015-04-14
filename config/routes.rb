@@ -2,8 +2,16 @@ Testlog::Application.routes.draw do
   
 
 
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
 resources :user_sessions
 resources :users
+
+resources :password_resets
 
  resources :company
   resources :customer

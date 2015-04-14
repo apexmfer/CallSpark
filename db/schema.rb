@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150213212411) do
+ActiveRecord::Schema.define(:version => 20150323205154) do
 
   create_table "calls", :force => true do |t|
     t.integer  "customer_id"
@@ -75,15 +75,19 @@ ActiveRecord::Schema.define(:version => 20150213212411) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",            :null => false
-    t.string   "crypted_password", :null => false
-    t.string   "salt",             :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "email",                           :null => false
+    t.string   "crypted_password",                :null => false
+    t.string   "salt",                            :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "firstname"
     t.string   "lastname"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
 end
