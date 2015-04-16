@@ -8,9 +8,9 @@ gem 'rails', '3.2.19'
 
 
 
-
+gem 'activerecord-postgresql-adapter'
 gem 'sqlite3'
-
+gem 'taps' #for exporting sqlite dump
  
 # Gems used only for assets and not required
 # in production environments by default.
