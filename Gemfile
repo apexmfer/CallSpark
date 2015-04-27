@@ -36,6 +36,8 @@ gem 'strong_parameters'
 
 gem 'sorcery'
 
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -43,7 +45,7 @@ gem 'sorcery'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
