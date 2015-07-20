@@ -23,11 +23,11 @@ class Customer < ActiveRecord::Base
     end
 
     def getAutoCompleteName
-      if noLastName and company != nil
+      if company != nil
           return name + " @ " + company.name
       end
 
-      return name
+      return name 
 
     end
 
@@ -43,7 +43,7 @@ class Customer < ActiveRecord::Base
         local_number = strippedphone[0..9];
         ext = strippedphone[10..strippedphone.length]
       end
-      
+
       return number_to_phone(local_number ,   area_code: (strippedphone.length > 9), extension: ext)
     end
 

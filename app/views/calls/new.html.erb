@@ -23,7 +23,7 @@
 
    <div class="form-group" id="category_group">
     <%= f.label :category %><br>
-    <%= f.select("category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+    <%= f.select("category_id", Category.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
      </div>
 
   </div>
