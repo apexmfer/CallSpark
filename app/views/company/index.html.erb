@@ -10,11 +10,11 @@
                 data-side-pagination="server"
                 data-pagination="true"
                 data-page-list="[5, 10, 20, 50, 100, 200]"
-                data-search="true">
+                data-search="false">
              <thead>
              <tr>
                  <th data-field="id">ID</th>
-                 <th data-field="name">Company Name</th>
+                 <th data-field="name" data-formatter="nameFormatter">Company Name</th>
                  <th data-field="BPID">BPID</th>
              </tr>
              </thead>
@@ -24,6 +24,12 @@
 </div>
 <script>
     var $table = $('#table');
+
+    function nameFormatter(value,row)
+    {
+       
+      return '<a href="/company/'  + row.id + '">'+value+'</a>'
+    }
 
     $(function () {
     });

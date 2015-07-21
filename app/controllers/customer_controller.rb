@@ -2,7 +2,18 @@ class CustomerController < ApplicationController
 
 
 
+  def data
 
+      customers = Customer.offset(params[:offset]).limit(params[:limit])
+
+      if(params[:search] && params[:search].length > 0)
+        customers = Customer.where("name LIKE ?", params[:search])
+      end
+
+      output = {:total => Customer.all.length, :rows => customers}
+
+         render :json => output
+  end
 
 
   def create

@@ -5,6 +5,8 @@ Testlog::Application.routes.draw do
 resources :user_sessions
 resources :users
 
+get '/calls/data' => 'calls#data'
+get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
 
  resources :company

@@ -3,8 +3,6 @@ class CompanyController < ApplicationController
 
   def data
 
-
-
       companies = Company.offset(params[:offset]).limit(params[:limit])
 
       if(params[:search] && params[:search].length > 0)
