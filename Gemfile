@@ -11,7 +11,7 @@ gem 'bootstrap-wysihtml5-rails'
 
 gem 'sqlite3'
 
- 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,8 +26,11 @@ end
 
 gem 'jquery-rails'
 
+
+
 gem 'strong_parameters'
 
+gem 'will_paginate'
 #gem 'libv8', '3.16.14.3'
 
 #gem "therubyracer"
@@ -52,4 +55,3 @@ gem 'sorcery'
 
 # To use debugger
 # gem 'debugger'
-

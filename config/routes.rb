@@ -1,9 +1,11 @@
 Testlog::Application.routes.draw do
-  
+
 
 
 resources :user_sessions
 resources :users
+
+get '/company/data' => 'company#data'
 
  resources :company
   resources :customer
@@ -21,25 +23,25 @@ resources :supportlink
 
 get 'login' => 'user_sessions#new', :as => :login
 post 'logout' => 'user_sessions#destroy', :as => :logout
-  
+
   match 'customer' => 'customer#index'
   match 'customer/update' => 'customer#update'
   match 'customer/destroy' => 'customer#destroy'
-  
+
    match 'admin/categories' => 'admin#categories'
   match 'category/destroy' => 'category#destroy'
-  
+
    match 'admin/events' => 'admin#events'
   match 'event/destroy' => 'event#destroy'
-    
+
   match 'admin/category_hints' => 'admin#category_hints'
   match 'category_hint/destroy' => 'category_hint#destroy'
-  
+
    match 'admin/supportlinks' => 'admin#supportlinks'
    match 'supportlink/destroy' => 'supportlink#destroy'
    match 'supportlink/moveup' => 'supportlink#moveup'
    match 'supportlink/movedown' => 'supportlink#movedown'
-  
+
 match 'calls/new/:id' => 'calls#new'
 match 'calls/listinfo/:id' => 'calls#listinfo'
 match 'calls/update/:id' => 'calls#update'

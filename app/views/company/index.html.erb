@@ -3,60 +3,30 @@
 
 
   <div class="table-responsive">
-    <table id="maintable" class="table table-bordered table-hover table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Employees</th>  
-      <th>Calls in past year</th>  
-       <th>BPID</th>  
-    
-    </tr>
-  </thead>
+    <table id="table"
+                data-toggle="table"
+                data-url="/company/data"
+                data-height="400"
+                data-side-pagination="server"
+                data-pagination="true"
+                data-page-list="[5, 10, 20, 50, 100, 200]"
+                data-search="true">
+             <thead>
+             <tr>
 
-  <tbody>
-    <% Company.all.each do |company| %>
-    
-     <%	     
-     employeecount = 0
-   	callcount = 0
-   	
-   	Customer.where(company_id: company.id).each do |cust|
-   		employeecount = employeecount + 1
-   		
-   		callcount = Call.where(customer_id: cust.id).length   		
-   	end
-   	
-   	
-    %>
-    
-      <tr>
-        <td><a href="<%= url_for company %>"> <%= company.name %> </a>  </td>
-        
-        <td><%= employeecount %></td>
-        
-        <td><%= callcount %></td>
-        
-        
-        
-        <td><%= company.BPID %></td>
-    
+                 <th data-field="id">ID</th>
+                 <th data-field="name">Item Name</th>
+                 <th data-field="BPID">Item Price</th>
+             </tr>
+             </thead>
+         </table>
 
-       
-        
-        
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 </div>
-
-
 <script>
-	$(document).ready(function() {
-    $('#maintable').dataTable();
-} );
+    var $table = $('#table');
 
+    $(function () {
+    });
 </script>
+</body>

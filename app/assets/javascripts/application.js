@@ -16,9 +16,7 @@
 //= require jquery-ui.min
 //= require bootstrap.min
 //= require bootstrap-wysihtml5
+//= require bootstrap-table
 //= require callspark
 //= require plugins/dataTables/jquery.dataTables
 //= require plugins/dataTables/dataTables.bootstrap
-
-
-

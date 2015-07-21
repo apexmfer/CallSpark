@@ -129,6 +129,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -145,3 +146,4 @@ DEPENDENCIES
   strong_parameters
   uglifier (>= 1.0.3)
   unicorn
+  will_paginate

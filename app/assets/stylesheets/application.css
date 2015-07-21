@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap-wysihtml5
  *= require_bootstrap.min
+ *= require_bootstrap.table
  *= require_animate
  *= require_tree .
  */
@@ -40,17 +41,16 @@ border-color: #ac2925;
 
 
 #side-menu a
-{	
+{
   color: #000;
-  
-  
+
+
 }
 
 #side-menu a:visited
-{	
-  
-    color: #666;
-  
-  
-}
+{
 
+    color: #666;
+
+
+}
