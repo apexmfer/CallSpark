@@ -3,10 +3,15 @@ class CompanyController < ApplicationController
 
   def data
 
-      companies = Company.paginate(:page => (params[:offset].to_i+1),
-      :per_page => params[:limit])
 
-      output = {:total => companies.length, :rows => companies}
+
+      companies = Company.offset(params[:offset]).limit(params[:limit])
+
+      if(params[:search] && params[:search].length > 0)
+          companies = Company.where("name LIKE ?", params[:search])
+      end
+
+      output = {:total => Company.all.length, :rows => companies}
 
          render :json => output
   end
