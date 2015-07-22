@@ -10,6 +10,10 @@ class CustomerController < ApplicationController
         customers = Customer.where("name LIKE ?", params[:search])
       end
 
+      if(params[:sort] && params[:sort].length > 0)
+        customers = customers.order(params[:sort] + " " + params[:order])
+      end
+
       output = {:total => Customer.all.length, :rows => customers}
 
          render :json => output

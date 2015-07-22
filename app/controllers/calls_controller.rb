@@ -5,6 +5,10 @@ class CallsController < ApplicationController
 
         calls = Call.offset(params[:offset]).limit(params[:limit])
 
+
+
+
+
         customCallData = Array.new
 
         calls.all.each do |call|
@@ -15,6 +19,10 @@ class CallsController < ApplicationController
           customCallData.push({:id => call.id,:caller => thiscaller, :responder => thisresponder, :category => thiscategory, :timeago => call.created_at})
         end
 
+
+        if(params[:sort] && params[:sort].length > 0)
+          customCallData = customCallData.sort_by{|e| e[params[:sort]]} #(params[:sort] + " " + params[:order])
+        end
 
         output = {:total => Call.all.length, :rows => customCallData}
 

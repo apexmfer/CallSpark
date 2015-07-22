@@ -3,10 +3,16 @@ class CompanyController < ApplicationController
 
   def data
 
+
+
       companies = Company.offset(params[:offset]).limit(params[:limit])
 
       if(params[:search] && params[:search].length > 0)
           companies = Company.where("name LIKE ?", params[:search])
+      end
+
+      if(params[:sort] && params[:sort].length > 0)
+          companies = companies.order(params[:sort] + " " + params[:order])
       end
 
       output = {:total => Company.all.length, :rows => companies}
