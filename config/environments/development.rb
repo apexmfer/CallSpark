@@ -34,4 +34,22 @@ Testlog::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.action_mailer.default_url_options= {:host => 'mail.macnet-ad.mc-mc.com'}
+  config.action_mailer.raise_delivery_errors = true
+   config.action_mailer.perform_deliveries = true
+   
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'mail.macnet-ad.mc-mc.com',
+    :port => '587',
+    :authentication => :login,
+    :user_name => Figaro.env.SMTP_USERNAME,
+    :password => Figaro.env.SMTP_PASSWORD, #ENV['SMTP_PASSWORD']
+    :domain => 'mc-mc.com',
+    :enable_starttls_auto => true
+  }
+    #run this in cmd...
+    #export SMTP_USERNAME="myname@gmail.com"
+    
 end
