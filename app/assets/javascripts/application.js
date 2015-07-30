@@ -14,9 +14,12 @@
 //= require jquery_ujs
 //= require jquery.timeago
 //= require jquery-ui.min
+//= require tableExport
+//= require jquery.base64
 //= require bootstrap.min
 //= require bootstrap-wysihtml5
 //= require bootstrap-table
+//= require bootstrap-table-export
 //= require callspark
 //= require plugins/dataTables/jquery.dataTables
 //= require plugins/dataTables/dataTables.bootstrap

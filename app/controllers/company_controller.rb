@@ -1,4 +1,5 @@
 class CompanyController < ApplicationController
+  skip_before_filter :require_login, only: [:index,:show,:data]
 
 
   def data
