@@ -16,8 +16,9 @@ class CallsController < ApplicationController
           thiscaller = call.getCustomerName
           thisresponder = call.getUser.name
           thiscategory = call.getCategoryName
+          thiscompany = call.getCompanyName
 
-          customCallData.push({:id => call.id,:caller => thiscaller, :responder => thisresponder, :category => thiscategory, :timeago => call.created_at})
+          customCallData.push({:id => call.id,:company=> thiscompany,:caller => thiscaller, :responder => thisresponder, :category => thiscategory, :timeago => call.created_at})
         end
 
 

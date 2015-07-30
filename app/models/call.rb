@@ -42,4 +42,19 @@ class Call < ActiveRecord::Base
 
  end
 
+  def getCompanyName
+
+
+   if(getCustomer != nil)
+       return getCustomer.getCompanyName
+    else
+      return ""
+   end
+
+
+ end
+
+
+
 end
+

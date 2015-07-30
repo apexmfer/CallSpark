@@ -7,8 +7,15 @@ class Customer < ActiveRecord::Base
 
       return Company.where(id: company_id).first
 
+    end
 
+    def getCompanyName
 
+      if company != nil
+          return company.name
+      end
+
+      return ''
     end
 
 
@@ -27,7 +34,7 @@ class Customer < ActiveRecord::Base
           return name + " @ " + company.name
       end
 
-      return name 
+      return name
 
     end
 
@@ -46,5 +53,8 @@ class Customer < ActiveRecord::Base
 
       return number_to_phone(local_number ,   area_code: (strippedphone.length > 9), extension: ext)
     end
+
+
+
 
 end
