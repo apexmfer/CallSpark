@@ -1,13 +1,20 @@
-<%= form_tag user_sessions_path, :method => :post do %>
+
+<div class="container" style="margin-top:90px">
+<%= form_tag user_sessions_path,:class=>"form-signin", :method => :post do %>
   <div class="field">
     <%= label_tag :email %><br />
-    <%= text_field_tag :email %>
+    <%= text_field_tag :email, nil, class: 'form-control' %>
   </div>
   <div class="field">
     <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password,nil, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= submit_tag "Login" %>
+    <%= submit_tag "Login", class: 'btn btn-lg btn-primary btn-block' %>
   </div>
-<% end %>
+
+        <div class="login-help" style="text-align:center">
+         <a href="/users/new">Register</a> -  <a href="#" data-toggle="modal" data-target="#forgot-password-modal">Forgot Password</a>
+         </div>
+         <% end %>
+     </div>
