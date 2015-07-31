@@ -322,18 +322,33 @@
 
                        </li>
                        -->
+
+
+
+                        <!-- Datasets Accordion-->
+
                         <li>
-                            <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
-                        </li>
-                        <li>
-                            <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
-                        </li>
-                      <li>
-                            <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
-                        </li>
+                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseDatasets" aria-expanded="true" aria-controls="collapseDatasets">
+                               <i class="fa fa-bars"></i> Datasets<span id="datasetsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
+                             <ul id="collapseDatasets" class="nav nav-second-level collapse in" aria-expanded="true">
+
+                               <li>
+                                   <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
+                               </li>
+                               <li>
+                                   <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
+                               </li>
+                             <li>
+                                   <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
+                               </li>
 
 
+                             </ul>
 
+
+                           </li>
+
+                        <!-- Support Links Accordion-->
 
                       <% if( Supportlink.all.length > 0) %>
 
@@ -344,8 +359,6 @@
 
 
                             	<% Supportlink.order(:sortorder).each do |link| %>
-
-
 
                                 <li>
                                     <a href="<%= link.url %>" target="_blank"><%= link.name %></a>
@@ -456,7 +469,15 @@ $('#collapseAdmin').on('show.bs.collapse', function () {
  $('#adminArrow').hide();
 })
 
- $('#collapseTools').on('hide.bs.collapse', function () {
+ $('#collapseDatasets').on('hide.bs.collapse', function () {
+ $('#datasetsArrow').show();
+})
+
+$('#collapseDatasets').on('show.bs.collapse', function () {
+$('#datasetsArrow').hide();
+})
+
+$('#collapseTools').on('hide.bs.collapse', function () {
  $('#toolsArrow').show();
 })
 
