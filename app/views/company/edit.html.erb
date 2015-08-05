@@ -11,39 +11,45 @@
 
 
 <div class="row">
-	
+
   <div class="col-lg-6">
-  
+
   <div class="form-group">
     <p>
     <%= f.label :name %><br>
     <%= f.text_field :name, class:"form-control" %>
   </p>
-  
-  
+
+
+	<p>
+		<%= f.label :address %><br>
+		<%= f.text_field :address, class:"form-control" %>
+	</p>
+	
  <p>
     <%= f.label :BPID %><br>
     <%= f.text_field :BPID, class:"form-control" %>
   </p>
- 
+
+
  </div>
   </div>
-  
- 
-  	 
-  	
+
+
+
+
  </div>
 
- 
+
   <p>
     <%= f.submit  "Submit Updates", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
-    
+
   <a href=<%= url_for @company %> data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger col-md-2 col-md-offset-2">Delete</a>
-   
+
   </p>
-  
-  
-   
-  
-  
+
+
+
+
+
 <% end %>

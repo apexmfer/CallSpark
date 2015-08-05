@@ -23,6 +23,7 @@ class CompanyController < ApplicationController
 
     def update
         name = params['company']['name']
+        address = params['company']['address']
         bpid = params['company']['BPID']
 
 
@@ -31,6 +32,7 @@ class CompanyController < ApplicationController
 
       if(matchingCompany != nil)
         matchingCompany.name = name;
+        matchingCompany.address = address;
         matchingCompany.BPID = bpid;
         matchingCompany.save
         redirect_to matchingCompany, notice: 'Company updated'
