@@ -8,6 +8,7 @@ gem 'rails', '3.2.19'
 
 gem 'bootstrap-wysihtml5-rails'
 
+gem 'nokogiri'
 
 gem 'sqlite3'
 
@@ -41,6 +42,7 @@ gem 'will_paginate'
 gem 'sorcery'
 
 
+gem 'elasticsearch-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

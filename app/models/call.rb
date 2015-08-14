@@ -26,8 +26,10 @@ class Call < ActiveRecord::Base
 
  end
 
+ def getSanitizedText
+  return ActionController::Base.helpers.strip_tags(text).html_safe
+ end
 
-  
 
   def getCategoryName
 
@@ -57,4 +59,3 @@ class Call < ActiveRecord::Base
 
 
 end
-
