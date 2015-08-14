@@ -1,4 +1,9 @@
+require 'elasticsearch/model'
+
 class Call < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
  attr_accessible :customer_id,:category_id,:text,:user_id
 
  def getCustomerName
@@ -59,3 +64,5 @@ class Call < ActiveRecord::Base
 
 
 end
+
+Call.import # for auto sync model with elastic search

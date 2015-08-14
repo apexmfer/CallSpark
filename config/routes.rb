@@ -2,7 +2,7 @@ Testlog::Application.routes.draw do
 
 
 resources :password_resets
-   
+
 
 resources :user_sessions
 resources :users
@@ -10,6 +10,8 @@ resources :users
 get '/calls/data' => 'calls#data'
 get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
+
+
 
  resources :company
   resources :customer
@@ -53,7 +55,8 @@ match 'calls/history/:id' => 'calls#history'
 
 match 'category/hints/:id' => 'category#hints'
 
-get '/search' => 'search#index'
+get 'search', to: 'search#search'
+#get '/search' => 'search#index'
 
 
 

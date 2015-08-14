@@ -1,0 +1,139 @@
+<h3>All calls containing '<%= params[:query] %>' </h3>
+
+<%form_for search_path, method: :get do |f| %>
+  <p>
+    <%= f.label "Search for" %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+
+<ul>
+  <% @calls.each do |callresponse| %>
+
+    <%  call = Call.find_by_id(callresponse.id) %>
+
+    <% if (call )  %>
+    <li>
+      <h3>
+         <%= link_to 'Call from '.concat(call.getCustomerName) , controller: "calls", action: "show", id: call.id %>
+      </h3>
+
+     
+      <%= call.text %>
+
+
+      <h4>
+        <%= time_ago_in_words(call.created_at)  %> ago
+      </h4>
+
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+
+
+
+
+ <div class="panel panel-default
+
+<% if(Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+  hidden
+<%  end %>
+
+">
+  <div class="panel-heading">Customers</div>
+  <div class="panel-body">
+
+
+  <div class="table-responsive">
+    <table id="customertable" class="table table-bordered table-hover table-striped">
+  <thead>
+
+    <tr>
+      <th>Name</th>
+      <th>Calls in past year</th>
+      <th>Company</th>
+      <th>Phone</th>
+      <th>Email</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+    <% Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |customer| %>
+      <tr>
+        <td><a href="<%= url_for customer %>"> <%= customer.name %> </a> </td>
+
+        <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
+
+
+        <td>
+          <%=
+          if(customer.company != nil)
+          customer.company.name
+          end
+          %>
+        </td>
+
+
+        <td><%= customer.phone_number %></td>
+        <td><%= customer.email %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+ <div class="panel panel-default
+
+<% if(Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+  hidden
+<% end %>
+
+">
+  <div class="panel-heading">Companies</div>
+  <div class="panel-body">
+
+  <div class="table-responsive">
+    <table id="companytable" class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+       <th>BPID</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |company| %>
+      <tr>
+        <td> <a href="<%= url_for company %>"> <%= company.name %> </a> </td>
+
+
+        <td><%= company.BPID %></td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#customertable').dataTable();
+     $('#companytable').dataTable();
+} );
+
+</script>
