@@ -39,7 +39,7 @@ Email: <%= call.getCustomer.email %>
   <p>
     <%= f.label :text %><br>
 
-    <%= text_area_tag 'Call Notes', simple_format(call.text).html_safe, class: 'logarea wysihtml5' %>
+    <%= text_area_tag :text, simple_format(call.text).html_safe, class: 'logarea wysihtml5' %>
   </p>
 
 

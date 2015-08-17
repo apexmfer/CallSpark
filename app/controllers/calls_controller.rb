@@ -54,7 +54,7 @@ class CallsController < ApplicationController
 
 
   def update
-    text = sentencify(params['call']['text'])
+    text = sentencify(params['text'])
 
      call = Call.find(params['id'])
 
