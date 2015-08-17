@@ -10,16 +10,16 @@
                 data-height="400"
                 data-side-pagination="server"
                 data-pagination="true"
-		data-sort-order="desc"
-		data-show-export="true"
+		              data-sort-order="desc"
+		                data-show-export="true"
                 data-page-list="[10, 25, 100, 500,2000]"
                 data-search="false">
              <thead>
              <tr>
                  <th data-field="id" data-sortable="true"  >ID</th>
-                 <th data-field="caller" data-formatter="nameFormatter" data-sortable="true">Caller</th>
+                 <th data-field="customer" data-formatter="customerNameFormatter" data-sortable="true">Caller</th>
                  <th data-field="company"   data-sortable="true">Company</th>
-                 <th data-field="responder" data-sortable="true">Responder</th>
+                 <th data-field="respondant" data-sortable="true">Responder</th>
                  <th data-field="category" data-sortable="true">Topic</th>
                  <th data-field="timeago" data-formatter="timeFormatter" data-sortable="true">Time</th>
              </tr>
@@ -38,10 +38,10 @@
 <script>
     var $table = $('#table');
 
-    function nameFormatter(value,row)
+    function customerNameFormatter(value,row)
     {
 
-      return '<a href="/calls/'  + row.id + '">'+value+'</a>'
+      return '<a href="/calls/'  + row.id + '">'+ value+'</a>'
     }
 
     function timeFormatter(value,row)

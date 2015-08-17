@@ -4,31 +4,37 @@ class CallsController < ApplicationController
 
     def data
 
-        calls = Call.offset(params[:offset]).limit(params[:limit])
 
 
+      calls = Call.offset(params[:offset]).limit(params[:limit])
 
+      if params[:sort] == "customer"
+        params[:sort] = "customer_id"
+      end
 
+      if params[:sort] == "respondant"
+        params[:sort] = "user_id"
+      end
 
-        customCallData = Array.new
-
-        calls.all.each do |call|
-          thiscaller = call.getCustomerName
-          thisresponder = call.getUser.name
-          thiscategory = call.getCategoryName
-          thiscompany = call.getCompanyName
-
-          customCallData.push({:id => call.id,:company=> thiscompany,:caller => thiscaller, :responder => thisresponder, :category => thiscategory, :timeago => call.created_at})
-        end
+      if params[:sort] == "category"
+        params[:sort] = "category_id"
+      end
 
 
         if(params[:sort] && params[:sort].length > 0)
-          customCallData = customCallData.sort_by{|e| e[params[:sort]]} #(params[:sort] + " " + params[:order])
+          calls = calls.order(params[:sort] + " " + params[:order])
         end
 
-        output = {:total => Call.all.length, :rows => customCallData}
+
+
+        @calls = calls.map{|call|
+          {:id => call.id, :company => call.getCompanyName, :customer => call.getCustomerName, :responder => call.getUser.name, :category => call.getCategoryName, :timeago => call.created_at  }
+        }
+
+        output = {:total => Call.all.length, :rows => @calls}
 
            render :json => output
+
     end
 
 
