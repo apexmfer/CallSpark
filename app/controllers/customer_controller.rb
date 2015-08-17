@@ -37,8 +37,11 @@ class CustomerController < ApplicationController
     strippedphone = params['customer']['phone_number'].gsub(/\D/, '')
     phone = strippedphone  #strips all but numbers from the input and then formats as phone number
    email = params['customer']['email'].humanize.delete(' ')
-    notes = sentencify(params['customer']['notes'])
 
+   if params['customer']['notes']
+    notes = sentencify(params['customer']['notes'])
+  end
+  
     company = Company.where(name: companyname).first
     companyMatchNil = (company == nil)
 
