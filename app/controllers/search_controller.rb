@@ -4,9 +4,10 @@ class SearchController < ApplicationController
 
 	def search
 	if params[:query].nil?
-		@calls = []
+		@callresponses = []
 	else
-		@calls = Call.search params[:query]
+		@callresponses = Call.search params[:query]
+		@calls = @callresponses.map{|response| Call.find_by_id(response.id)  }
 	end
   end
 

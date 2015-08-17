@@ -9,8 +9,11 @@
   <div class="panel-heading">Caller Information</div>
   <div class="panel-body">
 
+  <% if call.getCustomer %>
 <p>
+
 Caller: <a href="<%= url_for call.getCustomer %>"> <%= call.getCustomer.name %> </a>
+
 </p>
 
 
@@ -29,6 +32,8 @@ Company:
 
 </p>
 <%end%>
+
+<% end %>
 
 <% if call.getUser %>
 <p>

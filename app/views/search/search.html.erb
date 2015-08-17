@@ -1,4 +1,4 @@
-<h3>All calls containing '<%= params[:query] %>' </h3>
+
 
 <%form_for search_path, method: :get do |f| %>
   <p>
@@ -8,32 +8,43 @@
   </p>
 <% end %>
 
-<ul>
-  <% @calls.each do |callresponse| %>
 
-    <%  call = Call.find_by_id(callresponse.id) %>
 
-    <% if (call )  %>
-    <li>
-      <h3>
-         <%= link_to 'Call from '.concat(call.getCustomerName) , controller: "calls", action: "show", id: call.id %>
-      </h3>
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3>All calls containing '<%= params[:query] %>' </h3>
+  </div>
+
+  <div class="panel-body">
+
+
+
+  <% @calls.compact.sort_by(&:"#{:created_at}").reverse.each do |call| %>
 
      
-      <%= call.text %>
+    <% if (call )  %>
 
 
-      <h4>
-        <%= time_ago_in_words(call.created_at)  %> ago
-      </h4>
 
-    </li>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to 'Call from '.concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
+
+        <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
+        </div>
+      <div class="panel-body">
+       <%= simple_format(call.text) %>
+      </div>
+    </div>
+
+
+
     <% end %>
   <% end %>
-</ul>
 
-
-
+</div>
+</div>
 
 
 
