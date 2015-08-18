@@ -56,10 +56,12 @@ class CallsController < ApplicationController
   def update
     text = sentencify(params['text'])
 
+
+
      call = Call.find(params['id'])
 
-
-    call.text = text
+     #remove the garbage ampersand and blank space tags that get made
+    call.text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
     call.save
 
 
