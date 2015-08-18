@@ -1,13 +1,13 @@
 module ApplicationHelper
-  
-  
-  
+
+
+
   def color (index)
     case index
      when 1
-       return '#69D2E7'
+       return '#cf4c64'
      when 2
-       return '#A7DBD8'
+       return '#9f1c34'
      when 3
         return '#E0E4CC'
      when 4
@@ -16,14 +16,14 @@ module ApplicationHelper
         return '#F38630'
      end
   end
-  
-  
+
+
   def cssClassActive (contName)
-    
+
     if( controller_name == contName)
        return "class=active"
      end
       return ''
   end
-  
+
 end

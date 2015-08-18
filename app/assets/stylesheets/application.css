@@ -10,9 +10,10 @@
  *
  *= require_self
  *= require bootstrap-wysihtml5
- *= require_bootstrap.min
+ *= require_mc-bootstrap
  *= require_bootstrap.table
  *= require_animate
+ *= require_sb-admin-2
  *= require_tree .
  */
 

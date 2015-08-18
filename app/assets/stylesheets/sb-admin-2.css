@@ -27,6 +27,19 @@ body {
     }
 }
 
+
+.navbar-default .navbar-brand{
+  background-color:#373737;
+  color:#eee;
+}
+
+.nav a
+{
+  color: #eee;
+}
+
+
+
 .navbar-top-links li {
     display: inline-block;
 }
@@ -81,9 +94,13 @@ body {
     left: auto;
 }
 
+
+
 .sidebar .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
+    background-color:#666;
+    color:#eee;
 }
 
 .sidebar .sidebar-search {
@@ -91,11 +108,12 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 1px solid #333;
+    color:#eee;
 }
 
 .sidebar ul li a.active {
-    background-color: #eee;
+    background-color: #555;
 }
 
 .sidebar .arrow {
@@ -128,7 +146,7 @@ body {
         z-index: 1;
         position: absolute;
         width: 250px;
-        margin-top: 51px;
+        margin-top: 50px;
     }
 
     .navbar-top-links .dropdown-messages,
@@ -342,4 +360,16 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+
+
+#side-menu a
+{
+  color: #eee;
+}
+
+#side-menu a:visited
+{
+    color: #ccc;
 }
