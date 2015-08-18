@@ -1,0 +1,18 @@
+
+<h2>Category <%= params[:id] %></h2>
+
+<% category = Category.find_by_id( params[:id] ) %>
+
+<%=
+ if category
+   category.name
+ end
+
+   %>
+
+   <%= button_to "delete", category, :method=>:delete, :class=>:destroy %>
+
+           <%= form_tag({controller: "category",action: "destroy"}, method: "post") do %>
+            <%= hidden_field_tag 'category_id', category.id %>
+            <%= submit_tag("Delete") %>
+            <%   end %>
