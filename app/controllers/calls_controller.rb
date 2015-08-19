@@ -12,7 +12,7 @@ class CallsController < ApplicationController
         params[:sort] = "customer_id"
       end
 
-      if params[:sort] == "respondant"
+      if params[:sort] == "responder"
         params[:sort] = "user_id"
       end
 
