@@ -20,6 +20,10 @@ class CallsController < ApplicationController
         params[:sort] = "category_id"
       end
 
+      if params[:sort] == "timeago"
+        params[:sort] = "created_at"
+      end
+
 
         if(params[:sort] && params[:sort].length > 0)
           calls = calls.order(params[:sort] + " " + params[:order])
