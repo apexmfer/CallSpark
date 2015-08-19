@@ -81,9 +81,12 @@
 
             	 <% if current_user %>
 
-               <%= area :navbar_buttons do %>
+               <% if (controller_name != "demo_inventory" && controller_name != "checkout") %>
+
                   <a href="<%= url_for :controller => 'calls', :action => 'new' %>">
                     <button type="button" class="btn btn-default">New Call</button></a>
+
+
                  <% end %>
 
 
@@ -316,7 +319,7 @@
                         </li>
                         <li>
                             <a <%= cssClassActive('demo_inventory') %> href="/demoinventory"><i class="fa fa-tags fa-fw" style="color:<%= color(1) %>" ></i> Demo Inventory</a>
-                         
+
                     </li>
                        <!-- <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -360,29 +363,7 @@
                         <!-- Support Links Accordion-->
 
 
-                      <%= area :sidebar_secondary do %>
-
-                      <% if( Supportlink.all.length > 0) %>
-
-                       <li>
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
-                            	<i class="fa fa-wrench fa-fw"></i> Support Tools<span id="toolsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
-                            <ul id="collapseTools" class="nav nav-second-level collapse in" aria-expanded="true">
-
-
-                            	<% Supportlink.order(:sortorder).each do |link| %>
-
-                                <li>
-                                    <a href="<%= link.url %>" target="_blank"><%= link.name %></a>
-                                </li>
-                                 <% end %>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                      <% end %>
-                      <% end %>
+                        <%=  render '/layouts/sidebar_secondary'%>
 
                         <li>
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">

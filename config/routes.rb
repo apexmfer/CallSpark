@@ -1,10 +1,6 @@
 Testlog::Application.routes.draw do
 
 
-  get "checkout/new"
-
-  get "checkout/index"
-
 resources :password_resets
 
 
@@ -25,6 +21,8 @@ resources :category
 resources :category_hint
 resources :supportlink
 
+
+
   get "user_sessions/new"
 
   get "user_sessions/create"
@@ -40,6 +38,11 @@ resources :supportlink
 
   match '/supportcenter' => 'welcome#index'
   match '/demoinventory' => 'DemoInventory#index'
+  match '/demoinventory/new' => 'DemoInventory#new'
+  match '/demoinventory/edit' => 'DemoInventory#edit'
+  match '/checkout/new' => 'Checkout#new'
+  match '/checkout/return' => 'Checkout#return'
+  match '/checkout/edit' => 'Checkout#edit'
 
     #match 'admin/categories' => 'admin#categories'
 
