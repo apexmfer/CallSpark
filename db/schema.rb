@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150805151342) do
+ActiveRecord::Schema.define(:version => 20150819191254) do
 
   create_table "calls", :force => true do |t|
     t.integer  "customer_id"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(:version => 20150805151342) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "checkouts", :force => true do |t|
+    t.integer  "checkout_user_id"
+    t.integer  "hardware_id"
+    t.integer  "customer_id"
+    t.datetime "time_out"
+    t.datetime "expected_time_in"
+    t.datetime "actual_time_in"
+    t.text     "notes"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.integer  "BPID"
@@ -59,12 +71,27 @@ ActiveRecord::Schema.define(:version => 20150805151342) do
     t.text     "notes"
   end
 
+  create_table "demohardwares", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "barcode"
+    t.string   "series"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.date     "date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "partdetails", :force => true do |t|
+    t.string   "catalog_number"
+    t.text     "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "supportlinks", :force => true do |t|

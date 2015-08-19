@@ -1,6 +1,10 @@
 Testlog::Application.routes.draw do
 
 
+  get "checkout/new"
+
+  get "checkout/index"
+
 resources :password_resets
 
 
@@ -27,12 +31,15 @@ resources :supportlink
 
   get "user_sessions/destroy"
 
-get 'login' => 'user_sessions#new', :as => :login
-post 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
 
   match 'customer' => 'customer#index'
   match 'customer/update' => 'customer#update'
   match 'customer/destroy' => 'customer#destroy'
+
+  match '/supportcenter' => 'welcome#index'
+  match '/demoinventory' => 'DemoInventory#index'
 
     #match 'admin/categories' => 'admin#categories'
 

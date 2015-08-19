@@ -77,6 +77,8 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nestive (0.6.0)
+      rails (>= 3.0.0)
     oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -158,6 +160,7 @@ DEPENDENCIES
   elasticsearch-rails
   figaro
   jquery-rails
+  nestive
   rails (= 3.2.19)
   sass-rails (~> 3.2.3)
   sorcery

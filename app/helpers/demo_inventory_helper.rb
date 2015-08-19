@@ -1,0 +1,2 @@
+module DemoInventoryHelper
+end

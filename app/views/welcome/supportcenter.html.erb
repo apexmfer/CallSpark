@@ -1,0 +1,36 @@
+
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3>Recent support calls</h3>
+  </div>
+
+  <div class="panel-body">
+
+
+
+  <% Call.order("created_at" + " DESC").limit(20).each do |call| %>
+
+
+    <% if (call )  %>
+
+
+
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to ''.concat(call.getCategoryName).concat(' call from ').concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
+
+        <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
+        </div>
+      <div class="panel-body">
+       <%= simple_format(call.text) %>
+      </div>
+    </div>
+
+
+
+    <% end %>
+  <% end %>
+
+</div>
+</div>

@@ -8,7 +8,7 @@ gem 'rails', '3.2.19'
 
 gem 'bootstrap-wysihtml5-rails'
 
-
+gem 'nestive'
 
 gem 'sqlite3'
 

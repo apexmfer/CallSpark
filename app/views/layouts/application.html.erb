@@ -81,11 +81,14 @@
 
             	 <% if current_user %>
 
+               <%= area :navbar_buttons do %>
+                  <a href="<%= url_for :controller => 'calls', :action => 'new' %>">
+                    <button type="button" class="btn btn-default">New Call</button></a>
+                 <% end %>
 
 
 
-            <a href="<%= url_for :controller => 'calls', :action => 'new' %>">
-<button type="button" class="btn btn-default">New Call</button></a>
+
 
             	<!--
                 <li class="dropdown">
@@ -307,9 +310,14 @@
 
                             <!-- /input-group -->
                         </li>
+
                         <li>
-                            <a <%= cssClassActive('welcome') %> href="/"><i class="fa fa-dashboard fa-fw" style="color:<%= color(1) %>" ></i> Dashboard</a>
+                            <a <%= cssClassActive('welcome') %> href="/supportcenter"><i class="fa fa-flash fa-fw" style="color:<%= color(1) %>" ></i> Dashboard</a>
                         </li>
+                        <li>
+                            <a <%= cssClassActive('demo_inventory') %> href="/demoinventory"><i class="fa fa-tags fa-fw" style="color:<%= color(1) %>" ></i> Demo Inventory</a>
+                         
+                    </li>
                        <!-- <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -334,7 +342,7 @@
                              <ul id="collapseDatasets" class="nav nav-second-level collapse in" aria-expanded="true">
 
                                <li>
-                                   <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Recent Calls </a>
+                                   <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Support Calls </a>
                                </li>
                                <li>
                                    <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
@@ -350,6 +358,9 @@
                            </li>
 
                         <!-- Support Links Accordion-->
+
+
+                      <%= area :sidebar_secondary do %>
 
                       <% if( Supportlink.all.length > 0) %>
 
@@ -369,6 +380,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+                      <% end %>
                       <% end %>
 
                         <li>

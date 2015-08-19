@@ -1,0 +1,2 @@
+class DemoInventoryController < ApplicationController
+end
