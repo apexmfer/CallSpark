@@ -11,12 +11,30 @@ class CategoryController < ApplicationController
     redirect_to '/category', alert: 'Category created'
   end
 
+
+  def merge
+
+      thisCategory = Category.find(params[:id])
+      consumerCategory = Category.find(params[:consumer_id])
+
+      Call.all.each do |call|
+        if(call.category_id == thisCategory.id)
+            call.category_id = consumerCategory.id
+            call.save
+        end
+      end
+
+      destroy()
+
+
+  end
+
+
   def destroy
 
     Category.find(params[:id]).destroy
 
-
-      redirect_to '/category', alert: 'Category destroyed'
+    redirect_to '/category', alert: 'Category destroyed'
 
   end
 

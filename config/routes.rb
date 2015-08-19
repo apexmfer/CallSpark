@@ -37,6 +37,7 @@ post 'logout' => 'user_sessions#destroy', :as => :logout
     #match 'admin/categories' => 'admin#categories'
 
   match 'category/destroy' => 'category#destroy'
+  match 'category/merge' => 'category#merge'
 
    match 'admin/events' => 'admin#events'
   match 'event/destroy' => 'event#destroy'

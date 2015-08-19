@@ -1,18 +1,27 @@
 
-<h2>Category <%= params[:id] %></h2>
+
 
 <% category = Category.find_by_id( params[:id] ) %>
 
+<h2>
 <%=
  if category
    category.name
  end
 
+
+
    %>
 
-   <%= button_to "delete", category, :method=>:delete, :class=>:destroy %>
+ </h2>
 
-           <%= form_tag({controller: "category",action: "destroy"}, method: "post") do %>
-            <%= hidden_field_tag 'category_id', category.id %>
-            <%= submit_tag("Delete") %>
+Select another category to marge this one into.  This action will delete this category!
+
+   <%  button_to "delete", category, :method=>:delete, :class=>:destroy %>
+
+           <%= form_tag({controller: "category",action: "merge"}, method: "post") do %>
+           <%= hidden_field_tag 'id', category.id %>
+
+           <%= select_tag "consumer_id", options_from_collection_for_select(Category.all, "id", "name") %>
+            <%= submit_tag("Delete and Merge") %>
             <%   end %>
