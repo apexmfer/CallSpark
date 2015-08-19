@@ -8,6 +8,10 @@ class CallsController < ApplicationController
 
       calls = Call.offset(params[:offset]).limit(params[:limit])
 
+      if params[:sort] == "company"
+        params[:sort] = "company_id"
+      end
+
       if params[:sort] == "customer"
         params[:sort] = "customer_id"
       end
