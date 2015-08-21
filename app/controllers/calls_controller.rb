@@ -88,6 +88,8 @@ class CallsController < ApplicationController
     #render text: params[:call].inspect
         text = sentencify(params[:call][:text])
 
+        text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
+
     @customer = spawnCustomer( params[:call])
 
 
