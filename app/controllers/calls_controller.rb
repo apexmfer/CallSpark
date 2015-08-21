@@ -90,7 +90,7 @@ class CallsController < ApplicationController
 
     @customer = spawnCustomer( params[:call])
 
-
+    text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
 
     @call = Call.new(:customer_id => @customer.id,
     :category_id => params[:call][:category_id],
