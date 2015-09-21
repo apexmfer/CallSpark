@@ -373,6 +373,12 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
                             	<i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" ></span></a>
                             <ul id="collapseAdmin" class="nav nav-second-level collapse" >
+                              <li>
+                                  <a href="<%= url_for :controller => 'employee', :action => 'index' %>">Employees</a>
+                              </li>
+                                <li>
+                                    <a href="<%= url_for :controller => 'account_assignment', :action => 'index' %>">Account Assignment</a>
+                                </li>
                                 <li>
                                     <a href="<%= url_for :controller => 'category', :action => 'index' %>">Categories</a>
                                 </li>

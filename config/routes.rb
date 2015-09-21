@@ -17,6 +17,8 @@ get '/company/data' => 'company#data'
   resources :customer
   resources :calls
 
+  resources :employee
+  resources :account_assignment
 resources :category
 resources :category_hint
 resources :supportlink
@@ -45,6 +47,12 @@ resources :supportlink
   match '/checkout/edit' => 'Checkout#edit'
 
     #match 'admin/categories' => 'admin#categories'
+
+
+    match '/account_assignment/import' => 'account_assignment#import'
+    match '/employee/import' => 'employee#import'
+    match 'employee/destroy' => 'employee#destroy'
+
 
   match 'category/destroy' => 'category#destroy'
   match 'category/merge' => 'category#merge'

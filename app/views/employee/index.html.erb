@@ -1,0 +1,82 @@
+<h2>Employees</h2>
+
+<% if Employee.all.first %>
+
+<table class="table table-hover collection">
+      <thead>
+        <tr>
+
+          <th>Name</th>
+          <th>Initials</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+
+          <%
+          pagenum = params[:id].to_i
+          recordsPerPage = 20
+          offset = pagenum * recordsPerPage
+          %>
+
+        <% # Event.limit(recordsPerPage).offset(offset).each do |item| %>
+          <% Employee.all.each do |item| %>
+
+
+
+
+        <tr>
+
+    <td> <%= item.name %> </td>
+    <td> <%= item.initials %> </td>
+
+   
+    </tr>
+
+    <% end  %>
+
+
+
+      </tbody>
+    </table>
+
+
+ <% else  %>
+
+<div class="alert alert-danger">No employees are listed!</div>
+
+
+ <% end  %>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Import employees from a CSV file</h3>
+  </div>
+  <div class="panel-body">
+
+
+
+<%= form_for :newemployee, url: {controller: "employee",action: "import"}, html: {id:"main-form",class: "form-group"} do |f| %>
+<div class="form-group" id="input-name">
+   <label for="InputName">Employee CSV List</label>
+
+  <%= f.file_field :employee_csv_file %>
+
+  </div>
+
+
+
+ <% f.submit "Employee#Import" , class: "btn btn-success", style:"width:100%" %>
+  <% submit_tag  :onclick => "return validateform();", class: "btn btn-success", style:"width:100%" %>
+ <button type="submit" id="submit-btn" class="btn btn-success" style="width:100%">Submit</button>
+
+
+</div>
+
+<% end %>
+
+  </div>
+</div>
