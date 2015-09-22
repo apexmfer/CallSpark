@@ -1,4 +1,4 @@
-<% employee = Employee.where(:initials => params[:id] ).first %>
+<% employee = Employee.where(:initials => params[:id].upcase ).first %>
 
 <% accounts = Accountassignment.where(:employee_id => employee.id ) %>
 
@@ -76,7 +76,7 @@ end
        <tr>
          <td><a href="<%= url_for company %>"> <%= company.name %> </a>  </td>
 
-       
+
 
          <td><%= callcount %></td>
 
