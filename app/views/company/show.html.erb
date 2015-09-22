@@ -1,6 +1,30 @@
 
 
+
 <% this_company = Company.find(params[:id])  %>
+
+
+<%
+
+
+calls = Array.new
+
+  Call.order("created_at" + " DESC").each do |call|
+
+    customer = call.getCustomer
+    if customer
+      company = customer.company
+
+      if company and company === this_company
+        calls << call
+      end
+    end
+  end
+
+  %>
+
+
+
 
 <h2><%= this_company.name %> </h2>
 
@@ -64,3 +88,42 @@
     <% end %>
   </tbody>
 </table>
+
+
+
+
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3>Recent support calls</h3>
+  </div>
+
+  <div class="panel-body">
+
+
+
+  <% calls.each do |call| %>
+
+
+    <% if (call )  %>
+
+
+
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to ''.concat(call.getCategoryName).concat(' call from ').concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
+
+        <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
+        </div>
+      <div class="panel-body">
+       <%= simple_format(call.text) %>
+      </div>
+    </div>
+
+
+
+    <% end %>
+  <% end %>
+
+</div>
+</div>

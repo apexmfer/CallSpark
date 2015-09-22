@@ -18,6 +18,8 @@ class CompanyController < ApplicationController
 
       output = {:total => Company.all.length, :rows => companies}
 
+
+
          render :json => output
   end
 
