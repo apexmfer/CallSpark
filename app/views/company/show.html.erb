@@ -21,6 +21,13 @@ calls = Array.new
     end
   end
 
+
+
+  assignment = Accountassignment.where(:bpid => this_company.BPID).first
+  if assignment
+    accountmgr = Employee.find_by_id(assignment.employee_id)
+  end
+
   %>
 
 
@@ -38,6 +45,11 @@ calls = Array.new
     <p>
       BPID: <%= this_company.BPID %>
     </p>
+    <% if accountmgr %>
+    <p>
+      Account Rep: <a href="/employee/<%= accountmgr.initials %>" > <%= accountmgr.name %> </a>
+    </p>
+    <% end %>
 
 </div>
 </div>
@@ -81,7 +93,7 @@ calls = Array.new
         <td><%= customer.getFormattedPhone %></td>
         <td><%= customer.email %></td>
 
-      
+
       </tr>
     <% end %>
   </tbody>
