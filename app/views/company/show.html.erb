@@ -70,7 +70,7 @@ calls = Array.new
   <tbody>
     <% Customer.where(company_id: this_company.id).each do |customer| %>
       <tr>
-        <td><%= customer.name %></td>
+        <td><%= link_to customer.name, customer %></td>
 
         <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
 
@@ -81,9 +81,7 @@ calls = Array.new
         <td><%= customer.getFormattedPhone %></td>
         <td><%= customer.email %></td>
 
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
       </tr>
     <% end %>
   </tbody>
