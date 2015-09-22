@@ -1,0 +1,156 @@
+<% employee = Employee.where(:initials => params[:id] ).first %>
+
+<% accounts = Accountassignment.where(:employee_id => employee.id ) %>
+
+<%
+companies = Array.new
+calls = Array.new
+ %>
+
+<%
+
+if !accounts.empty?
+  accounts.each do |account|
+
+    company = Company.where(:bpid => account.bpid).first
+
+    if company
+      companies << company
+    end
+
+  end
+end
+
+
+
+  Call.order("created_at" + " DESC").each do |call|
+
+    customer = call.getCustomer
+    if customer
+      company = customer.company
+
+      if company and companies.include?(company)
+        calls << call
+      end
+    end
+  end
+
+
+%>
+
+
+
+<% if employee %>
+
+  <h3 style=" text-align: center ">Dashboard for <%= employee.name %></h3>
+
+
+  <div class="table-responsive" style="overflow-x: hidden;">
+     <table id="maintable" class="table table-bordered table-hover table-striped" >
+   <thead>
+     <tr>
+       <th>Name</th>
+       <th>Employees</th>
+       <th>Calls in past year</th>
+        <th>BPID</th>
+
+     </tr>
+   </thead>
+
+   <tbody>
+     <% companies.each do |company| %>
+
+      <%
+      employeecount = 0
+      callcount = 0
+
+      Customer.where(company_id: company.id).each do |cust|
+        employeecount = employeecount + 1
+
+        callcount += Call.where(customer_id: cust.id).length
+      end
+
+
+     %>
+
+       <tr>
+         <td><a href="<%= url_for company %>"> <%= company.name %> </a>  </td>
+
+         <td><%= employeecount %></td>
+
+         <td><%= callcount %></td>
+
+
+
+         <td><%= company.BPID %></td>
+
+
+
+
+
+
+       </tr>
+     <% end %>
+   </tbody>
+ </table>
+
+ </div>
+
+
+ <script>
+   $(document).ready(function() {
+     $('#maintable').dataTable();
+ } );
+ </script>
+
+
+
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3>Recent support calls at my accounts</h3>
+  </div>
+
+  <div class="panel-body">
+
+
+
+  <% calls.each do |call| %>
+
+
+    <% if (call )  %>
+
+
+
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to ''.concat(call.getCategoryName).concat(' call from ').concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
+
+        <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
+        </div>
+      <div class="panel-body">
+       <%= simple_format(call.text) %>
+      </div>
+    </div>
+
+
+
+    <% end %>
+  <% end %>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<% else %>
+
+
+Employee with initials <%= params[:id] %> not found
+
+<% end %>

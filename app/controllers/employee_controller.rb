@@ -1,4 +1,6 @@
 class EmployeeController < ApplicationController
+  skip_before_filter :require_login, only: [:index,:show,:data]
+
   require 'csv'
 
   def import
@@ -11,7 +13,7 @@ class EmployeeController < ApplicationController
       #Moulding.create!(row.to_hash)
 
 
-      initials = row.field("initials").gsub(/\s+/, "").upcase      
+      initials = row.field("initials").gsub(/\s+/, "").upcase
       name = row.field("name")
 
       matches = Employee.where(:initials => initials)

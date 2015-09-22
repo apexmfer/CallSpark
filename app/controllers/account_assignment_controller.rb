@@ -8,7 +8,12 @@ class AccountAssignmentController < ApplicationController
 
   csv_text = File.read(csv_file_url.path)
   csv = CSV.parse(csv_text, :headers => true)
-  csv.each do |row|
+
+  Thread.new do
+
+    Accountassignment.delete_all
+
+    csv.each do |row|
       #Moulding.create!(row.to_hash)
 
 
@@ -19,12 +24,16 @@ class AccountAssignmentController < ApplicationController
       assignments = Accountassignment.where(:bpid => bpid)
 
 
+
       if(employee and assignments.empty?)
         Accountassignment.create(:employee_id => employee.id, :bpid => bpid)
         p bpid
         p employee
       end
 
+
+
+    end
 
 
   end

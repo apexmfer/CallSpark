@@ -22,7 +22,7 @@ get '/company/data' => 'company#data'
 resources :category
 resources :category_hint
 resources :supportlink
-
+ 
 
 
   get "user_sessions/new"

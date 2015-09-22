@@ -6,9 +6,10 @@
       <thead>
         <tr>
 
-          <th>Employee</th>
           <th>BPID</th>
+          <th>Company</th>
 
+          <th>Employee</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +29,19 @@
 
         <tr>
 
-    <td> <%= item.employee_id %> </td>
-    <td> <%= item.bpid %> </td>
+        <% employee = Employee.find_by_id(item.employee_id) %>
+        <% company = Company.where(:bpid => item.bpid).first %>
 
+
+        <td> <%= item.bpid %> </td>
+    <td>
+      <%=  if company
+           company.name
+       end %>
+
+     </td>
+
+    <td> <%= employee.initials %> </td>
 
     </tr>
 

@@ -24,14 +24,12 @@
           <% Employee.all.each do |item| %>
 
 
+        <tr   >
 
-
-        <tr>
-
-    <td> <%= item.name %> </td>
+    <td> <a href="/employee/<%= item.initials %>"> <%= item.name %>  </a> </td>
     <td> <%= item.initials %> </td>
 
-   
+
     </tr>
 
     <% end  %>
