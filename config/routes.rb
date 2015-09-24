@@ -12,6 +12,7 @@ get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
 
 
+resources :part_detail
 
  resources :company
   resources :customer
@@ -22,7 +23,7 @@ get '/company/data' => 'company#data'
 resources :category
 resources :category_hint
 resources :supportlink
- 
+
 
 
   get "user_sessions/new"
@@ -48,6 +49,8 @@ resources :supportlink
 
     #match 'admin/categories' => 'admin#categories'
 
+
+    match '/part_detail/import' => 'part_detail#import'
 
     match '/account_assignment/import' => 'account_assignment#import'
     match '/employee/import' => 'employee#import'
