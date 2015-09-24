@@ -1,11 +1,28 @@
 class Company < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessor :callcount
-  attr_accessible :callcount
+   
 
-  def callcount
-    2
-  end
+  def as_json(options = { })
+    h = super(options)
+    h[:callcount]   = callcount
+    h
+ end
 
+ def callcount
+
+
+    employeecount = 0
+    callcount = 0
+
+    Customer.where(company_id: id).each do |cust|
+      employeecount = employeecount + 1
+
+      callcount += Call.where(customer_id: cust.id).length
+    end
+
+
+  callcount
+ end
+>>>>>>> d8e10d5ae9c4525646de071ac47ed27beaec6ddc
 
 end
