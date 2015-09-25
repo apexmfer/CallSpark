@@ -11,8 +11,9 @@ get '/calls/data' => 'calls#data'
 get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
 
-
+resources :checkout
 resources :part_detail
+resources :demo_inventory
 
  resources :company
   resources :customer
@@ -40,16 +41,18 @@ resources :supportlink
   match 'customer/destroy' => 'customer#destroy'
 
   match '/supportcenter' => 'welcome#index'
-  match '/demoinventory' => 'DemoInventory#index'
-  match '/demoinventory/new' => 'DemoInventory#new'
-  match '/demoinventory/edit' => 'DemoInventory#edit'
+  match '/demo_inventory' => 'DemoInventory#index'
+  match '/demo_inventory/new' => 'DemoInventory#new'
+  match '/demo_inventory/edit' => 'DemoInventory#edit'
+  match '/demo_inventory/info/:id' => 'DemoInventory#info'
+
   match '/checkout/new' => 'Checkout#new'
   match '/checkout/return' => 'Checkout#return'
   match '/checkout/edit' => 'Checkout#edit'
 
     #match 'admin/categories' => 'admin#categories'
 
-
+    match '/part_detail/info/:id' => 'part_detail#info'
     match '/part_detail/import' => 'part_detail#import'
 
     match '/account_assignment/import' => 'account_assignment#import'

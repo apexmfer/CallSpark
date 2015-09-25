@@ -1,1 +1,321 @@
-<h3>Checkout Hardware</h3>
+<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Checkout Part</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+<div class="row">
+       <div class="col-lg-12">
+<%= form_for :checkout, url: {controller: "checkout",action: "create"}, html: {id: "newcheckoutform"} do |f| %>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-3">
+
+
+  <div class="form-group ">
+    <%= f.label :mcmccontact %><br>
+    <%= f.text_field :mcmccontact, class:"form-control" %>
+   </div>
+
+
+
+
+
+<div class="form-group" id="input-date">
+   <label for="InputDate">Expected Return Date</label>
+   <br>
+
+ <input class="form-control" type="text" id="checkout_date" name="checkout[date]">
+</div>
+
+ <script>
+  $(function() {
+    $( "#checkout_date" ).datepicker();
+  });
+  </script>
+
+
+
+
+  </div>
+  <div class="col-lg-3">
+    </div>
+  <div class="col-lg-3">
+
+
+
+   <div class="form-group ">
+    <%= f.label :customeraccount %><br>
+    <%= f.text_field :customeraccount, class:"form-control" %>
+  </div>
+
+  <div class="form-group ">
+    <%= f.label :customercontact %><br>
+    <%= f.text_field :customercontact, class:"form-control" %>
+  </div>
+
+  <div class="form-group ">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class:"form-control" %>
+  </div>
+
+  </div>
+ </div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Parts List</h3>
+  </div>
+  <div class="panel-body">
+
+    <div class="col-lg-3">
+  <div class="form-group" id="callername_group">
+    <%= f.label :barcode %><br>
+    <%= f.text_field :barcode, class:"form-control" %>
+    <%= f.hidden_field :listedbarcodes %>
+  </div>
+    <a href="javascript:addpart()"  id="addpart_button" class="btn btn-success disabled">Add Part</a>
+
+   </div>
+
+  <div class="col-lg-3">
+    <div id="part_catalognumber">  </div>
+    <div id="part_description">  </div>
+     </div>
+
+   <div class="col-lg-6">
+    <div id="part_list">  </div>
+     </div>
+
+
+  </div>
+
+
+
+  </div>
+
+
+
+
+  <p>
+    <a href="javascript:submitform()"  id="submitbutton" class="btn btn-success savecall-button col-md-3 col-md-offset-3">Checkout</a>
+    <% f.submit  "Save Call", class: "btn btn-success savecall-button col-md-3 col-md-offset-3" %>
+    <div id="errormessage" class= "btn btn-danger savecall-button col-md-3 col-md-offset-3" style="display:none"></div>
+  </p>
+<% end %>
+</div>
+</div>
+
+
+
+
+<% content_for :head do %>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+
+  <script>
+
+
+     var availableBarcodes = [
+
+<% Demohardware.all.each do |c| %>
+"<%= c.barcode %>",
+<% end %>
+    ];
+
+
+  $(function() {
+
+
+      //SET AVAILABLE AUTOCOMPLETES FOR Users
+     var availableUserTags = [
+
+<% User.all.each do |c| %>
+"<%= c.name %>",
+<% end %>
+    ];
+
+
+
+    $( "#checkout_mcmccontact" ).autocomplete({
+      source: availableUserTags
+    });
+
+
+
+
+    //DO ONEVENTS FOR CUSTOMER FIELD
+
+    $( "#checkout_barcode" ).on( "keyup", function( event, ui ){
+
+          $( "#addpart_button" ).addClass("disabled")
+          $("#part_description").html("");
+        $("#part_catalognumber").html("");
+
+          if( $( "#checkout_barcode" ).val().length >= 4 )
+          {
+            barcode = $( "#checkout_barcode" ).val();
+
+
+            fillCodeData(barcode)
+
+          }
+
+
+    }  );
+
+
+
+
+  });
+
+
+  function fillCodeData(barcode)
+  {
+
+    console.log("filling data" + barcode);
+
+            var foundMatch = false;
+
+
+            for(var i=0;i<availableBarcodes.length;i++)
+            {
+              if(availableBarcodes[i] == barcode)
+              {
+                foundMatch = true;
+              }
+
+            }
+
+
+            if(foundMatch)
+            {
+
+
+                var partdata = $.ajax({
+         url:'/demo_inventory/info/'+barcode, //Defined in your routes file
+
+    } )
+      .done(function(data) {
+          console.log( "success" );
+         console.log( data );
+
+         inventory_part = data[0];
+         product_details = data[1];
+
+         barcode = inventory_part.barcode;
+         series = inventory_part.series;
+
+         catalognumber = product_details.catalog_number
+         description = data[2];
+         checkedout = data[3];
+
+         $("#part_catalognumber").html(catalognumber);
+        $("#part_description").html(description);
+
+        if(checkedout == true)
+        {
+          $("#part_description").html("ALREADY CHECKED OUT");
+        }else
+        {
+          $( "#addpart_button" ).removeClass("disabled");
+        }
+
+      })
+      .fail(function() {
+        console.log( "error" );
+      })
+      .always(function() {
+         console.log( "complete" );
+     });
+            }
+
+
+  }
+
+  function addpart(barcode)
+  {
+
+
+     var listedpart = document.createElement( "div" );
+            listedpart.className+=" alert alert-info";
+
+
+
+    var barcode_container = document.createElement( "div" );
+      barcode_container.innerHTML = 	$( "#checkout_barcode" ).val() ;
+       listedpart.appendChild( barcode_container );
+    var catalognumber_container = document.createElement( "div" );
+      catalognumber_container.innerHTML = 	 $( "#part_catalognumber" ).html() ;
+       listedpart.appendChild( catalognumber_container );
+    var description_container = document.createElement( "div" );
+      description_container.innerHTML = 	 $( "#part_description" ).html();
+       listedpart.appendChild( description_container );
+
+
+          $("#part_list").append( listedpart );
+
+      $("#checkout_listedbarcodes").val($("#checkout_listedbarcodes").val()+$( "#checkout_barcode" ).val()+" ");
+
+    $( "#checkout_barcode" ).val("");
+     $("#part_catalognumber").html("");
+    $("#part_description").html("");
+    $( "#addpart_button" ).addClass("disabled");
+
+
+
+
+    console.log("adding parts");
+  }
+
+
+  function submitform()
+  {
+
+    errormessage = "";
+
+
+
+
+
+    if(errormessage.length == 0)
+    {
+    $('#newcheckoutform').submit();
+    }
+    else
+    {
+
+      $('#submitbutton').hide();
+      $('#errormessage').show();
+      $('#errormessage').addClass('animated shake');
+      $('#errormessage').html(errormessage);
+
+
+      setTimeout(
+        function()
+          {
+            $('#errormessage').hide();
+            $('#submitbutton').show();
+
+            $('#category_group').removeClass('has-error');
+
+
+
+          }, 1500);
+
+
+    }
+
+  }
+
+
+
+  </script>
+
+<% end %>

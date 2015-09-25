@@ -75,6 +75,45 @@ class PartDetailController < ApplicationController
   end
 
 
+  def destroy
+
+    Partdetail.find(params['id']).destroy
+
+     redirect_to '/partdetail/', notice: 'deleted part'
+   end
+
+   def info
+     partid = params['id'];
+
+     part = Partdetail.find_by_id(partid)
+
+
+
+     render json: [part.catalog_number,part.getDescription]
+
+   end
+
+
+   def create
+     # , "newpart"=>{"barcode"=>"grdgr", "catalognumber"=>"drgrdg", "description"=>"drgr"}, "action"=>"create", "controller"=>"partdetail"}
+
+
+
+
+     inputcatalognumber = params['newpart']['catalognumber']
+
+     product = Partdetail.where(:catalog_number => inputcatalognumber).first
+     if(product == nil)
+       product = Partdetail.new(:catalog_number => inputcatalognumber,:description => params['newpart']['description'])
+       product.save
+       p "created new hardware type"
+      end
+
+     part = Demohardware.new(:product_id => product.id,:barcode => params['newpart']['barcode'],:series => params['newpart']['series'])
+     part.save
+
+     redirect_to '/partdetail/'
+   end
 
 
 
