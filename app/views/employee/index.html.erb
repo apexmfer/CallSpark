@@ -47,7 +47,7 @@
 
  <% end  %>
 
-
+<% if current_user %>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -65,6 +65,9 @@
 
   </div>
 
+  <div class="well"> Expects a CSV file with an 'initials' column and a 'name' column</div>
+
+
 
 
  <% f.submit "Employee#Import" , class: "btn btn-success", style:"width:100%" %>
@@ -76,5 +79,11 @@
 
 <% end %>
 
+
+
   </div>
+
+  <% end %>
+
+
 </div>
