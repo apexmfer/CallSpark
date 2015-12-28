@@ -12,7 +12,7 @@ gem 'nestive'
 
 gem 'sqlite3'
 
-gem 'figaro'
+gem 'figaro' #used to set up env file at application.yml
 
 # Gems used only for assets and not required
 # in production environments by default.
