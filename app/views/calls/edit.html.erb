@@ -6,11 +6,13 @@
 
 
 
-
+<% if customer %>
 
 
 <h2>Update call from <%= customer.name %> </h2>
 
+
+<% end %>
 
 <%= form_for call, url: { action: "update" } do |f| %>
 
@@ -20,7 +22,7 @@
 
   <div class="col-lg-9">
 
-
+    <% if customer %>
 <p>
 Caller: <a href="<%= url_for call.getCustomer %>"> <%= call.getCustomer.name %> </a>
 </p>
@@ -34,7 +36,7 @@ Phone: <%= call.getCustomer.getFormattedPhone %>
 Email: <%= call.getCustomer.email %>
 </p>
 
-
+<% end %>
 
   <p>
     <%= f.label :text %><br>
