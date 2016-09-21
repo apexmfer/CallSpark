@@ -35,6 +35,7 @@ Testlog::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
+<<<<<<< HEAD
   config.action_mailer.default_url_options= {:host => 'mail.macnet-ad.mc-mc.com'}
   config.action_mailer.raise_delivery_errors = true
    config.action_mailer.perform_deliveries = true
@@ -52,4 +53,22 @@ Testlog::Application.configure do
     #run this in cmd...
     #export SMTP_USERNAME="myname@gmail.com"
     
+=======
+  
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  user_name:            'indiebucket',
+  password:             'stocks10',
+  authentication:       'plain',
+  enable_starttls_auto: true 
+   }
+  
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default_url_options = { :host => 'localhost' }
+
+
+>>>>>>> 1054d5e36b017254b634138066b02849959f6ed4
 end

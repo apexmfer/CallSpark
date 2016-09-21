@@ -4,9 +4,16 @@ Testlog::Application.routes.draw do
 resources :password_resets
 
 
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
 resources :user_sessions
 resources :users
 
+<<<<<<< HEAD
 get '/calls/data' => 'calls#data'
 get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
@@ -14,6 +21,9 @@ get '/company/data' => 'company#data'
 resources :checkout
 resources :part_detail
 resources :demo_inventory
+=======
+resources :password_resets
+>>>>>>> 1054d5e36b017254b634138066b02849959f6ed4
 
  resources :company
   resources :customer

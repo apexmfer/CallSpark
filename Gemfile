@@ -10,6 +10,7 @@ gem 'bootstrap-wysihtml5-rails'
 
 gem 'nestive'
 
+<<<<<<< HEAD
 gem 'sqlite3'
 
 gem 'figaro' #used to set up env file at application.yml
@@ -30,6 +31,26 @@ gem 'jquery-rails'
 
 
 
+=======
+gem 'activerecord-postgresql-adapter'
+gem 'sqlite3'
+gem 'taps' #for exporting sqlite dump
+ 
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'jquery-rails'
+
+>>>>>>> 1054d5e36b017254b634138066b02849959f6ed4
 gem 'strong_parameters'
 
 gem 'will_paginate'
