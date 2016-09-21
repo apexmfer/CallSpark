@@ -12,6 +12,10 @@ gem 'nestive'
 
 gem 'sqlite3'
 
+gem 'pg'
+gem 'tapsicle'
+
+
 gem 'figaro'
 
 # Gems used only for assets and not required
