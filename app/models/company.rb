@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   # attr_accessible :title, :body
-   
+
 
   def as_json(options = { })
     h = super(options)
@@ -23,5 +23,6 @@ class Company < ActiveRecord::Base
 
   callcount
  end
+ 
 
 end

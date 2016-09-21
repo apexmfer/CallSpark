@@ -26,4 +26,13 @@ module ApplicationHelper
       return ''
   end
 
+
+  def cssDemoMGMTActive(isActive)
+    if isActive == inDemoInventorySpace
+      return "class=active"
+    end
+    return ""
+
+  end
+
 end

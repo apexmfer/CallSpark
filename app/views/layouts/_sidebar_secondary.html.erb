@@ -1,7 +1,26 @@
 
-<% if (controller_name != "demo_inventory" && controller_name != "checkout") %>
+<% if !inDemoInventorySpace %>
+
+<li>
+     <a data-toggle="collapse" data-parent="#accordion" href="#collapseDatasets" aria-expanded="true" aria-controls="collapseDatasets">
+       <i class="fa fa-bars"></i> Datasets<span id="datasetsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
+     <ul id="collapseDatasets" class="nav nav-second-level collapse in" aria-expanded="true">
+
+       <li>
+           <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Support Calls </a>
+       </li>
+       <li>
+           <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
+       </li>
+     <li>
+           <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
+       </li>
 
 
+     </ul>
+
+
+   </li>
 
 
   <% if( Supportlink.all.length > 0) %>
@@ -25,10 +44,48 @@
 
   <% end %>
 
+  <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+        <i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" ></span></a>
+      <ul id="collapseAdmin" class="nav nav-second-level collapse" >
+        <li>
+            <a href="<%= url_for :controller => 'employee', :action => 'index' %>">Employees</a>
+        </li>
+          <li>
+              <a href="<%= url_for :controller => 'account_assignment', :action => 'index' %>">Account Assignment</a>
+          </li>
+          <li>
+              <a href="<%= url_for :controller => 'category', :action => 'index' %>">Categories</a>
+          </li>
+          <li>
+              <a href="<%= url_for :controller => 'admin', :action => 'category_hints' %>">Category Hints</a>
+          </li>
+          <li>
+              <a href="<%= url_for :controller => 'admin', :action => 'supportlinks' %>">Support Links</a>
+          </li>
+      </ul>
+      <!-- /.nav-second-level -->
+  </li>
+
 
   <% else %>
 
+  <li>
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapseDatasets" aria-expanded="true" aria-controls="collapseDatasets">
+         <i class="fa fa-bars"></i> Datasets<span id="datasetsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
+       <ul id="collapseDatasets" class="nav nav-second-level collapse in" aria-expanded="true">
 
+         <li>
+             <a <%= cssClassActive('part_detail') %> href="<%= url_for :controller => 'part_detail', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Part Detail </a>
+         </li>
+
+
+
+
+       </ul>
+
+
+     </li>
 
   <li>
        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
@@ -40,7 +97,7 @@
 
            <li> <%= link_to "Checkout Parts", controller: "Checkout", action: "new"   %>    </li>
            <li> <%= link_to "Return Parts", controller: "Checkout", action: "return"   %>    </li>
-           <li> <%= link_to "Add Parts To Database", controller: "DemoInventory", action: "new"   %>    </li>
+           <li> <%= link_to "Add Parts To Database", controller: "demo_inventory", action: "new"   %>    </li>
            <li> <%= link_to "Extend Due Date", controller: "Checkout", action: "edit"   %>    </li>
 
        </ul>
@@ -48,6 +105,16 @@
    </li>
 
 
+   <li>
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+         <i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" ></span></a>
+       <ul id="collapseAdmin" class="nav nav-second-level collapse" >
+         <li>
+             <a href="<%= url_for :controller => 'part_detail', :action => 'index' %>">Part Detail</a>
+         </li>
 
+       </ul>
+       <!-- /.nav-second-level -->
+   </li>
 
   <% end %>

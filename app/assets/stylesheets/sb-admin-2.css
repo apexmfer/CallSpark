@@ -28,6 +28,15 @@ body {
 }
 
 
+.navbar-center{
+  text-align:center;
+  color:#eee;
+  float:left;
+  margin:15px;
+  margin-left:20%;
+}
+
+
 .navbar-default .navbar-brand{
   background-color:#373737;
   color:#eee;

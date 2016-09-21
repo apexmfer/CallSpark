@@ -74,14 +74,12 @@
 
 
 
-
-
             <ul class="nav navbar-top-links navbar-right">
 
 
             	 <% if current_user %>
 
-               <% if (controller_name != "demo_inventory" && controller_name != "checkout") %>
+               <% if (!inDemoInventorySpace) %>
 
                   <a href="<%= url_for :controller => 'calls', :action => 'new' %>">
                     <button type="button" class="btn btn-default">New Call</button></a>
@@ -315,15 +313,15 @@
                         </li>
 
                         <li>
-                            <a <%= cssClassActive('welcome') %> href="/supportcenter"><i class="fa fa-flash fa-fw" style="color:<%= color(1) %>" ></i> Dashboard</a>
+                            <a <%= cssDemoMGMTActive( false ) %> href="/supportcenter"><i class="fa fa-flash fa-fw" style="color:<%= color(1) %>" ></i> Call Logger</a>
                         </li>
 
-                        <!-- HIDDEN FOR NOW
+
                         <li>
-                            <a <%= cssClassActive('demo_inventory') %> href="/demoinventory"><i class="fa fa-tags fa-fw" style="color:<%= color(1) %>" ></i> Demo Inventory</a>
+                            <a <%= cssDemoMGMTActive( true ) %> href="/demoinventory"><i class="fa fa-tags fa-fw" style="color:<%= color(1) %>" ></i> Demo Inventory</a>
 
                           </li>
-                        -->
+
 
                        <!-- <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -343,54 +341,14 @@
 
                         <!-- Datasets Accordion-->
 
-                        <li>
-                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseDatasets" aria-expanded="true" aria-controls="collapseDatasets">
-                               <i class="fa fa-bars"></i> Datasets<span id="datasetsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
-                             <ul id="collapseDatasets" class="nav nav-second-level collapse in" aria-expanded="true">
 
-                               <li>
-                                   <a <%= cssClassActive('calls') %> href="<%= url_for :controller => 'calls', :action => 'index' %>"><i class="fa fa-phone fa-fw" style="color:<%= color(5) %>" ></i> Support Calls </a>
-                               </li>
-                               <li>
-                                   <a <%= cssClassActive('customer') %> href="<%= url_for :controller => 'customer', :action => 'index' %>"><i class="fa fa-users fa-fw" style="color:<%= color(4) %>"  ></i> Customers </a>
-                               </li>
-                             <li>
-                                   <a <%= cssClassActive('company') %> href="<%= url_for :controller => 'company', :action => 'index' %>"><i class="fa fa-th-large fa-fw" style="color:<%= color(4) %>"></i> Companies </a>
-                               </li>
-
-
-                             </ul>
-
-
-                           </li>
 
                         <!-- Support Links Accordion-->
 
 
                         <%=  render '/layouts/sidebar_secondary'%>
 
-                        <li>
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
-                            	<i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Admin Tools<span id="adminArrow" class="fa fa-chevron-circle-down pull-right" ></span></a>
-                            <ul id="collapseAdmin" class="nav nav-second-level collapse" >
-                              <li>
-                                  <a href="<%= url_for :controller => 'employee', :action => 'index' %>">Employees</a>
-                              </li>
-                                <li>
-                                    <a href="<%= url_for :controller => 'account_assignment', :action => 'index' %>">Account Assignment</a>
-                                </li>
-                                <li>
-                                    <a href="<%= url_for :controller => 'category', :action => 'index' %>">Categories</a>
-                                </li>
-                                <li>
-                                    <a href="<%= url_for :controller => 'admin', :action => 'category_hints' %>">Category Hints</a>
-                                </li>
-                                <li>
-                                    <a href="<%= url_for :controller => 'admin', :action => 'supportlinks' %>">Support Links</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+
                         <li>
 
 

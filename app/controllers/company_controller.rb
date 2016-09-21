@@ -16,8 +16,14 @@ class CompanyController < ApplicationController
           companies = companies.order(params[:sort] + " " + params[:order])
       end
 
+
       output = {:total => Company.all.length, :rows => companies}
 
+
+    #  output[:rows].each do |company|
+
+      #    company.callcount = 3
+    #  end
 
 
          render :json => output
