@@ -14,8 +14,9 @@ development:
   encoding: unicode
   database: mcsparkysparks_development
   pool: 5
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PASSWORD']
+  username: <%=ENV["DB_USERNAME"]%>
+  password: <%=ENV["DB_PASSWORD"]%>
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -31,8 +32,9 @@ test:
   encoding: unicode
   database: mcsparkysparks_test
   pool: 5
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PASSWORD']
+  username: <%=ENV["DB_USERNAME"]%>
+  password: <%=ENV["DB_PASSWORD"]%>
+  host: localhost
 
 #production:
 #  adapter: sqlite3
@@ -45,5 +47,6 @@ production:
   encoding: unicode
   database: mcsparkysparks_production
   pool: 5
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PASSWORD']
+  username: <%=ENV["DB_USERNAME"]%>
+  password: <%=ENV["DB_PASSWORD"]%>
+  host: localhost

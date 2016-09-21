@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150819191254) do
+ActiveRecord::Schema.define(:version => 20160921202836) do
+
+  create_table "accountassignments", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "bpid"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "calls", :force => true do |t|
     t.integer  "customer_id"
@@ -36,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20150819191254) do
   create_table "category_hints", :force => true do |t|
     t.integer  "category_id"
     t.integer  "parent_id"
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -79,6 +86,14 @@ ActiveRecord::Schema.define(:version => 20150819191254) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "employees", :force => true do |t|
+    t.string   "initials"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -89,9 +104,18 @@ ActiveRecord::Schema.define(:version => 20150819191254) do
 
   create_table "partdetails", :force => true do |t|
     t.string   "catalog_number"
-    t.text     "description"
+    t.integer  "description"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "familyID"
+    t.integer  "typeID"
+    t.integer  "subtypeID"
+  end
+
+  create_table "product_descriptions", :force => true do |t|
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "supportlinks", :force => true do |t|
