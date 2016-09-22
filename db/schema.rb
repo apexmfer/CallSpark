@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160921202836) do
+ActiveRecord::Schema.define(:version => 20160922143433) do
 
   create_table "accountassignments", :force => true do |t|
     t.integer  "employee_id"
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(:version => 20160921202836) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.integer  "region_id"
   end
+
+  add_index "calls", ["region_id"], :name => "index_calls_on_region_id"
 
   create_table "cases", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -76,7 +79,10 @@ ActiveRecord::Schema.define(:version => 20160921202836) do
     t.datetime "updated_at",   :null => false
     t.integer  "company_id"
     t.text     "notes"
+    t.integer  "region_id"
   end
+
+  add_index "customers", ["region_id"], :name => "index_customers_on_region_id"
 
   create_table "demohardwares", :force => true do |t|
     t.integer  "product_id"
@@ -114,6 +120,12 @@ ActiveRecord::Schema.define(:version => 20160921202836) do
 
   create_table "product_descriptions", :force => true do |t|
     t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "regions", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

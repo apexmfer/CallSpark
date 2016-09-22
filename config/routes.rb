@@ -20,6 +20,7 @@ get '/company/data' => 'company#data'
 resources :category
 resources :category_hint
 resources :supportlink
+resources :region
 
 
 
@@ -56,6 +57,7 @@ resources :supportlink
   match 'category_hint/destroy' => 'category_hint#destroy'
 
    match 'admin/supportlinks' => 'admin#supportlinks'
+   match 'admin/regions' => 'admin#regions'
    match 'supportlink/destroy' => 'supportlink#destroy'
    match 'supportlink/moveup' => 'supportlink#moveup'
    match 'supportlink/movedown' => 'supportlink#movedown'

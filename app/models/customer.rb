@@ -2,6 +2,9 @@ class Customer < ActiveRecord::Base
    attr_accessible :name, :company_id, :phone_number, :email
    include ActionView::Helpers::NumberHelper
 
+    belongs_to :region
+    belongs_to :company
+    has_many :calls
 
     def company
 

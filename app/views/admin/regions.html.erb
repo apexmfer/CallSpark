@@ -1,0 +1,94 @@
+<h2>Regions</h2>
+
+<% if Region.all.first %>
+
+<table class="table table-hover collection">
+      <thead>
+        <tr>
+        	<th>ID</th>
+          <th>Name</th>
+          <th>Call Count</th>
+         <th>Customer Count</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+        <% # Event.limit(recordsPerPage).offset(offset).each do |item| %>
+          <% Region.all.each do |item| %>
+
+
+        <tr>
+
+  	<td> <%= item.id %> </td>
+    <td> <%= item.name %> </td>
+
+    <td> <%= item.calls.size %> </td>
+    <td> <%= item.custmers.size %> </td>
+
+
+    <td>
+
+
+
+     <%= form_tag({controller: "region",action: "destroy"}, method: "post") do %>
+      <%= hidden_field_tag 'region_id', item[:id] %>
+      <%= submit_tag("Delete") %>
+      <%   end %>
+
+
+
+    </td>
+    </tr>
+
+    <% end  %>
+
+
+
+      </tbody>
+    </table>
+
+
+ <% else  %>
+
+<div class="alert alert-danger">No regions exist!</div>
+
+
+ <% end  %>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">List a new region</h3>
+  </div>
+  <div class="panel-body">
+
+
+
+<%= form_for :newregion, url: {controller: "region",action: "create"}, html: {id:"main-form",class: "form-group"} do |f| %>
+
+
+
+
+
+<div class="form-group" id="input-name">
+   <label for="InputName">Name</label>
+  <%= f.text_field :name   , class: "form-control", placeholder:"Region Name"%>
+  </div>
+
+
+
+
+ <% f.submit "Region#Create" , class: "btn btn-success", style:"width:100%" %>
+  <% submit_tag  :onclick => "return validateform();", class: "btn btn-success", style:"width:100%" %>
+ <button type="submit" id="submit-btn" class="btn btn-success" style="width:100%">Submit</button>
+
+
+</div>
+
+<% end %>
+
+  </div>
+</div>

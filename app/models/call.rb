@@ -6,6 +6,11 @@ class Call < ActiveRecord::Base
 
  attr_accessible :customer_id,:category_id,:text,:user_id
 
+ belongs_to :region
+ belongs_to :customer
+  belongs_to :user
+   belongs_to :category
+
  def getCustomerName
 
    customer = Customer.where(id: customer_id).first
