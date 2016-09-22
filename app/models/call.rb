@@ -70,4 +70,4 @@ class Call < ActiveRecord::Base
 
 end
 
-Call.import # for auto sync model with elastic search
+#Call.import # for auto sync model with elastic search  --??

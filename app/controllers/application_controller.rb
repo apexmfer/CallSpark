@@ -43,7 +43,7 @@ include ActionView::Helpers::NumberHelper
     strippedphone = params[:phone].gsub(/\D/, '')
     phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
     email = (params[:email]).humanize.delete(' ')
-
+      region_id = (params[:region_id])
 
     #Try to find existing matches first
     customer = Customer.where(name: caller).first
@@ -80,7 +80,8 @@ include ActionView::Helpers::NumberHelper
       customer = Customer.new(:name => caller,
      :company_id => company_id,
       :phone_number => phone,
-      :email => email
+      :email => email,
+      :region_id => region_id
       )
 
     else
@@ -92,6 +93,7 @@ include ActionView::Helpers::NumberHelper
 
      customer.phone_number =  phone;
      customer.email = email;
+     customer.region_id = region_id;
 
     end
 
@@ -104,9 +106,6 @@ include ActionView::Helpers::NumberHelper
 
 
 
-
-
-
     return customer
   end
 
@@ -115,13 +114,7 @@ include ActionView::Helpers::NumberHelper
 
 
 
-
-
-
-
-
-
-
+ 
 
 
 end

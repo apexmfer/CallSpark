@@ -33,6 +33,12 @@ Company:
 </p>
 <%end%>
 
+<%if(call.region != nil) %>
+<p>
+Region: <a href="<%=url_for call.region%>" <%= call.region.name %> </a>
+</p>
+<% end %>
+
 <% end %>
 
 <% if call.getUser %>

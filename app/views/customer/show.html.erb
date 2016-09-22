@@ -30,6 +30,13 @@ Phone: <%= customer.getFormattedPhone %>
 Email: <%= customer.email %>
 </p>
 
+
+<%if(customer.region != nil) %>
+<p>
+Region: <a href="<%=url_for customer.region%>" <%= customer.region.name %> </a>
+</p>
+<% end %>
+
 </div>
   <div class="col-lg-6">
 
