@@ -14,6 +14,7 @@
  *= require_bootstrap.table
  *= require_animate
  *= require_sb-admin-2
+*= require header
  *= require_tree .
  */
 
