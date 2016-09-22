@@ -21,22 +21,24 @@
 
         <tr>
 
-  	<td> <%= item.id %> </td>
-    <td> <%= item.name %> </td>
-
-    <td> <%= item.calls.size %> </td>
-    <td> <%= item.custmers.size %> </td>
-
-
-    <td>
+        	<td> <%= item.id %> </td>
+          <td> <%= item.name %> </td>
+          <td> <%= item.calls.length  %> </td>
+          <td> <%= item.customers.length %> </td>
 
 
 
+          <td>
+
+
+            <!--
      <%= form_tag({controller: "region",action: "destroy"}, method: "post") do %>
       <%= hidden_field_tag 'region_id', item[:id] %>
       <%= submit_tag("Delete") %>
-      <%   end %>
 
+
+      <%   end %>
+      -->
 
 
     </td>
@@ -67,7 +69,7 @@
 
 
 
-<%= form_for :newregion, url: {controller: "region",action: "create"}, html: {id:"main-form",class: "form-group"} do |f| %>
+<%= form_for @newregion, url: {controller: "region",action: "create"}, html: {id:"main-form",class: "form-group"} do |f| %>
 
 
 

@@ -12,7 +12,7 @@ class RegionController < ApplicationController
 
   def destroy
 
-    Region.find(params["regions_id"]).destroy!
+    Region.find(params["region_id"]).destroy
 
       redirect_to '/admin/regions', alert: 'Region destroyed'
 

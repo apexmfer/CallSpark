@@ -36,6 +36,7 @@ resources :region
   match 'customer' => 'customer#index'
   match 'customer/update' => 'customer#update'
   match 'customer/destroy' => 'customer#destroy'
+  match 'region/destroy' => 'region#destroy'
 
   match '/supportcenter' => 'welcome#index'
   match '/demoinventory' => 'DemoInventory#index'

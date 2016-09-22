@@ -116,10 +116,10 @@ class CallsController < ApplicationController
 
 private
   def call_params
-    params.require(:call).permit(:customer_id, :text)
+    params.require(:call).permit(:customer_id, :text, :region_id)
   end
    def customer_params
-    params.require(:customer).permit(:name, :company,:phone_number,:email)
+    params.require(:customer).permit(:name, :company,:phone_number,:email, :region_id)
   end
 
 
