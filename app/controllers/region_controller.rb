@@ -18,6 +18,11 @@ class RegionController < ApplicationController
 
   end
 
+
+  def show
+      @region = Region.find(params[:id])
+  end
+
 private
 
 def new_region_params

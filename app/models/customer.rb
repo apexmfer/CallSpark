@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-   attr_accessible :name, :company_id, :phone_number, :email
+   attr_accessible :name, :company_id, :phone_number, :email, :region_id
    include ActionView::Helpers::NumberHelper
 
     belongs_to :region

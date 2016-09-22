@@ -1,0 +1,61 @@
+
+<h1>All Regions</h1>
+
+<% if Region.all.first %>
+
+<table class="table table-hover collection">
+      <thead>
+        <tr>
+        	<th>ID</th>
+          <th>Name</th>
+          <th>Call Count</th>
+         <th>Customer Count</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+        <% # Event.limit(recordsPerPage).offset(offset).each do |item| %>
+          <% Region.all.each do |item| %>
+
+
+        <tr>
+
+        	<td> <%= item.id %> </td>
+          <td><a href="<%= url_for item %>"><%= item.name %> </a></td>
+          <td> <%= item.calls.length  %> </td>
+          <td> <%= item.customers.length %> </td>
+
+
+
+          <td>
+
+
+            <!--
+     <%= form_tag({controller: "region",action: "destroy"}, method: "post") do %>
+      <%= hidden_field_tag 'region_id', item[:id] %>
+      <%= submit_tag("Delete") %>
+
+
+      <%   end %>
+      -->
+
+
+    </td>
+    </tr>
+
+    <% end  %>
+
+
+
+      </tbody>
+    </table>
+
+
+ <% else  %>
+
+<div class="alert alert-danger">No regions exist!</div>
+
+
+ <% end  %>
