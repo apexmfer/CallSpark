@@ -51,5 +51,10 @@ class CompanyController < ApplicationController
   end
 
 
+def show
+  @company = Company.find(params["id"])
+  @calls = @company.calls.order("created_at" + " DESC").limit(20)
+end
+
 
 end

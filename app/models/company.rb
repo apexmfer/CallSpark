@@ -3,8 +3,10 @@ class Company < ActiveRecord::Base
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-  
+
 
   has_many :customers
+
+  has_many :calls, :through => :customers
 
 end

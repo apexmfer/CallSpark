@@ -82,14 +82,9 @@
 
               <div class="panel-body">
 
-
-
               <% Call.order("created_at" + " DESC").limit(20).each do |call| %>
 
-
                 <% if (call )  %>
-
-
 
                  <div class="panel panel-default">
                   <div class="panel-heading">
@@ -114,64 +109,6 @@
 
 
 
-<!--
-<script>
-
-	//Flot Bar Chart
-
-$(function() {
-
-    var barOptions = {
-        series: {
-            bars: {
-                show: true,
-                barWidth: 43200000
-            }
-        },
-        xaxis: {
-            mode: "time",
-            timeformat: "%m/%d",
-            minTickSize: [1, "day"]
-        },
-        grid: {
-            hoverable: true
-        },
-        legend: {
-            show: false
-        },
-        tooltip: true,
-        tooltipOpts: {
-            content: "x: %x, y: %y"
-        }
-    };
-    var barData = {
-        label: "bar",
-        data: [
-        	<%  today= Time.now.end_of_day %>
-        	<% daysToSee = 30 %>
-
-        	<% daysToSee.times do %>
-
-        		<%
-        		numcalls = Call.where(created_at: (today - 1.day)..today).length
-        		%>
-        		<% today = today - 1.day; %>
-
-        		[<%=(today - 12.hours).to_i;%>000,<%= numcalls %>],
-
-        	<% end %>
-
-
-
-        ]
-    };
-    $.plot($("#flot-bar-chart"), [barData], barOptions);
-
-});
-
-
-</script>
--->
 
 
 <script>
