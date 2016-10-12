@@ -21,22 +21,11 @@ class SearchController < ApplicationController
 		@customer_responses = Customer.search "*#{params[:query]}*"
 		@matching_customers = @customer_responses.map{|response| Customer.find_by_id(response.id)  }
 
-		p @matching_companies
-		p 'DOLPHEEN'
-	end
-
-
-  end
-
-
-	def index
-		@company_responses = Company.search "*#{params[:query]}*"
-		@matching_companies = @company_responses.map{|response| Company.find_by_id(response.id)  }
-
-		@customer_responses = Customer.search "*#{params[:query]}*"
-		@matching_customers = @customer_responses.map{|response| Customer.find_by_id(response.id)  }
 
 	end
+
+
+  end 
 
 
 end
