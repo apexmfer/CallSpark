@@ -50,7 +50,7 @@
 
  <div class="panel panel-default
 
-<% if(Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+<% if(@matching_customers.length <1)  %>
   hidden
 <%  end %>
 
@@ -76,7 +76,7 @@
   <tbody>
 
 
-    <% Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |customer| %>
+    <% @matching_customers.each do |customer| %>
       <tr>
         <td><a href="<%= url_for customer %>"> <%= customer.name %> </a> </td>
 
@@ -105,7 +105,7 @@
 
  <div class="panel panel-default
 
-<% if(Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).length <1)  %>
+<% if(@matching_companies.length <1)  %>
   hidden
 <% end %>
 
@@ -125,7 +125,7 @@
   </thead>
 
   <tbody>
-    <% Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"]).each do |company| %>
+    <% @matching_companies.each do |company| %>
       <tr>
         <td> <a href="<%= url_for company %>"> <%= company.name %> </a> </td>
 
