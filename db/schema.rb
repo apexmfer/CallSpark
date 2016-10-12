@@ -110,18 +110,9 @@ ActiveRecord::Schema.define(:version => 20160922143433) do
 
   create_table "partdetails", :force => true do |t|
     t.string   "catalog_number"
-    t.integer  "description"
+    t.text     "description"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.integer  "familyID"
-    t.integer  "typeID"
-    t.integer  "subtypeID"
-  end
-
-  create_table "product_descriptions", :force => true do |t|
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "regions", :force => true do |t|
