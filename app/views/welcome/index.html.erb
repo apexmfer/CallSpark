@@ -57,9 +57,13 @@
                             Call History
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
+                        <div class="panel-body calls-chart">
+                            <!--<div class="flot-chart">
                                 <div class="flot-chart-content" id="flot-bar-chart" style="width:800px;height:400px;" ></div>
+                            </div>-->
+
+                            <div class="calls-overview-chart-container">
+                              <canvas id="callsOverviewChart" ></canvas>
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -110,10 +114,7 @@
 
 
 
-
-      	<script src="/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
-
-
+<!--
 <script>
 
 	//Flot Bar Chart
@@ -169,4 +170,46 @@ $(function() {
 });
 
 
+</script>
+-->
+
+
+<script>
+var ctx = document.getElementById("callsOverviewChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+
+    data: {
+        labels: <%= raw @calls_overview_labels %>,
+        datasets: [{
+            label: 'Call History',
+            backgroundColor: "rgba(255, 206, 86,0.5)",
+            strokeColor: "rgba(255, 206, 86,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: <%= raw @calls_overview_data %>,
+
+            //'rgba(255, 206, 86, 1)'
+
+            borderWidth: 2
+        }]
+    },
+    options: {
+      title: {
+          display: false,
+          text: "Axis Y labels with Formatted Numbers"
+        },
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:false,
+                    callback: function(value, index, values) {
+                       return  (value ).toFixed(0);
+                   }
+                }
+            }]
+        }
+      }
+});
 </script>

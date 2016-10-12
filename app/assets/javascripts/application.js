@@ -15,6 +15,7 @@
 //= require jquery.timeago
 //= require jquery-ui.min
 //= require tableExport
+//= require chart.bundle
 //= require jquery.base64
 //= require bootstrap.min
 //= require bootstrap-wysihtml5
