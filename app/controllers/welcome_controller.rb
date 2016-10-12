@@ -28,7 +28,8 @@ class WelcomeController < ApplicationController
 
      end
 
-
+     @calls_overview_data = @calls_overview_data.reverse
+      @calls_overview_labels = @calls_overview_labels.reverse
 
   end
 end
