@@ -6,18 +6,19 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
-  
-  
-  
-  
+
+  has_many :favorites
+ has_many :favorite_companies, through: :favorites, source: :favorited, source_type: 'Company'
+
+
   def name
-   
+
    return firstname + ' ' + lastname
-     
+
  end
- 
 
 
- 
- 
+
+
+
 end

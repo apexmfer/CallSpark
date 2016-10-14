@@ -1,0 +1,2 @@
+module FavoriteCompanyControllerHelper
+end

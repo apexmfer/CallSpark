@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160922143433) do
+ActiveRecord::Schema.define(:version => 20161014205107) do
 
   create_table "accountassignments", :force => true do |t|
     t.integer  "employee_id"
@@ -108,11 +108,28 @@ ActiveRecord::Schema.define(:version => 20160922143433) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "partdetails", :force => true do |t|
-    t.string   "catalog_number"
-    t.text     "description"
+  create_table "favorites", :force => true do |t|
+    t.integer  "favorited_id"
+    t.string   "favorited_type"
+    t.integer  "user_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "partdetails", :force => true do |t|
+    t.string   "catalog_number"
+    t.integer  "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "familyID"
+    t.integer  "typeID"
+    t.integer  "subtypeID"
+  end
+
+  create_table "product_descriptions", :force => true do |t|
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "regions", :force => true do |t|
