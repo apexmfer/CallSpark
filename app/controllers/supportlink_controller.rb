@@ -66,7 +66,7 @@ class SupportlinkController < ApplicationController
   private
 
   def new_support_link_params
-      params.require(:supportlink).permit(:name :url, :sortorder )
+      params.require(:supportlink).permit(:name, :url, :sortorder )
   end
 
 
