@@ -37,42 +37,39 @@ resources :region
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
-  match 'customer' => 'customer#index'
-  match 'customer/update' => 'customer#update'
-  match 'customer/destroy' => 'customer#destroy'
-  match 'region/destroy' => 'region#destroy'
+  get 'customer' => 'customer#index'
+  get 'customer/update' => 'customer#update'
+  get 'customer/destroy' => 'customer#destroy'
+  get 'region/destroy' => 'region#destroy'
 
-  match '/supportcenter' => 'welcome#index'
-  match '/demoinventory' => 'DemoInventory#index'
-  match '/demoinventory/new' => 'DemoInventory#new'
-  match '/demoinventory/edit' => 'DemoInventory#edit'
-  match '/checkout/new' => 'Checkout#new'
-  match '/checkout/return' => 'Checkout#return'
-  match '/checkout/edit' => 'Checkout#edit'
+  get '/supportcenter' => 'welcome#index'
+  get '/checkout/new' => 'checkout#new'
+  get '/checkout/return' => 'checkout#return'
+  get '/checkout/edit' => 'checkout#edit'
 
-    #match 'admin/categories' => 'admin#categories'
+    #get 'admin/categories' => 'admin#categories'
 
-  match 'category/destroy' => 'category#destroy'
-  match 'category/merge' => 'category#merge'
+  get 'category/destroy' => 'category#destroy'
+  get 'category/merge' => 'category#merge'
 
-   match 'admin/events' => 'admin#events'
-  match 'event/destroy' => 'event#destroy'
+   get 'admin/events' => 'admin#events'
+  get 'event/destroy' => 'event#destroy'
 
-  match 'admin/category_hints' => 'admin#category_hints'
-  match 'category_hint/destroy' => 'category_hint#destroy'
+  get 'admin/category_hints' => 'admin#category_hints'
+  get 'category_hint/destroy' => 'category_hint#destroy'
 
-   match 'admin/supportlinks' => 'admin#supportlinks'
-   match 'admin/regions' => 'admin#regions'
-   match 'supportlink/destroy' => 'supportlink#destroy'
-   match 'supportlink/moveup' => 'supportlink#moveup'
-   match 'supportlink/movedown' => 'supportlink#movedown'
+   get 'admin/supportlinks' => 'admin#supportlinks'
+   get 'admin/regions' => 'admin#regions'
+   get 'supportlink/destroy' => 'supportlink#destroy'
+   get 'supportlink/moveup' => 'supportlink#moveup'
+   get 'supportlink/movedown' => 'supportlink#movedown'
 
-match 'calls/new/:id' => 'calls#new'
-match 'calls/listinfo/:id' => 'calls#listinfo'
-match 'calls/update/:id' => 'calls#update'
-match 'calls/history/:id' => 'calls#history'
+get 'calls/new/:id' => 'calls#new'
+get 'calls/listinfo/:id' => 'calls#listinfo'
+get 'calls/update/:id' => 'calls#update'
+get 'calls/history/:id' => 'calls#history'
 
-match 'category/hints/:id' => 'category#hints'
+get 'category/hints/:id' => 'category#hints'
 
 get 'search', to: 'search#search'
 #get '/search' => 'search#index'
@@ -83,11 +80,11 @@ get 'search', to: 'search#search'
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   get 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  #   get 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -134,5 +131,5 @@ get 'search', to: 'search#search'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  # get ':controller(/:action(/:id))(.:format)'
 end
