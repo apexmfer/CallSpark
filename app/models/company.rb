@@ -9,4 +9,21 @@ class Company < ActiveRecord::Base
 
   has_many :calls, :through => :customers
 
+
+  has_many :favorites, as: :favorited
+
+
+
+  def isFavorited(favoriting_user)
+    p 'lalalals'
+    p favoriting_user.favorites.companies
+
+    if favoriting_user
+      return !favoriting_user.favorites.companies.where(:favorited_id => id).empty?
+    end
+
+    return false
+
+  end
+
 end

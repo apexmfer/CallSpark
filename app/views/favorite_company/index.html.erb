@@ -1,0 +1,87 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">My Favorited Companies</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+
+
+<div class="table-responsive" style="overflow-x: hidden;">
+   <table id="maintable" class="table table-bordered table-hover table-striped" >
+ <thead>
+   <tr>
+     <th>Company Name</th>
+
+     <th>Calls in past year</th>
+      <th>Auth. #</th>
+
+   </tr>
+ </thead>
+
+ <tbody>
+   <% @companies.each do |company| %>
+
+    <%
+    @usercount = 0
+    callcount = 0
+    Customer.where(company_id: company.id).each do |cust|
+      @usercount = @usercount + 1
+      callcount += Call.where(customer_id: cust.id).length
+    end
+   %>
+
+     <tr>
+       <td><a href="<%= url_for company %>"> <%= company.name %> </a>  </td>
+
+
+
+       <td><%= callcount %></td>
+
+
+
+       <td><%= company.BPID %></td>
+
+
+
+     </tr>
+   <% end %>
+ </tbody>
+</table>
+
+</div>
+
+
+<script>
+ $(document).ready(function() {
+   $('#maintable').dataTable();
+} );
+</script>
+
+
+
+<div class="panel panel-default" style="margin-top:10px;">
+
+<div class="panel-heading">
+  <h3>Recent support calls</h3>
+</div>
+
+<div class=" ">
+
+
+
+<% @calls.each do |call| %>
+
+
+  <% if (call )  %>
+
+
+    <%= render partial: "calls/call_preview", locals:{call: call} %>
+
+  <% end %>
+<% end %>
+
+</div>
+</div>

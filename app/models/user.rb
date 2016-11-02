@@ -15,7 +15,20 @@ class User < ActiveRecord::Base
 
    return firstname + ' ' + lastname
 
- end
+  end
+
+  def favorite_company_calls
+      calls = []
+
+      favorite_companies.each do |company|
+        calls << company.calls
+
+
+
+      end
+
+      return calls.flatten
+  end
 
 
 

@@ -22,5 +22,6 @@
 //= require bootstrap-table
 //= require bootstrap-table-export
 //= require callspark
+//= require favorite-company
 //= require plugins/dataTables/jquery.dataTables
 //= require plugins/dataTables/dataTables.bootstrap

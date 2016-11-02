@@ -86,17 +86,7 @@
 
                 <% if (call )  %>
 
-                 <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <%= link_to ''.concat(call.getCategoryName).concat(' call from ').concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
-
-                    <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
-                    </div>
-                  <div class="panel-body">
-                   <%= simple_format(call.text) %>
-                  </div>
-                </div>
-
+                <%= render partial: "calls/call_preview", locals:{call: call} %>
 
 
                 <% end %>

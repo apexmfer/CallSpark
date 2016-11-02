@@ -1,0 +1,2 @@
+module FavoriteCompanyHelper
+end

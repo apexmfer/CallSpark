@@ -13,6 +13,7 @@
  *= require_mc-bootstrap
  *= require_bootstrap.table
  *= require_animate
+ *= require_callspark
  *= require_sb-admin-2
 *= require header
  *= require_tree .

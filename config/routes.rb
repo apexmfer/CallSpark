@@ -22,6 +22,10 @@ resources :category_hint
 resources :supportlink
 resources :region
 
+  get '/favorite_company_index' =>  'favorite_company#index', :as => :favorite_company_index
+
+  post "/favorite_company" => 'favorite_company#create', :as => :add_company_to_favorites
+  post "/unfavorite_company" =>  'favorite_company#destroy', :as => :remove_company_from_favorites
 
 
   get "user_sessions/new"
