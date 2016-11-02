@@ -28,10 +28,12 @@ class FavoriteCompanyController < ApplicationController
       @companies = @user.favorite_companies
       @calls = @user.favorite_company_calls
 
-      if @companies.size == 0
-        render html: 'no_favorites'
-        return
-      end
+        p @companies
+
+
+          render text: @companies.size
+          return
+
 
 
    end
