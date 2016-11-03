@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :favorites
- has_many :favorite_companies, through: :favorites, source: :favorited, source_type: 'Company'
+  has_many :favorite_companies, through: :favorites, source: :favorited, source_type: 'Company'
+
+  has_many :favorite_customers, through: :favorite_companies, source: :customers
 
 
   def name

@@ -4,7 +4,7 @@ class Call < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
- attr_accessible :customer_id,:category_id,:text,:user_id, :region_id
+ #attr_accessible :customer_id,:category_id,:text,:user_id, :region_id
 
  belongs_to :region
  belongs_to :customer

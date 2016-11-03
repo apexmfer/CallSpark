@@ -130,6 +130,7 @@ GEM
     rake (11.3.0)
     rest-client (1.6.9)
       mime-types (~> 1.16)
+    sass (3.4.22)
     sequel (3.20.0)
     sinatra (1.4.6)
       rack (~> 1.4)
@@ -181,6 +182,7 @@ DEPENDENCIES
   nestive
   pg
   rails (~> 4.2.3)
+  sass
   sorcery
   sqlite3
   tapsicle

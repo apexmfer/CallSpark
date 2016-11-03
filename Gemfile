@@ -23,7 +23,7 @@ gem 'figaro'
 # in production environments by default.
 group :assets do
 
-   
+  gem 'sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

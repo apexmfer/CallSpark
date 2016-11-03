@@ -2,6 +2,15 @@ class CompanyController < ApplicationController
   skip_before_filter :require_login, only: [:index,:show,:data]
 
 
+
+  def show
+    @company = Company.find(params["id"])
+    @calls = @company.calls.order("created_at" + " DESC").limit(20)
+    @customers = @company.customers
+  end
+
+
+
   def data
 
 
@@ -50,11 +59,6 @@ class CompanyController < ApplicationController
 
   end
 
-
-def show
-  @company = Company.find(params["id"])
-  @calls = @company.calls.order("created_at" + " DESC").limit(20)
-end
 
 
 end

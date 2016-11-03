@@ -52,7 +52,7 @@
   </thead>
 
   <tbody>
-    <% Customer.where(company_id: @company.id).each do |customer| %>
+    <% @customers.each do |customer| %>
       <tr>
         <td><%= customer.name %></td>
 
