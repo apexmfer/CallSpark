@@ -115,7 +115,7 @@
 
 
 
-<% @calls.each do |call| %>
+<% @calls.order("created_at" + " DESC").each do |call| %>
 
 
   <% if (call )  %>
