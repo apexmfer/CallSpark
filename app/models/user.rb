@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :favorite_companies, through: :favorites, source: :favorited, source_type: 'Company'
 
   has_many :favorite_customers, through: :favorite_companies, source: :customers
+  has_many :favorite_calls, through: :favorite_companies, source: :calls
 
 
   def name
@@ -19,18 +20,7 @@ class User < ActiveRecord::Base
 
   end
 
-  def favorite_company_calls
-      calls = []
-
-      favorite_companies.each do |company|
-        calls << company.calls
-
-
-
-      end
-
-      return calls.flatten
-  end
+   
 
 
 

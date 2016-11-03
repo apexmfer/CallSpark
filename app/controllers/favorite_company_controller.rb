@@ -26,9 +26,9 @@ class FavoriteCompanyController < ApplicationController
 
       @user = current_user
       @companies = @user.favorite_companies
-      @calls = @user.favorite_company_calls
+      @calls = @user.favorite_calls
       @customers = @user.favorite_customers
-       
+
 
       if @companies.size <= 0
           render 'no_favorites'
