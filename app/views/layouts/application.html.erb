@@ -317,10 +317,12 @@
                         </li>
 
 
+                        <% if @show_dashboard_button %> 
                         <li>
                             <a <%= cssClassActive('favorite_company') %> href="/favorite_company_index" ><i class="fa fa-star fa-fw" style="color:<%= color(1) %>" ></i> Dashboard </a>
                         </li>
- 
+                        <% end %>
+
                         <li>
                             <a <%= cssClassActive('welcome') %> href="/supportcenter"><i class="fa fa-flash fa-fw" style="color:<%= color(1) %>" ></i> Support Overview </a>
                         </li>

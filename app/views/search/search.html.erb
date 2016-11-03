@@ -132,6 +132,7 @@
 
         <td><%= company.BPID %></td>
 
+        <% if current_user %>
           <td>
             <% if company.isFavorited(current_user) %>
               <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star" ></i> <span>Favorited</span> </div>
@@ -139,6 +140,7 @@
               <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
              <% end %>
          </td>
+         <% end %> 
 
       </tr>
     <% end %>

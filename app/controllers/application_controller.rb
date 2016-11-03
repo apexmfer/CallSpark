@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
    before_filter :require_login
+   before_filter :init_variables
 
 
   private
@@ -11,6 +12,10 @@ end
 
 
 include ActionView::Helpers::NumberHelper
+
+  def init_variables
+    @show_dashboard_button = (current_user and !current_user.favorite_companies.empty?)
+  end
 
   def sentencify(input)
 
@@ -114,7 +119,7 @@ include ActionView::Helpers::NumberHelper
 
 
 
- 
+
 
 
 end
