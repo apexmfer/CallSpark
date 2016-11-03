@@ -15,9 +15,7 @@ class Company < ActiveRecord::Base
 
 
   def isFavorited(favoriting_user)
-    p 'lalalals'
-    p favoriting_user.favorites.companies
-
+   
     if favoriting_user
       return !favoriting_user.favorites.companies.where(:favorited_id => id).empty?
     end
