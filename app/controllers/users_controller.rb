@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         format.html # new.html.erb
         format.json { render json: @user }
       end
-    
+
   end
 
   # GET /users/1/edit
@@ -84,6 +84,15 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+
+  def user_priviledge
+    return "default"
+  end
+
+  def is_admin
+    return user_priviledge == "admin"
   end
 
   private

@@ -104,7 +104,7 @@ Region: <a href="<%=url_for customer.region%>"> <%= customer.region.name %> </a>
         <td><%= link_to 'Edit', edit_call_path(call) %></td>
 
 
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= if current_user and current_user.is_admin then link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
       </tr>
 
 
