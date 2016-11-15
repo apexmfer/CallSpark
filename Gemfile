@@ -18,6 +18,12 @@ gem 'tapsicle'
 
 gem 'activerecord-sqlserver-adapter'
 
+gem 'acts-as-taggable-on'
+
+gem 'acts_as_commentable_with_threading'
+
+
+
 
 gem 'figaro'
 

@@ -1,4 +1,69 @@
-<h1>Project#new</h1>
-<p>Find me in app/views/project/new.html.erb</p>
 
-Form like call new
+ <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">New Project</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+<div class="row">
+       <div class="col-lg-12">
+<%= form_for :call, url: calls_path, html: {id: "newcallform"} do |f| %>
+
+<div class="row">
+	<div class="col-lg-3">
+
+  <div class="form-group" id="callername_group">
+    <%= f.label :caller %><br>
+    <%= f.text_field :caller, class:"form-control" %>
+  </div>
+
+  <input id="hidden_caller_id" type="hidden" name="code"></p>
+
+
+      
+
+  </div>
+  <div class="col-lg-3">
+  	</div>
+  <div class="col-lg-3">
+
+  <div class="form-group ">
+    <%= f.label :company %><br>
+    <%= f.text_field :company, class:"form-control" %>
+   </div>
+
+   <div class="form-group ">
+    <%= f.label :BPID %><br>
+    <%= f.text_field :BPID, class:"form-control" %>
+  </div>
+
+  <div class="form-group ">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class:"form-control" %>
+  </div>
+
+  <div class="form-group ">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
+
+  </div>
+ </div>
+ <div class="row">
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area(:text, :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+  </p>
+ </div>
+
+
+
+  <p>
+  	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-primary-color savecall-button col-md-6 col-md-offset-3">Save Call</a>
+    <% f.submit  "Save Call", class: "btn btn-primary-color savecall-button col-md-6 col-md-offset-3" %>
+    <div id="errormessage" class= "btn btn-danger savecall-button col-md-6 col-md-offset-3" style="display:none"></div>
+  </p>
+<% end %>
+</div>
+</div>
