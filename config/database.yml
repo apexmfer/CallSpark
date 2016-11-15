@@ -18,6 +18,15 @@ development:
   password: <%=ENV["DB_PASSWORD"]%>
   host: localhost
 
+
+business:
+  adapter: odbc
+  dsn: InforBI_Dump
+  username: engineering
+  password: engineering
+  database: InforBI_Dump
+
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -35,6 +44,7 @@ test:
   username: <%=ENV["DB_USERNAME"]%>
   password: <%=ENV["DB_PASSWORD"]%>
   host: localhost
+
 
 #production:
 #  adapter: sqlite3
