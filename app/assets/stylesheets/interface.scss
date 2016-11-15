@@ -1,0 +1,75 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container
+{
+  margin-bottom:50px;
+}
+
+.logarea {
+    width:100%;
+}
+
+.toggle-tag-btn
+{
+
+  margin:10px;
+  color: $mcmc_white;
+  background-color: $mcmc_red_secondary;
+  border: 1px solid $mcmc_gray_secondary;
+}
+
+
+.toggle-tag-btn.active
+{
+  background-color: $mcmc_red_primary;
+  border: 1px solid $mcmc_gray_primary;
+}
+
+.toggle-tag-btn:hover
+{
+
+  border: 1px solid $mcmc_gray_primary;
+}
+
+
+.absolutecenter{
+	position:absolute;
+	left:50%;
+}
+
+.btn-show {
+color: #fff;
+background-color: #629bca;
+border-color: #357ebd;
+}
+
+.btn-edit {
+color: #fff;
+background-color: #eca73f;
+border-color: #d58512;
+}
+
+.btn-destroy {
+color: #fff;
+background-color: #c9505c;
+border-color: #ac2925;
+}
+
+
+#side-menu a
+{
+  color: #000;
+
+
+}
+
+#side-menu a:visited
+{
+
+    color: #666;
+
+
+}
