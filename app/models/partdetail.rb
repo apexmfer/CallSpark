@@ -1,3 +1,5 @@
 class Partdetail < ActiveRecord::Base
-  # attr_accessible :title, :body
+  validates :catalog_number, :presence => true
+
+  
 end

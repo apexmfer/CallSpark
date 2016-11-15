@@ -1,3 +1,8 @@
 class Demohardware < ActiveRecord::Base
-  # attr_accessible :title, :body
+  validates :product_id, :presence => true
+
+
+
+  belongs_to :part_detail, foreign_key: "product_id"
+
 end

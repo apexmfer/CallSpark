@@ -1,6 +1,6 @@
 Testlog::Application.routes.draw do
 
- 
+
 resources :password_resets
 resources :projects
 
@@ -12,7 +12,7 @@ get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
 
 
-
+  resources :demo_inventory
  resources :company
   resources :customer
   resources :calls
