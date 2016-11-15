@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  customer_id: 1
+  primary_company_id: 1
+  secondary_company_id: 1
+  name: MyString
+  status: MyString
+  quote_id: MyString
+  cost_estimate: 1.5
+  start_date: 2016-11-15 11:33:07
+  data_received_date: 2016-11-15 11:33:07
+  sized_date: 2016-11-15 11:33:07
+  proposal_date: 2016-11-15 11:33:07
+  follow_up_date: 2016-11-15 11:33:07
+
+two:
+  user_id: 1
+  customer_id: 1
+  primary_company_id: 1
+  secondary_company_id: 1
+  name: MyString
+  status: MyString
+  quote_id: MyString
+  cost_estimate: 1.5
+  start_date: 2016-11-15 11:33:07
+  data_received_date: 2016-11-15 11:33:07
+  sized_date: 2016-11-15 11:33:07
+  proposal_date: 2016-11-15 11:33:07
+  follow_up_date: 2016-11-15 11:33:07

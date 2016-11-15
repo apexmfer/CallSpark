@@ -1,8 +1,8 @@
 Testlog::Application.routes.draw do
 
-
+ 
 resources :password_resets
-
+resources :projects
 
 resources :user_sessions
 resources :users

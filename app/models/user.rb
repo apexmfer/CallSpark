@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
+  has_many :project_assignments
+  has_many :projects, through: :project_assignments
+
   has_many :favorites
   has_many :favorite_companies, through: :favorites, source: :favorited, source_type: 'Company'
 
