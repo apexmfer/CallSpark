@@ -1,14 +1,16 @@
 class Project < ActiveRecord::Base
 
-  validates :user_id, :presence => true
+  validates :user_id, :name,  :presence => true
 
   has_many :project_assignments
   has_many :assigned_users, through: :project_assignments, source: :user, source_type: 'Users'
 
   belongs_to :user  #the creator
   belongs_to :customer
-  belongs_to :primary_company, class_name: "Company"  
+  belongs_to :primary_company, class_name: "Company"
   belongs_to :secondary_company, class_name:  "Company"
+
+  acts_as_commentable
 
   acts_as_taggable_on :product_segments
 
@@ -22,5 +24,16 @@ class Project < ActiveRecord::Base
    "VFD": 6,
    "Servo": 7,
  }
+
+ extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  # Try building a slug based on the following fields in
+  # increasing order of specificity.
+  def slug_candidates
+    [
+      :name
+    ]
+  end
 
 end

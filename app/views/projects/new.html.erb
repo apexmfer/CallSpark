@@ -75,3 +75,72 @@
 <% end %>
 </div>
 </div>
+
+<script>
+
+var availableCompanyTags =  <%= raw all_companies_for_autocomplete  %> ;
+
+var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
+
+    $( "#project_primary_company" ).autocomplete({
+      source: availableCompanyTags
+    });
+
+    $( "#project_secondary_company" ).autocomplete({
+      source: availableCompanyTags
+    });
+
+    $( "#project_customer" ).autocomplete({
+      source: availableCustomerTags
+    });
+
+
+function submitform()
+{
+
+  errormessage = "";
+
+
+  if($('#project_customer').val().length == 0)
+  {
+    errormessage = "Missing contact name"
+    $('#callername_group').addClass('has-error');
+    $('#callername_group').addClass('animated bounce');
+
+  }
+
+
+
+
+  if(errormessage.length == 0)
+  {
+      $('#submitbutton').addClass("disable");
+      $('#new-project-form').submit();
+  }
+  else
+  {
+
+    $('#submitbutton').hide();
+    $('#errormessage').show();
+    $('#errormessage').addClass('animated shake');
+    $('#errormessage').html(errormessage);
+
+
+    setTimeout(
+      function()
+        {
+          $('#errormessage').hide();
+          $('#submitbutton').show();
+
+          $('#category_group').removeClass('has-error');
+
+       }, 1500);
+
+
+  }
+
+}
+
+
+
+</script>

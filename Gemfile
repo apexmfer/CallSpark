@@ -22,7 +22,10 @@ gem 'acts-as-taggable-on'
 
 gem 'acts_as_commentable_with_threading'
 
+gem 'friendly_id'
+
 gem 'font-awesome-sass', '~> 4.7.0'
+
 
 
 gem 'figaro'
@@ -31,12 +34,14 @@ gem 'figaro'
 # in production environments by default.
 group :assets do
 
-  gem 'sass'
+  gem 'sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'bootstrap-sass', '~> 2.0.3.1'
 end
 
 gem 'jquery-rails'

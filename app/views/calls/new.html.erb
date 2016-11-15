@@ -130,16 +130,10 @@
 
   $(function() {
 
-  	//SET AVAILABLE AUTOCOMPLETES FOR COMPANY
-  	 var availableCompanyTags = [
 
-<% Company.all.each do |c| %>
 
-"<%= raw c.name %>",
 
-<% end %>
-    ];
-
+    var availableCompanyTags =  <%= raw all_companies_for_autocomplete  %> ;
 
 
     $( "#call_company" ).autocomplete({
@@ -149,18 +143,8 @@
 
 
   	//SET AVAILABLE AUTOCOMPLETES FOR CUSTOMER
-    var availableCustomerTags = [
 
-<% Customer.all.each do |c| %>
-
-{ value:"<%= c.id %>" , label: "<%= raw c.getAutoCompleteName %>"},
-
-
-<% end %>
-
-
-    ];
-
+    var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
 
 
     $( "#call_caller" ).autocomplete({
