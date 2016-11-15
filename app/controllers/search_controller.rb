@@ -3,9 +3,15 @@ class SearchController < ApplicationController
 
 
 	def search
-	if params[:query].nil?
+
+		@query = params[:query]
+	if @query.nil?
 		@callresponses = []
+			@noresults = true
 	else
+
+		@noresults = false
+
 		@callresponses = Call.search "*#{params[:query]}*"
 		@calls = @callresponses.map{|response| Call.find_by_id(response.id)  }
 
@@ -21,11 +27,14 @@ class SearchController < ApplicationController
 		@customer_responses = Customer.search "*#{params[:query]}*"
 		@matching_customers = @customer_responses.map{|response| Customer.find_by_id(response.id)  }
 
+		if( @matching_customers.size == 0 && @matching_companies.size == 0 && @calls.size == 0 )
+				@noresults = true
+		end
 
 	end
 
 
-  end 
+  end
 
 
 end

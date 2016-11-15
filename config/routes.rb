@@ -1,6 +1,12 @@
 Testlog::Application.routes.draw do
 
 
+  get 'project/index'
+
+  get 'project/show'
+
+  get 'project/new'
+
 resources :password_resets
 
 
