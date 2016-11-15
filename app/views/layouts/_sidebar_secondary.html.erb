@@ -1,6 +1,4 @@
 
-<% if (controller_name != "demo_inventory" && controller_name != "checkout") %>
-
 
 
 
@@ -9,7 +7,7 @@
    <li>
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
           <i class="fa fa-wrench fa-fw"></i> Support Tools<span id="toolsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
-        <ul id="collapseTools" class="nav nav-second-level collapse in" aria-expanded="true">
+        <ul id="collapseTools" class="nav nav-second-level collapse  " aria-expanded="true">
 
 
           <% Supportlink.order(:sortorder).each do |link| %>
@@ -26,31 +24,6 @@
   <% end %>
 
 
-  <% else %>
-
-
-
-  <li>
-       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
-         <i class="fa fa-wrench fa-fw"></i> Actions<span id="toolsArrow" class="fa fa-chevron-circle-down pull-right"  style="display:none" ></span></a>
-       <ul id="collapseTools" class="nav nav-second-level collapse in" aria-expanded="true">
-
-
-
-
-           <li> <%= link_to "Checkout Parts", controller: "Checkout", action: "new"   %>    </li>
-           <li> <%= link_to "Return Parts", controller: "Checkout", action: "return"   %>    </li>
-           <li> <%= link_to "Add Parts To Database", controller: "DemoInventory", action: "new"   %>    </li>
-           <li> <%= link_to "Extend Due Date", controller: "Checkout", action: "edit"   %>    </li>
-
-       </ul>
-       <!-- /.nav-second-level -->
-   </li>
-
-
-
-
-  <% end %>
 
 
   <li>
