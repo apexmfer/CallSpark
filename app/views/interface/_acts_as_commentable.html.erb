@@ -1,0 +1,79 @@
+
+<div class="commentable-section">
+
+<% @comments.each do |comment| %>
+
+<div class="comment-container">
+
+  <div class="comment-title">
+
+  </div>
+  <div class="comment-body">
+    <%= comment %>
+  </div>
+
+  <% if user %>
+    <div class="comment-editor child-comment-editor">
+      Edit here
+    </div>
+  <% end %>
+
+
+
+
+</div>
+<% end %>
+
+
+  <% if user %>
+
+
+   <div class="comment-editor root-comment-editor">
+     <h4> Add a new comment </h4>
+       <%=  text_area_tag(:text, nil,  :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter information.') %>
+       <a href="#/" onclick="submitComment(this)"><div class="btn btn-primary btn-comment-submit pull-right" >Submit this comment</div></a>
+   </div>
+
+  <% end %>
+
+</div>
+
+<script>
+    function submitComment(element)
+    {
+      console.log(element);
+
+      var comment_editor = $(element).closest(".comment-editor");
+      console.log(comment_editor);
+      var text_area = $(comment_editor).find(".logarea").first();
+      console.log(text_area);
+      var body = $(text_area).val();
+
+        console.log(body);
+
+        var comment_data = {};
+        comment_data.body = body;
+        comment_data.commentable_id = <%= parent.id %>;
+        comment_data.commentable_class_type = '<%= parent.class %>';
+
+
+         var comment_submit = $.ajax({
+           type: "POST",
+           url:'/comment/',
+           data: comment_data
+       } )
+         .done(function(data) {
+             console.log( "success" );
+            console.log( data );
+
+
+        })
+         .fail(function() {
+          console.log( "error" );
+         })
+         .always(function() {
+           console.log( "complete" );
+        });
+
+    }
+</script>

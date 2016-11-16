@@ -1,6 +1,9 @@
 Testlog::Application.routes.draw do
 
 
+ resources :article
+ resources :comment
+
 resources :password_resets
 resources :projects
 
