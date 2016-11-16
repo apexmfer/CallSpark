@@ -25,6 +25,12 @@ class Project < ActiveRecord::Base
    "Servo": 7,
  }
 
+ enum status: {
+  "Data Collection": 0,
+  "Quoted": 1,
+  "Ordered": 2
+}
+
  extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 

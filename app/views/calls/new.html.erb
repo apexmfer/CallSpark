@@ -138,7 +138,20 @@
 
 
     $( "#call_company" ).autocomplete({
-      source: availableCompanyTags
+      source: availableCompanyTags,
+            focus: function(event, ui) {
+              // prevent autocomplete from updating the textbox
+              event.preventDefault();
+              // manually update the textbox
+              $(this).val(ui.item.label);
+        },
+        select: function(event, ui) {
+              // prevent autocomplete from updating the textbox
+              event.preventDefault();
+              // manually update the textbox and hidden field
+              $(this).val(ui.item.label);
+        //  $("#hidden_caller_id").val(ui.item.value);
+        }
     });
 
 
@@ -167,7 +180,7 @@
 
 
 
-  
+
 
 
      $( "#call_category_id" ).on( "change", function( event, ui ){

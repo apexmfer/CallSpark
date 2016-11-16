@@ -3,9 +3,31 @@
 <div class="btn-group toggle-tags-buttons" data-toggle="buttons">
 
   <% types.each do |type| %>
-  <label class="btn toggle-tag-btn"  data-category-name="<%= type %>">
-      <%= type %>
-  </label>
+    <label class="btn toggle-tag-btn"  data-category-name="<%= type %>">
+        <%= type %>
+    </label>
 
   <% end %>
+
+  <%= hidden_field_tag :toggle_tags_field, nil ,class:"toggle-tags-field" %>
 </div>
+
+<script>
+  $(".toggle-tag-btn").on( "click", function() {
+        refillToggleTagsField();
+   });
+
+   function refillToggleTagsField()
+   {
+      var tags_field_result = "";
+
+        $(".toggle-tag-btn.active").each(function( index ) {
+            var formatted_category_name = $( this ).data('category-name').split(" ").join("_").toLowerCase();
+              tags_field_result += formatted_category_name + " " ;
+        });
+
+        $(".toggle-tags-field:first").val(tags_field_result);
+
+        console.log(tags_field_result );
+   }
+</script>

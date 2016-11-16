@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115220100) do
+ActiveRecord::Schema.define(version: 20161116145509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,7 +165,6 @@ ActiveRecord::Schema.define(version: 20161115220100) do
     t.integer  "primary_company_id"
     t.integer  "secondary_company_id"
     t.string   "name"
-    t.string   "status"
     t.string   "quote_id"
     t.float    "cost_estimate"
     t.datetime "start_date"
@@ -176,6 +175,7 @@ ActiveRecord::Schema.define(version: 20161115220100) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "slug"
+    t.integer  "status"
   end
 
   create_table "regions", force: :cascade do |t|

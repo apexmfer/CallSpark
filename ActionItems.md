@@ -1,5 +1,6 @@
--yield block for navbar
--add simple demoinv system
+-add project status
+- add project dates
+
 
 
 

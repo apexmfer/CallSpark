@@ -18,10 +18,10 @@
     <%= f.label "Primary Contact" %><br>
     <%= f.text_field :customer, class:"form-control customer-field" %>
 
+    <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
 
   </div>
 
-     <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
 
 
 
@@ -29,11 +29,15 @@
   <div class="form-group ">
     <%= f.label "Primary Company" %><br>
     <%= f.text_field :primary_company, class:"form-control company-field" %>
+    <%= f.hidden_field :primary_company_id, class:"form-control primary-company-id-field" %>
+
    </div>
 
    <div class="form-group ">
      <%= f.label "Secondary Company" %><br>
      <%= f.text_field :secondary_company, class:"form-control" %>
+     <%= f.hidden_field :secondary_company_id, class:"form-control secondary-company-id-field" %>
+
     </div>
 
 
@@ -100,11 +104,37 @@ var availableCompanyTags =  <%= raw all_companies_for_autocomplete  %> ;
 var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
 
     $( "#project_primary_company" ).autocomplete({
-      source: availableCompanyTags
+      source: availableCompanyTags,
+      focus: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox
+            $(this).val(ui.item.label);
+      },
+      select: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox and hidden field
+            $(this).val(ui.item.label);
+            $(".primary-company-id-field:first").val(ui.item.value);
+      }
     });
 
     $( "#project_secondary_company" ).autocomplete({
-      source: availableCompanyTags
+      source: availableCompanyTags,
+      focus: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox
+            $(this).val(ui.item.label);
+      },
+      select: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox and hidden field
+            $(this).val(ui.item.label);
+            $(".secondary-company-id-field:first").val(ui.item.value);
+      }
     });
 
 

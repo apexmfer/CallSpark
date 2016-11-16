@@ -2,14 +2,27 @@
  <div class="panel-heading">Project Information</div>
  <div class="panel-body">
 
-   
+
    <p>
      Name: <%= @project.name %>
    </p>
 
+   <p>
+     Segments:
+     <span class="product-segment-labels-container">
+         <%  @product_segments.each do |segment| %>
+             <span class="label  label-primary product-segment-label">
+              <%= segment.name.humanize %>
+            </span>
+         <% end %>
+       </span>
+   </p>
+
+
+
  <% if @customer %>
 <p>
-Caller: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
+Primary Contact: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
 </p>
 
 <p>
@@ -20,22 +33,30 @@ Phone: <%= @customer.getFormattedPhone %>
 Email: <%= @customer.email %>
 </p>
 
-<%if(@customer.company != nil) %>
+<% end %>
+
+
+<%if(@project.primary_company != nil) %>
 <p>
-Company:
-<a href="<%= url_for @customer.company %>"> <%=  @customer.company.name %> </a>
+Primary Company:
+<a href="<%= url_for @project.primary_company %>"> <%=  @project.primary_company.name %> </a>
+
+</p>
+<%end%>
+
+<%if(@project.secondary_company != nil) %>
+<p>
+Secondary Company:
+<a href="<%= url_for @project.secondary_company %>"> <%=  @project.secondary_company.name %> </a>
 
 </p>
 <%end%>
 
 
-
-<% end %>
-
 <% if @project_owner %>
 <p>
 
-Creator:
+Project Creator:
 <a href="<%= url_for @project_owner %>"> <%= @project_owner.name %> </a>
 </p>
 
@@ -45,7 +66,12 @@ Creator:
  </div>
 </div>
 
+<h3> Comments </h3>
+<% @comments.each do |comment| %>
 
-Comments all down below
+<%= comment %>
+
+<% end %>
+
 
 timeline ?
