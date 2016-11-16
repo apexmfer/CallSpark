@@ -1,8 +1,50 @@
-<h1>Project#show</h1>
-<p>Find me in app/views/project/show.html.erb</p>
+<div class="panel panel-default">
+ <div class="panel-heading">Project Information</div>
+ <div class="panel-body">
+
+   
+   <p>
+     Name: <%= @project.name %>
+   </p>
+
+ <% if @customer %>
+<p>
+Caller: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
+</p>
+
+<p>
+Phone: <%= @customer.getFormattedPhone %>
+</p>
+
+<p>
+Email: <%= @customer.email %>
+</p>
+
+<%if(@customer.company != nil) %>
+<p>
+Company:
+<a href="<%= url_for @customer.company %>"> <%=  @customer.company.name %> </a>
+
+</p>
+<%end%>
 
 
-Info box at top
+
+<% end %>
+
+<% if @project_owner %>
+<p>
+
+Creator:
+<a href="<%= url_for @project_owner %>"> <%= @project_owner.name %> </a>
+</p>
+
+<% end %>
+
+
+ </div>
+</div>
+
 
 Comments all down below
 

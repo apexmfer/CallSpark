@@ -18,10 +18,10 @@
     <%= f.label "Primary Contact" %><br>
     <%= f.text_field :customer, class:"form-control customer-field" %>
 
-      <input id="hidden_customer_id" type="hidden" name="code"></p>
+
   </div>
 
-  <input id="hidden_customer_id" type="hidden" name="code"></p>
+     <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
 
 
 
@@ -110,7 +110,7 @@ var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
 
 
 
-    $( "#project_customer" ).autocomplete({
+    $( ".customer-field:first" ).autocomplete({
       source: availableCustomerTags,
             focus: function(event, ui) {
           // prevent autocomplete from updating the textbox
@@ -123,7 +123,7 @@ var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
           event.preventDefault();
           // manually update the textbox and hidden field
           $(this).val(ui.item.label);
-          $("#hidden_customer_id").val(ui.item.value);
+          $(".customer-id-field:first").val(ui.item.value);
         }
     });
 
@@ -134,7 +134,7 @@ function submitform()
   errormessage = "";
 
 
-  if($('#project_customer').val().length == 0)
+  if($('.customer-field:first').val().length == 0)
   {
     errormessage = "Missing contact name"
     $('#callername_group').addClass('has-error');
