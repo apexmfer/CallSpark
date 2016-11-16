@@ -1,10 +1,10 @@
 class UserSessionsController < ApplicationController
-  skip_before_filter :require_login, except: [:destroy]
+   before_filter :require_login, only: [:destroy]
 
   def new
 
     @user = User.new
-    
+
   end
 
   def create

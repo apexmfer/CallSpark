@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+   before_filter :require_login 
     before_action :set_navbar_style
 
     def set_navbar_style
@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
     end
 
   def index
+    @projects = Project.order(updated_at: :DESC)
   end
 
   def show
@@ -15,7 +16,7 @@ class ProjectsController < ApplicationController
     @project_owner = @project.user
     @product_segments = @project.product_segments
 
-    @comments = @project.root_comments
+    @comments = @project.root_comments.order(updated_at: :DESC ).paginate(:page => params[:comment_page], :per_page => 10)
   end
 
     def create
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
 
         @user_who_commented = @current_user
         @comment = Comment.build_from( @project, @user_who_commented.id, text  )
-        @project.save
+        @comment.save
 
 
 

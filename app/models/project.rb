@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  validates :user_id, :name,  :presence => true
+  validates :user_id, :name, :primary_company_id,  :presence => true
 
   has_many :project_assignments
   has_many :assigned_users, through: :project_assignments, source: :user, source_type: 'Users'
@@ -30,6 +30,10 @@ class Project < ActiveRecord::Base
   "Quoted": 1,
   "Ordered": 2
 }
+
+  def status_description
+      return "In Progress"
+  end
 
  extend FriendlyId
   friendly_id :slug_candidates, use: :slugged

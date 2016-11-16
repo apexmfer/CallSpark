@@ -1,33 +1,16 @@
 
 <div class="commentable-section">
 
-<% @comments.each do |comment| %>
-
-<div class="comment-container">
-
-  <div class="comment-title">
-
-  </div>
-  <div class="comment-body">
-    <%= comment %>
-  </div>
-
-  <% if user %>
-    <div class="comment-editor child-comment-editor">
-      Edit here
-    </div>
-  <% end %>
-
-
-
-
-</div>
+<% @comments.each do |c| %>
+  <%= render partial: 'comment/comment',locals: {comment: c, user: user}  %>
 <% end %>
 
+<div class="pagination-container">
+  <%= will_paginate @comments, :param_name => 'comment_page', renderer: BootstrapPagination::Rails %>
+</div>
 
   <% if user %>
-
-
+ 
    <div class="comment-editor root-comment-editor">
      <h4> Add a new comment </h4>
        <%=  text_area_tag(:text, nil,  :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter information.') %>
@@ -66,7 +49,8 @@
              console.log( "success" );
             console.log( data );
 
-
+            //refresh
+            location.reload();
         })
          .fail(function() {
           console.log( "error" );

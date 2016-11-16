@@ -26,7 +26,7 @@ gem 'friendly_id'
 
 gem 'font-awesome-sass', '~> 4.7.0'
 
-
+gem 'casein', '~>5.1.1'
 
 gem 'figaro'
 
@@ -41,13 +41,18 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 
-  gem 'bootstrap-sass', '~> 2.0.3.1'
+  gem 'bootstrap-sass', '~> 3.3.1'
 end
 
 gem 'jquery-rails'
 
 
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 #gem 'libv8', '3.16.14.3'
 
 #gem "therubyracer"

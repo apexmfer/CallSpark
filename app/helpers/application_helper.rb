@@ -26,6 +26,15 @@ module ApplicationHelper
       return ''
   end
 
+  def format_standard_date(date)
+    return date.strftime("%m/%d/%Y")
+  end
+
+  def format_standard_datetime(date)
+    return date.strftime("%m/%d/%Y at %l:%M%p")
+  end
+
+
   def in_words(int)
   numbers_to_name = {
       1000000 => "million",

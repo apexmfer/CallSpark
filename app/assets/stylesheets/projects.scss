@@ -10,6 +10,41 @@
   .label
   {
     margin:5px;
-    padding:5px;
+    font-size:12px;
+    line-height: 24px;
   }
+}
+
+
+.project-container
+{
+  color:#111;
+  margin-top:40px;
+  padding:10px;
+  border-top: 1px solid $mcmc_gray_primary;
+
+  .project-title
+  {
+    display: inline-block;
+    font-size:16px;
+    font-weight: bold;
+  }
+  .project-subtitle
+  {
+      display: inline-block;
+      font-size:14px;
+  }
+  .project-info
+  {
+
+  }
+  .project-subinfo
+  {
+
+  }
+}
+
+.project-container:hover
+{
+  background-color: $mcmc_gray_primary;
 }

@@ -1,66 +1,79 @@
 <div class="panel panel-default">
  <div class="panel-heading">Project Information</div>
- <div class="panel-body">
+ <div class="panel-body row">
 
+   <div class="col-sm-6">
 
-   <p>
-     Name: <%= @project.name %>
-   </p>
-
-   <p>
-     Segments:
-     <span class="product-segment-labels-container">
-         <%  @product_segments.each do |segment| %>
-             <span class="label  label-primary product-segment-label">
-              <%= segment.name.humanize %>
-            </span>
-         <% end %>
-       </span>
-   </p>
+     <p>
+      Project Name: <%= @project.name %>
+     </p>
 
 
 
- <% if @customer %>
-<p>
-Primary Contact: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
-</p>
+     <% if @project_owner %>
+     <p>
 
-<p>
-Phone: <%= @customer.getFormattedPhone %>
-</p>
+     Project Creator:
+     <a href="<%= url_for @project_owner %>"> <%= @project_owner.name %> </a>
+     </p>
 
-<p>
-Email: <%= @customer.email %>
-</p>
-
-<% end %>
+     <% end %>
 
 
-<%if(@project.primary_company != nil) %>
-<p>
-Primary Company:
-<a href="<%= url_for @project.primary_company %>"> <%=  @project.primary_company.name %> </a>
-
-</p>
-<%end%>
-
-<%if(@project.secondary_company != nil) %>
-<p>
-Secondary Company:
-<a href="<%= url_for @project.secondary_company %>"> <%=  @project.secondary_company.name %> </a>
-
-</p>
-<%end%>
+     <p>
+       Segments:
+       <span class="product-segment-labels-container">
+           <%  @product_segments.each do |segment| %>
+               <span class="label  label-primary product-segment-label">
+                <%= segment.name.humanize %>
+              </span>
+           <% end %>
+         </span>
+     </p>
 
 
-<% if @project_owner %>
-<p>
 
-Project Creator:
-<a href="<%= url_for @project_owner %>"> <%= @project_owner.name %> </a>
-</p>
+   </div>
 
-<% end %>
+   <div class="col-sm-6">
+     <% if @customer %>
+    <p>
+    Primary Contact: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
+    </p>
+
+    <p>
+    Phone: <%= @customer.getFormattedPhone %>
+    </p>
+
+    <p>
+    Email: <%= @customer.email %>
+    </p>
+
+    <% end %>
+
+
+    <%if(@project.primary_company != nil) %>
+    <p>
+    Primary Company:
+    <a href="<%= url_for @project.primary_company %>"> <%=  @project.primary_company.name %> </a>
+
+    </p>
+    <%end%>
+
+    <%if(@project.secondary_company != nil) %>
+    <p>
+    Secondary Company:
+    <a href="<%= url_for @project.secondary_company %>"> <%=  @project.secondary_company.name %> </a>
+
+    </p>
+    <%end%>
+
+
+   </div>
+
+
+
+
 
 
  </div>
@@ -69,7 +82,3 @@ Project Creator:
 <h3> Comments </h3>
 
 <%= render partial: "interface/acts_as_commentable", locals:{comments: @comments, parent: @project, user: current_user} %>
-
-
-
-timeline ?

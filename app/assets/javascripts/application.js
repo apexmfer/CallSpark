@@ -17,10 +17,12 @@
 //= require tableExport
 //= require chart.bundle
 //= require jquery.base64
+//= require moment
 //= require bootstrap.min
 //= require bootstrap-wysihtml5
 //= require bootstrap-table
 //= require bootstrap-table-export
+//= require bootstrap-datetimepicker.min
 //= require callspark
 //= require favorite-company
 //= require plugins/dataTables/jquery.dataTables

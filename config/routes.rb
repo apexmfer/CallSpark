@@ -1,8 +1,16 @@
 Testlog::Application.routes.draw do
 
+	#Casein routes
+	namespace :casein do
+		resources :users
+	end
+
+
 
  resources :article
  resources :comment
+   resources :checkouts
+
 
 resources :password_resets
 resources :projects

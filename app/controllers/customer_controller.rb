@@ -1,5 +1,5 @@
 class CustomerController < ApplicationController
-  skip_before_filter :require_login, only: [:index,:show,:data]
+   before_filter :require_login, except: [:index,:show,:data]
 
 
 
@@ -41,7 +41,7 @@ class CustomerController < ApplicationController
    if params['customer']['notes']
     notes = sentencify(params['customer']['notes'])
   end
-  
+
     company = Company.where(name: companyname).first
     companyMatchNil = (company == nil)
 

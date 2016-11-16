@@ -1,4 +1,7 @@
 class ArticleController < ApplicationController
+  before_filter :require_login
+
+
   def index
   end
 

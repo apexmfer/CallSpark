@@ -1,1 +1,170 @@
-<h3>Checkout Hardware</h3>
+
+          <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">New Demo Checkout</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+
+
+            <div class="row">
+                   <div class="col-lg-12">
+            <%= form_for @new_checkout,   html: {id: "new-checkout-form"} do |f| %>
+
+            <div class="row">
+            	<div class="col-lg-3">
+
+
+
+
+              <div class="form-group" id="callername_group">
+                <%= f.label "Contact" %><br>
+                <%= text_field_tag :customer, nil, class:"form-control customer-field" %>
+
+                <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
+
+              </div>
+
+
+              <div class="form-group ">
+                <%= f.label "Company" %><br>
+                <%= text_field_tag :company, nil, class:"form-control company-field" %>
+                <%= hidden_field_tag :company_id, nil, class:"form-control company-id-field" %>
+
+               </div>
+
+
+
+              </div>
+              <div class="col-lg-3">
+
+                <div class="form-group ">
+                  <%= f.label :phone %><br>
+                  <%=  text_field_tag :phone, nil, class:"form-control phone-field" %>
+                </div>
+
+                <div class="form-group ">
+                  <%= f.label :email %><br>
+                  <%= text_field_tag :email, nil, class:"form-control email-field" %>
+                </div>
+
+
+              	</div>
+              <div class="col-lg-6">
+
+
+                <div class="form-group" id="barcode_group">
+                  <%= f.label "Barcode" %><br>
+                  <%= text_field_tag :barcode, nil, class:"form-control barcode-field" %>
+
+                 </div>
+
+
+
+               <div class="form-group ">
+                <%= f.label "Catalog Number" %><br>
+                <%= text_field_tag :catalog_number, nil, class:"form-control" %>
+               </div>
+
+               <div class="form-group ">
+                <%= f.label "Series" %><br>
+                <%= text_field_tag :series, nil, class:"form-control" %>
+               </div>
+
+
+               <div class="datetime-fields-container">
+                     <%= f.label "Start Date" %><br>
+                 <div class='input-group date' id='checkout_start_date_picker'>
+
+                       <input type='text' class="form-control" id="checkout_start_date" name="checkout[start_date]" />
+                       <span class="input-group-addon">
+                           <span class="glyphicon glyphicon-calendar"></span>
+                       </span>
+                   </div>
+
+                     <%= f.label "Expected Return Date" %><br>
+                   <div class='input-group date' id='checkout_expected_end_date_picker'>
+
+                         <input type='text' class="form-control" id="checkout_expected_end_date" name="checkout[expected_end_date]" />
+                         <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                     </div>
+               </div>
+
+
+
+
+
+              </div>
+             </div>
+             <div class="row">
+              <p>
+                <%= f.label "Part Description" %><br>
+                <%=  text_area_tag(:description, nil, :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter information.') %>
+              </p>
+             </div>
+
+
+
+              <p>
+              	<a href="javascript:submitform()"  id="submitbutton" class="btn btn-primary-color save-project-button col-md-6 col-md-offset-3">Checkout</a>
+                   <div id="errormessage" class= "btn btn-danger savecall-button col-md-6 col-md-offset-3" style="display:none"></div>
+              </p>
+            <% end %>
+            </div>
+            </div>
+
+            <script>
+
+            $('#checkout_start_date_picker').datetimepicker({
+                             useCurrent: false
+                          //  defaultDate: default_start_date,
+                          //  minDate: minimum_order_date,
+                          //  maxDate: maximum_order_date
+            });
+            $('#checkout_expected_end_date_picker').datetimepicker({
+                             useCurrent: false
+                          //  defaultDate: default_start_date,
+                          //  minDate: minimum_order_date,
+                          //  maxDate: maximum_order_date
+            });
+
+
+
+
+
+            </script>
+
+
+
+            create_table "checkouts", force: :cascade do |t|
+              t.integer  "checkout_user_id"
+              t.integer  "hardware_id"
+              t.integer  "customer_id"
+              t.datetime "time_out"
+              t.datetime "expected_time_in"
+              t.datetime "actual_time_in"
+              t.text     "notes"
+              t.datetime "created_at",       null: false
+              t.datetime "updated_at",       null: false
+            end
+
+create_table "demohardwares", force: :cascade do |t|
+  t.integer  "product_id"
+  t.integer  "barcode"
+  t.string   "series",     limit: 255
+  t.datetime "created_at",             null: false
+  t.datetime "updated_at",             null: false
+
+
+    create_table "partdetails", force: :cascade do |t|
+      t.string   "catalog_number", limit: 255
+      t.text  "description"
+      t.datetime "created_at",                 null: false
+      t.datetime "updated_at",                 null: false
+      t.integer  "familyID"
+      t.integer  "typeID"
+      t.integer  "subtypeID"
+    end

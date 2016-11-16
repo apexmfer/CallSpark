@@ -1,5 +1,9 @@
 class CheckoutController < ApplicationController
-  def new
+    before_filter :require_login
+
+
+    def new
+      @new_checkout = Checkout.new
   end
 
   def index

@@ -5,7 +5,6 @@
 
                       Projects Overview
 
-
                     </h1>
 
 
@@ -19,6 +18,9 @@
                 <!-- /.col-lg-12 -->
             </div>
 
-            Will look like excel  template
 
-            users have color bubbles
+            <div class="project-tile-list">
+              <% @projects.each do |project| %>
+                <%= render partial: 'project', locals:{project:project}%>
+              <% end %>
+            </div>

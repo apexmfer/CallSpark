@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-	skip_before_filter :require_login
+	 #before_filter :require_login
 
 
 	def search
@@ -25,7 +25,7 @@ class SearchController < ApplicationController
 	end
 
 
-  end 
+  end
 
 
 end

@@ -1,5 +1,5 @@
 class CommentController < ApplicationController
-
+    before_filter :require_login
 
   def create
 
@@ -14,7 +14,7 @@ class CommentController < ApplicationController
 
       @user_who_commented =  current_user
       @comment = Comment.build_from( commentable_record, @user_who_commented.id, body  )
-
+      @comment.save
 
       render json: @comment
 
