@@ -18,18 +18,25 @@ body {
     background-color: #fff;
 
     padding-bottom:30px;
+    margin-bottom:30px;
+
+
+
+    @media(min-width:768px) {
+
+            position: inherit;
+           margin: 0 0 0 250px;
+            padding: 0 30px;
+            border-left: 1px solid #e7e7e7;
+
+              padding-bottom:30px;
+                margin-bottom:30px;
+       
+     }
+
+
 }
 
-@media(min-width:768px) {
-    #page-wrapper {
-        position: inherit;
-       margin: 0 0 0 250px;
-        padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
-
-          padding-bottom:30px;
-    }
-}
 
 
 .navbar-default .navbar-brand{

@@ -38,6 +38,11 @@ resources :region
   post "/favorite_company" => 'favorite_company#create', :as => :add_company_to_favorites
   post "/unfavorite_company" =>  'favorite_company#destroy', :as => :remove_company_from_favorites
 
+	post "/project_assignment" => 'project_assignment#create', :as => :project_assignment
+	post "/project_assignment_remove"=> 'project_assignment#destroy', :as => :project_assignment_remove
+
+	post "/comment_remove"=> 'comment#destroy', :as => :comment_remove
+
 
   get "user_sessions/new"
 

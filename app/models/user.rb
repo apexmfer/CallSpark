@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, if: :new_user?
   validates :password_confirmation, presence: true, length: { minimum: 6 }, if: :new_user?
 
-  validates :password, confirmation: true 
+  validates :password, confirmation: true
 
   validates :email, uniqueness: true
 
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
 
   def is_admin
-    return privilege_level >= User.privilege_level["admin"]
+    return (privilege_level == "admin" or privilege_level == "dev")
   end
 
   private

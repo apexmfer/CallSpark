@@ -1,16 +1,21 @@
 
 <div class="commentable-section">
 
+  <% if @comments and @comments.size > 0 %>
+  <h3> Comments </h3>
+
 <% @comments.each do |c| %>
   <%= render partial: 'comment/comment',locals: {comment: c, user: user}  %>
 <% end %>
+
+<% end %> 
 
 <div class="pagination-container">
   <%= will_paginate @comments, :param_name => 'comment_page', renderer: BootstrapPagination::Rails %>
 </div>
 
   <% if user %>
- 
+
    <div class="comment-editor root-comment-editor">
      <h4> Add a new comment </h4>
        <%=  text_area_tag(:text, nil,  :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter information.') %>

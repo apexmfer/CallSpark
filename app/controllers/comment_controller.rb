@@ -21,9 +21,20 @@ class CommentController < ApplicationController
   end
 
   def show
-    @comment = Comment.find_by_id[:id]
+    @comment = Comment.find_by_id(params[:id])
   end
 
+  def destroy
+    @comment = Comment.find_by_id(params[:comment_id])
 
+
+    if current_user and current_user.is_admin
+
+      @comment.destroy
+
+    end
+
+      render text:  "Deleted Comment"
+  end
 
 end

@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   validates :user_id, :name, :primary_company_id,  :presence => true
 
   has_many :project_assignments
-  has_many :assigned_users, through: :project_assignments, source: :user, source_type: 'Users'
+  has_many :assigned_users, through: :project_assignments, source: :user
 
   belongs_to :user  #the creator
   belongs_to :customer
@@ -44,6 +44,25 @@ class Project < ActiveRecord::Base
     [
       :name
     ]
+  end
+
+  def primary_company_name
+    if primary_company
+      return primary_company.name
+    end
+  end
+
+  def secondary_company_name
+    if secondary_company
+      return secondary_company.name
+    end
+  end
+
+
+  def customer_name
+    if customer
+      return customer.name
+    end
   end
 
 end

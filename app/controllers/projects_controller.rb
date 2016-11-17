@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-   before_filter :require_login 
+   before_filter :require_login, except: [:index,:show]
     before_action :set_navbar_style
 
     def set_navbar_style
@@ -15,6 +15,8 @@ class ProjectsController < ApplicationController
     @customer = @project.customer
     @project_owner = @project.user
     @product_segments = @project.product_segments
+
+    @assignments = @project.assigned_users
 
     @comments = @project.root_comments.order(updated_at: :DESC ).paginate(:page => params[:comment_page], :per_page => 10)
   end
@@ -46,6 +48,8 @@ class ProjectsController < ApplicationController
         @project.save
 
 
+          assignment = ProjectAssignment.create(project: @project, user: @current_user)
+
         text = sentencify(params[:text])
         text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
 
@@ -64,9 +68,74 @@ class ProjectsController < ApplicationController
   end
 
 
+  def edit
+      @project = Project.friendly.find(params[:id])
+  end
+
+
+  def update
+    p params
+      @project = Project.friendly.find(params[:id])
+
+      @project.update_attributes!(edit_project_params)
+
+
+      datetime_format = "%m/%d/%Y"
+      if params[:project][:data_received_date] and params[:project][:data_received_date].length > 0
+      @project.data_received_date = DateTime.strptime(params[:project][:data_received_date], datetime_format)   #unix time
+      end
+      if params[:project][:sized_date] and params[:project][:sized_date].length > 0
+      @project.sized_date = DateTime.strptime(params[:project][:sized_date], datetime_format)   #unix time
+      end
+      if params[:project][:proposal_date] and params[:project][:proposal_date].length > 0
+      @project.proposal_date = DateTime.strptime(params[:project][:proposal_date], datetime_format)   #unix time
+      end
+      if params[:project][:follow_up_date] and params[:project][:follow_up_date].length > 0
+      @project.follow_up_date = DateTime.strptime(params[:project][:follow_up_date], datetime_format)   #unix time
+      end
+
+
+      #find or create customer
+      customer_name = params["project"]["customer_name"]
+      customer = Customer.find_or_create_by(name: customer_name)
+      @project.customer = customer
+
+      #find or create primary company
+      primary_company_name = format_as_company_name(params["project"]["primary_company_name"])
+      primary_company = Company.find_or_create_by(name: primary_company_name)
+      @project.primary_company = primary_company
+
+      secondary_company_name = format_as_company_name(params["project"]["secondary_company_name"])
+      secondary_company = Company.find_or_create_by(name: secondary_company_name)
+      @project.secondary_company = secondary_company
+
+
+      @project.save!
+
+      redirect_to @project
+
+  end
+
+  def destroy
+      @project = Project.friendly.find(params[:id])
+      @project.destroy
+
+    respond_to do |format|
+      format.html { redirect_to projects_url }
+      format.json { head :no_content }
+    end
+  end
+
+
 private
 def new_project_params
   params.require(:project).permit(:name,:customer_id,:primary_company_id,:secondary_company_id)
 end
+
+
+def edit_project_params
+  params.require(:project).permit(:name,:customer_id,:primary_company_id,:secondary_company_id,:data_received_date,:sized_date,:proposal_date,:follow_up_date)
+end
+
 
 end

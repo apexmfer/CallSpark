@@ -20,14 +20,45 @@ module ApplicationHelper
 
   def cssClassActive (contName)
 
+
+
     if( controller_name == contName)
        return "class=active"
      end
       return ''
   end
 
+
   def format_standard_date(date)
-    return date.strftime("%m/%d/%Y")
+
+     datetime_format = "%m/%d/%Y"
+
+
+    if date
+
+      if date.instance_of? String
+
+        begin
+        date = Date.parse(date)
+
+        rescue ArgumentError
+          return  ''
+        end
+
+        return date
+
+      else
+
+        return date.strftime("%m/%d/%Y")
+
+      end
+
+          return Time.current.strftime("%m/%d/%Y")
+
+    end
+
+
+    return ''
   end
 
   def format_standard_datetime(date)

@@ -18,9 +18,9 @@ include ActionView::Helpers::NumberHelper
   end
 
   def sentencify(input)
-
-   return input.gsub(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
-
+    if input
+      return input.gsub(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
+    end 
   end
 
   def capFirstLetter(word)
@@ -40,18 +40,19 @@ include ActionView::Helpers::NumberHelper
 
 
   #This creates a new customer with a form and does special checks to make a new company
-  def spawnCustomer(params )
+  def spawnCustomer(customer_name, company_name, raw_phone, raw_email, region_id, bpid  )
 
-    caller = (params[:caller]).titleize
-    companyname = format_as_company_name(params[:company])
+    callername = (customer_name).titleize
+    companyname = format_as_company_name(company_name)
 
-    strippedphone = params[:phone].gsub(/\D/, '')
+    strippedphone = raw_phone.gsub(/\D/, '')
     phone = number_to_phone( strippedphone,   area_code: (strippedphone.length > 9))  #strips all but numbers from the input and then formats as phone number
-    email = (params[:email]).humanize.delete(' ')
-      region_id = (params[:region_id])
+    email = (raw_email).humanize.delete(' ')
+      #region_id = (params[:region_id])
+      #bpid = params[:BPID]
 
     #Try to find existing matches first
-    customer = Customer.where(name: caller).first
+    customer = Customer.where(name: callername).first
 
     company = Company.where(name: companyname).first
 
@@ -63,7 +64,7 @@ include ActionView::Helpers::NumberHelper
 
 
         company = Company.new(:name => companyname,
-        :BPID => params[:BPID]
+        :BPID => bpid
         )
 
            company.save
@@ -82,7 +83,7 @@ include ActionView::Helpers::NumberHelper
         company_id = company.id
       end
 
-      customer = Customer.new(:name => caller,
+      customer = Customer.new(:name => callername,
      :company_id => company_id,
       :phone_number => phone,
       :email => email,

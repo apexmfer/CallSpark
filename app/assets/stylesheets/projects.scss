@@ -48,3 +48,29 @@
 {
   background-color: $mcmc_gray_primary;
 }
+
+
+.project-assignment-list
+{
+  margin:10px;
+  list-style:none;
+
+  .project-assignment-row
+  {
+    background-color: #ddd;
+    padding:5px;
+    border-radius: 3px;
+
+  }
+  .project-assignment-options
+  {
+    float:right;
+  }
+  .project-assignment-destroy-button
+  {
+    background-color: $edit-color;
+    padding:1px 5px;
+    border-radius: 3px;
+    color:#fff;
+  }
+}

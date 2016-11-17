@@ -47,19 +47,24 @@ class Customer < ActiveRecord::Base
     end
 
     def getFormattedPhone
-      strippedphone = phone_number.gsub(/\D/, '')
 
-      local_number = nil;
-      ext = nil;
+      if phone_number
+        strippedphone = phone_number.gsub(/\D/, '')
 
-      if strippedphone.length <= 10
-        local_number = strippedphone;
+        local_number = nil;
+        ext = nil;
+
+        if strippedphone.length <= 10
+          local_number = strippedphone;
+        else
+          local_number = strippedphone[0..9];
+          ext = strippedphone[10..strippedphone.length]
+        end
+
+        return number_to_phone(local_number ,   area_code: (strippedphone.length > 9), extension: ext)
       else
-        local_number = strippedphone[0..9];
-        ext = strippedphone[10..strippedphone.length]
+        return ''
       end
-
-      return number_to_phone(local_number ,   area_code: (strippedphone.length > 9), extension: ext)
     end
 
 

@@ -19,7 +19,7 @@
   .comment-timestamp
   {
     float:right;
-   
+
   }
 
   .comment-body
@@ -27,6 +27,12 @@
 
         padding:15px;
         background-color: $mcmc_gray_primary;
+  }
+
+  .comment-options
+  {
+    float: right;
+    margin-right: 10px;
   }
 
 }
