@@ -24,3 +24,5 @@
                 <%= render partial: 'project', locals:{project:project}%>
               <% end %>
             </div>
+
+            <%= will_paginate @projects %>

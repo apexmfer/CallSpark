@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     end
 
   def index
-    @projects = Project.order(updated_at: :DESC)
+    @projects = Project.order(updated_at: :DESC).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
