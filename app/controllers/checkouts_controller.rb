@@ -1,5 +1,5 @@
 class CheckoutsController < ApplicationController
-    before_filter :require_login
+    before_filter :require_login, except: [:index,:show]
 
 
     def new
@@ -14,7 +14,7 @@ class CheckoutsController < ApplicationController
     if params[:checkout][:description]
       description = sentencify(params[:checkout][:description])
       description = description.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
-    end 
+    end
 
 
 

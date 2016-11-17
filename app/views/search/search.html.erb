@@ -58,6 +58,30 @@
 </div>
 </div>
 
+
+
+<% if @projects.length > 0 %>
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3><%= in_words(@projects.length).titleize %> <%= 'project'.pluralize(@calls.length )%> containing '<%= params[:query] %>' </h3>
+  </div>
+
+  <div class="panel-body">
+
+    <div class="project-tile-list">
+      <% @projects.each do |project| %>
+        <%= render partial: 'projects/project', locals:{project:project}%>
+      <% end %>
+    </div>
+
+
+
+</div>
+</div>
+<% end %>
+
+
 <% if @calls.length > 0 %>
 <div class="panel panel-default" style="margin-top:10px;">
 
@@ -73,8 +97,6 @@
 
 
     <% if (call )  %>
-
-
 
      <div class="panel panel-default">
       <div class="panel-heading">

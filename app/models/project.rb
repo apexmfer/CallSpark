@@ -10,6 +10,9 @@ class Project < ActiveRecord::Base
   belongs_to :primary_company, class_name: "Company"
   belongs_to :secondary_company, class_name:  "Company"
 
+    include Elasticsearch::Model
+    include Elasticsearch::Model::Callbacks
+
   acts_as_commentable
 
   acts_as_taggable_on :product_segments
@@ -32,7 +35,35 @@ class Project < ActiveRecord::Base
 }
 
   def status_description
-      return "In Progress"
+
+   result = "Collecting Data"
+
+    if date_exists_in_past(data_received_date)
+
+      result = "Sizing the Solution"
+      if date_exists_in_past(sized_date)
+
+          result = "Building a Proposal"
+        if date_exists_in_past(proposal_date)
+
+            result = "Quoted"
+          if date_exists_in_past(follow_up_date)
+              result = "Complete and Followed Up"
+          end
+
+        end
+
+      end
+
+    end
+
+
+      return result
+  end
+
+
+  def date_exists_in_past(date)
+    return date && date < Time.current
   end
 
  extend FriendlyId

@@ -100,6 +100,11 @@
 
 
     <div class="dates-section">
+      <%if(@project.created_at  ) %>
+        <p>
+        Project Created On: <%= format_standard_date @project.created_at %>
+        </p>
+       <%end%>
       <%if(@project.data_received_date  ) %>
         <p>
         Data Received On: <%= format_standard_date @project.data_received_date %>

@@ -10,6 +10,7 @@ class Customer < ActiveRecord::Base
     belongs_to :region
     belongs_to :company
     has_many :calls
+    has_many :projects
 
     def company
 
