@@ -1,0 +1,76 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+
+.product-segment-labels-container
+{
+  display:inline;
+  .label
+  {
+    margin:5px;
+    font-size:12px;
+    line-height: 24px;
+  }
+}
+
+
+.project-container
+{
+  color:#111;
+  margin-top:10px;
+  padding:10px;
+  border-top: 1px solid $mcmc_gray_primary;
+
+  .project-title
+  {
+    display: inline-block;
+    font-size:16px;
+    font-weight: bold;
+  }
+  .project-subtitle
+  {
+      display: inline-block;
+      font-size:14px;
+  }
+  .project-info
+  {
+
+  }
+  .project-subinfo
+  {
+
+  }
+}
+
+.project-container:hover
+{
+  background-color: $mcmc_gray_primary;
+}
+
+
+.project-assignment-list
+{
+  margin:10px;
+  list-style:none;
+
+  .project-assignment-row
+  {
+    background-color: #ddd;
+    padding:5px;
+    border-radius: 3px;
+
+  }
+  .project-assignment-options
+  {
+    float:right;
+  }
+  .project-assignment-destroy-button
+  {
+    background-color: $edit-color;
+    padding:1px 5px;
+    border-radius: 3px;
+    color:#fff;
+  }
+}

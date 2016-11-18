@@ -1,5 +1,5 @@
 class RegionController < ApplicationController
-  skip_before_filter :require_login, only: [:index ]
+   before_filter :require_login, except: [:index ]
 
 
   def create

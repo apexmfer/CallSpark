@@ -1,0 +1,53 @@
+
+
+<div class="comment-container">
+
+  <div class="comment-title">
+      <%= comment.user.name %>
+
+      <div class="comment-timestamp">
+          <%= format_standard_datetime comment.updated_at %>
+      </div>
+
+      <% if current_user and current_user.is_admin %> 
+      <div class="comment-options">
+        <a href="#/" onclick="deleteComment(<%=comment.id%>)">
+          Delete
+          </a>
+      </div>
+      <% end %>
+
+  </div>
+
+  <div class="comment-body">
+    <%= comment.body.html_safe %>
+  </div>
+
+  <% if user %>
+    <div class="comment-editor child-comment-editor">
+
+    </div>
+  <% end %>
+
+
+
+
+</div>
+
+<script>
+function deleteComment(comment_id)
+{
+  $.ajax({
+  method: "POST",
+  url:  "/comment_remove",
+  data: {comment_id: comment_id}
+ })
+  .done(function( response ) {
+    console.log(response);
+    location.reload();
+
+  });
+}
+
+
+</script>

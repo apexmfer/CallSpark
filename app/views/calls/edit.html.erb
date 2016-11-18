@@ -1,18 +1,9 @@
 
 
-<% call = Call.find(params[:id])  %>
-
-<% customer = Customer.where(id: call.customer_id).first  %>
+<h2>Update call from <%= @customer.name %> </h2>
 
 
-
-
-
-
-<h2>Update call from <%= customer.name %> </h2>
-
-
-<%= form_for call, url: { action: "update" } do |f| %>
+<%= form_for @call, url: { action: "update" } do |f| %>
 
 
 
@@ -22,16 +13,16 @@
 
 
 <p>
-Caller: <a href="<%= url_for call.getCustomer %>"> <%= call.getCustomer.name %> </a>
+Caller: <a href="<%= url_for @customer %>"> <%= @customer.name %> </a>
 </p>
 
 
 <p>
-Phone: <%= call.getCustomer.getFormattedPhone %>
+Phone: <%= @customer.getFormattedPhone %>
 </p>
 
 <p>
-Email: <%= call.getCustomer.email %>
+Email: <%= @customer.email %>
 </p>
 
 
@@ -39,7 +30,7 @@ Email: <%= call.getCustomer.email %>
   <p>
     <%= f.label :text %><br>
 
-    <%= text_area_tag :text, simple_format(call.text).html_safe, class: 'logarea wysihtml5' %>
+    <%= text_area_tag :text, simple_format(@call.text).html_safe, class: 'logarea wysihtml5' %>
   </p>
 
 
@@ -48,6 +39,6 @@ Email: <%= call.getCustomer.email %>
 
 
   <p>
-    <%= f.submit  "Submit Updates", class: "btn btn-success savecall-button col-md-2 col-md-offset-2" %>
+    <%= f.submit  "Submit Updates", class: "btn btn-primary-color savecall-button col-md-2 col-md-offset-2" %>
   </p>
 <% end %>

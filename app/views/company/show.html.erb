@@ -67,7 +67,7 @@
 
         <td><%= link_to 'Show', customer %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= if current_user and current_user.is_admin then  link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
       </tr>
     <% end %>
   </tbody>
@@ -102,6 +102,36 @@
     <% end %>
   <% end %>
 
+
+  <%= will_paginate @calls, :param_name => 'call_page', renderer: BootstrapPagination::Rails %>
+
+
 </div>
 </div>
+  <% end %>
+
+
+
+  <% if @projects.length > 0 %>
+  <div class="panel panel-default" style="margin-top:10px;">
+
+    <div class="panel-heading">
+    <h3> Projects </h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="project-tile-list">
+        <% @projects.each do |project| %>
+          <%= render partial: 'projects/project', locals:{project:project}%>
+        <% end %>
+      </div>
+
+
+
+  </div>
+
+    <%= will_paginate @projects, :param_name => 'project_page', renderer: BootstrapPagination::Rails %>
+
+  </div>
   <% end %>

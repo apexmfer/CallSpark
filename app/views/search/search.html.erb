@@ -43,15 +43,15 @@
 
 
          <td>
-              <% if current_user %>
 
-               <% if company.isFavorited(current_user) %>
-                 <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star" ></i> <span>Favorited</span> </div>
-                <% else %>
-                 <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
+            <% if current_user %>
+           <% if company.isFavorited(current_user) %>
+             <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star" ></i> <span>Favorited</span> </div>
+            <% else %>
+             <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
+            <% end %>
                 <% end %>
-
-              <% end %>
+ 
         </td>
 
 
@@ -62,6 +62,30 @@
 </div>
 </div>
 </div>
+
+
+
+<% if @projects.length > 0 %>
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3><%= in_words(@projects.length).titleize %> <%= 'project'.pluralize(@calls.length )%> containing '<%= params[:query] %>' </h3>
+  </div>
+
+  <div class="panel-body">
+
+    <div class="project-tile-list">
+      <% @projects.each do |project| %>
+        <%= render partial: 'projects/project', locals:{project:project}%>
+      <% end %>
+    </div>
+
+
+
+</div>
+</div>
+<% end %>
+
 
 <% if @calls.length > 0 %>
 <div class="panel panel-default" style="margin-top:10px;">
@@ -78,8 +102,6 @@
 
 
     <% if (call )  %>
-
-
 
      <div class="panel panel-default">
       <div class="panel-heading">

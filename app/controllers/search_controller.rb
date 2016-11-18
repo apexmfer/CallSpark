@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-	skip_before_filter :require_login
+	 #before_filter :require_login
 
 
 	def search
@@ -21,16 +21,23 @@ class SearchController < ApplicationController
 #@matching_companies = Company.where("name like ?", "%#{params['query']}%")
 	#	@matching_customers = Customer.where("name like ?", "%#{params['query']}%")
 
-		@company_responses = Company.search "*#{params[:query]}*"
-		@matching_companies = @company_responses.map{|response| Company.find_by_id(response.id)  }
+	@company_responses = Company.search "*#{params[:query]}*"
+	@matching_companies = @company_responses.map{|response| Company.find_by_id(response.id)  }
 
-		@customer_responses = Customer.search "*#{params[:query]}*"
-		@matching_customers = @customer_responses.map{|response| Customer.find_by_id(response.id)  }
 
 		if( @matching_customers.size == 0 && @matching_companies.size == 0 && @calls.size == 0 )
 				@noresults = true
 		end
 
+			@customer_responses = Customer.search "*#{params[:query]}*"
+		@matching_customers = @customer_responses.map{|response| Customer.find_by_id(response.id)  }
+ 
+
+		@project_responses = Project.order(updated_at: :DESC).search("*#{params[:query]}*")
+		@projects = @project_responses.map{|response| Project.find_by_id(response.id)  }
+		@projects << @matching_customers.map{|item| item.projects }
+		@projects << @matching_companies.map{|item| item.projects  }
+		@projects = @projects.flatten.sort_by(&:"#{:updated_at}").reverse
 	end
 
 

@@ -1,0 +1,33 @@
+
+
+
+
+
+<!--     users in color bubbles  -->
+
+
+<a href="<%=url_for project%>">
+<div class="project-container row">
+
+  <div class="col-xs-6">
+    <div class="project-title">
+    <% if project.primary_company %>
+      <%= project.primary_company.name %>
+    <% end %>
+    </div>
+
+    <div class="project-subtitle">
+      <%= project.name %>
+    </div>
+  </div>
+
+  <div class="col-xs-6">
+    <div class="project-info">
+    Updated  <%= format_standard_date project.updated_at %>
+    </div>
+    <div class="project-subinfo">
+      <%=   project.status_description %>
+    </div>
+  </div>
+</div>
+</a>

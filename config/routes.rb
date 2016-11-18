@@ -1,14 +1,19 @@
 Testlog::Application.routes.draw do
 
+	#Casein routes
+	namespace :casein do
+		resources :users
+	end
 
-  get 'project/index'
 
-  get 'project/show'
 
-  get 'project/new'
+ resources :article
+ resources :comment
+   resources :checkouts
+ 
 
 resources :password_resets
-
+resources :projects
 
 resources :user_sessions
 resources :users
@@ -18,7 +23,7 @@ get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
 
 
-
+  resources :demo_inventory
  resources :company
   resources :customer
   resources :calls
@@ -32,6 +37,11 @@ resources :region
 
   post "/favorite_company" => 'favorite_company#create', :as => :add_company_to_favorites
   post "/unfavorite_company" =>  'favorite_company#destroy', :as => :remove_company_from_favorites
+
+	post "/project_assignment" => 'project_assignment#create', :as => :project_assignment
+	post "/project_assignment_remove"=> 'project_assignment#destroy', :as => :project_assignment_remove
+
+	post "/comment_remove"=> 'comment#destroy', :as => :comment_remove
 
 
   get "user_sessions/new"

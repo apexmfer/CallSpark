@@ -1,6 +1,12 @@
 class CallsController < ApplicationController
-  skip_before_filter :require_login, only: [:index,:show,:data]
+   before_filter :require_login, except: [:index,:show,:data]
 
+   def show
+
+
+      @call = Call.find_by_id(params[:id])
+
+   end
 
     def data
 
@@ -60,6 +66,18 @@ class CallsController < ApplicationController
     render json: data
   end
 
+  def edit
+
+
+    @call = Call.find_by_id(params[:id])
+
+    @customer = @call.getCustomer
+
+
+
+
+
+  end
 
   def update
     text = sentencify(params['text'])
@@ -90,7 +108,9 @@ class CallsController < ApplicationController
 
         text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
 
-    @customer = spawnCustomer( params[:call])
+
+
+    @customer = spawnCustomer(params[:caller],params[:company],params[:phone],params[:email],params[:region_id],params[:BPID])
 
 
 

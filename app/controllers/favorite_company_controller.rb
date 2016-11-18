@@ -1,5 +1,5 @@
 class FavoriteCompanyController < ApplicationController
-
+    before_filter :require_login
 
   def create
      @company = Company.find_by_id(params[:id])

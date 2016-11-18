@@ -1,12 +1,14 @@
 class CompanyController < ApplicationController
-  skip_before_filter :require_login, only: [:index,:show,:data]
+   before_filter :require_login, except: [:index,:show,:data]
 
 
 
   def show
     @company = Company.find(params["id"])
-    @calls = @company.calls.order("created_at" + " DESC").limit(20)
+    @calls = @company.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
     @customers = @company.customers
+    @projects = @company.projects.order("updated_at" + " DESC").paginate(:page => params[:project_page], :per_page => 10)
+
   end
 
 

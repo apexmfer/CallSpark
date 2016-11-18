@@ -1,0 +1,168 @@
+
+
+<h2>Update project from <%= @project.primary_company_name %> </h2>
+
+
+<%= form_for @project, url: { action: "update" } do |f| %>
+
+
+
+<div class="row">
+
+  <div class="col-lg-6">
+
+    <p>
+    <%= f.label "Project Name" %><br>
+    <%= f.text_field :name , class:"form-control"%>
+  </p>
+
+  <p>
+    <%= f.label "Primary Contact" %><br>
+    <%= text_field_tag 'project[customer_name]', @project.customer_name , class:"form-control customer-field"%>
+    <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
+
+  </p>
+
+  <p>
+    <%= f.label "Primary Company" %><br>
+    <%= text_field_tag 'project[primary_company_name]', @project.primary_company_name , class:"form-control primary-company-field"%>
+
+    <%= f.hidden_field :primary_company_id, class:"form-control primary-company-id-field" %>
+
+  </p>
+
+  <p>
+    <%= f.label "Secondary Company" %><br>
+    <%= text_field_tag 'project[secondary_company_name]', @project.secondary_company_name , class:"form-control secondary-company-field"%>
+
+     <%= f.hidden_field :secondary_company_id, class:"form-control secondary-company-id-field" %>
+
+  </p>
+
+
+
+  </div>
+
+  <div class="col-lg-6">
+
+
+    <div class="datetime-fields-container">
+          <%= f.label "Data Received Date" %><br>
+      <div class='input-group date' id='data_received_date_picker'>
+            <%= f.text_field :data_received_date, value: format_standard_date(@project.data_received_date), class:"form-control" %>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+
+          <%= f.label "Solution Sized Date" %><br>
+        <div class='input-group date' id='solution_sized_date_picker'>
+            <%= f.text_field :sized_date, value: format_standard_date(@project.sized_date ), class:"form-control" %>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+
+          <%= f.label "Proposal Given Date" %><br>
+        <div class='input-group date' id='proposal_given_date_picker'>
+              <%= f.text_field :proposal_date, value: format_standard_date(@project.proposal_date ), class:"form-control" %>
+               <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+
+          <%= f.label "Follow Up Date" %><br>
+        <div class='input-group date' id='follow_up_date_picker'>
+          <%= f.text_field :follow_up_date, value: format_standard_date(@project.follow_up_date ), class:"form-control" %>
+
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+    </div>
+
+
+  	 </div>
+
+
+ </div>
+
+
+  <p>
+    <%= f.submit  "Submit Updates", class: "btn btn-primary-color savecall-button col-md-2 col-md-offset-2" %>
+
+    <!-- Cancel --> 
+    <% if current_user.is_admin %>
+     <a href=<%= url_for @customer %> data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger col-md-2 col-md-offset-2">Delete</a>
+     <% end %>
+  </p>
+<% end %>
+
+
+<script>
+
+
+var availableCompanyTags =  <%= raw all_companies_for_autocomplete  %> ;
+
+var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
+
+    $( ".primary-company-field:first" ).autocomplete({
+      source: availableCompanyTags,
+      focus: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox
+            $(this).val(ui.item.label);
+      },
+      select: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox and hidden field
+            $(this).val(ui.item.label);
+            $(".primary-company-id-field:first").val(ui.item.value);
+      }
+    });
+
+    $( ".secondary-company-field:first" ).autocomplete({
+      source: availableCompanyTags,
+      focus: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox
+            $(this).val(ui.item.label);
+      },
+      select: function(event, ui) {
+            // prevent autocomplete from updating the textbox
+            event.preventDefault();
+            // manually update the textbox and hidden field
+            $(this).val(ui.item.label);
+            $(".secondary-company-id-field:first").val(ui.item.value);
+      }
+    });
+
+
+
+
+    $( ".customer-field:first" ).autocomplete({
+      source: availableCustomerTags,
+            focus: function(event, ui) {
+          // prevent autocomplete from updating the textbox
+          event.preventDefault();
+          // manually update the textbox
+          $(this).val(ui.item.label);
+        },
+        select: function(event, ui) {
+          // prevent autocomplete from updating the textbox
+          event.preventDefault();
+          // manually update the textbox and hidden field
+          $(this).val(ui.item.label);
+          $(".customer-id-field:first").val(ui.item.value);
+        }
+    });
+
+    $('.date').datetimepicker({
+       format: 'MM/DD/YYYY',
+      useCurrent: true
+    });
+
+</script>

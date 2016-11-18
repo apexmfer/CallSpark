@@ -1,0 +1,46 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+ */
+
+
+    @import "colors";
+    @import "font-awesome-sprockets";
+    @import "font-awesome";
+    @import "bootstrap-datetimepicker.min";
+ @import "interface";
+   @import "jquery-ui.min";
+     @import "jquery-ui.structure.min";
+       @import "jquery-ui.theme.min";
+
+ @import "calls";
+  @import "projects";
+    @import "comments";
+      @import "articles";
+
+ @import "scaffolds";
+
+    @import "bootstrap.min";
+
+ @import "plugins/dataTables.bootstrap";
+
+
+     @import "bootstrap-wysihtml5";
+
+
+     @import "mc-bootstrap";
+        @import "bootstrap-table";
+              @import "animate";
+          @import "callspark";
+     @import "sb-admin-2";
+         @import "header";
+     @import "signin";
+     @import "welcome";

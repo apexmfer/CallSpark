@@ -8,14 +8,14 @@ class Company < ActiveRecord::Base
   has_many :customers
 
   has_many :calls, :through => :customers
-
+  has_many :projects, :foreign_key => :primary_company_id
 
   has_many :favorites, as: :favorited
 
 
 
   def isFavorited(favoriting_user)
-   
+
     if favoriting_user
       return !favoriting_user.favorites.companies.where(:favorited_id => id).empty?
     end

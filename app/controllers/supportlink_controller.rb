@@ -1,5 +1,6 @@
 class SupportlinkController < ApplicationController
-
+    before_filter :require_login
+    
     def create
 
     greatestorder = 0

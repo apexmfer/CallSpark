@@ -21,11 +21,11 @@
 <table class="table">
   <thead>
     <tr>
-    
+
      <th>Caller</th>
       <th>Topic</th>
        <th>Time</th>
-    
+
       <th></th>
       <th></th>
       <th></th>
@@ -34,25 +34,25 @@
 
   <tbody>
     <% Call.where(:user_id => @user.id).all.reverse.each do |call| %>
-    
-        
+
+
       <tr>
-      	
+
       	<td> <a href="<%= url_for call.getCustomer %>"> <%= call.getCustomerName %> </a></td>
-            	
+
         <td><%= call.getCategoryName %></td>
-        
+
         <td><%= time_ago_in_words(call.created_at) %> ago</td>
-      
+
         <td><%= link_to 'Show', call %></td>
         <td><%= link_to 'Edit', edit_call_path(call) %></td>
-        
-       
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+        <td><%= if current_user and current_user.is_admin then link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } end  %></td>
       </tr>
-      
-      
-      
+
+
+
     <% end %>
   </tbody>
 </table>
