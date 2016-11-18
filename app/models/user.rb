@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
+ 
   authenticates_with_sorcery!
 
-  authenticates_with_sorcery!
-
+      include Elasticsearch::Model
+      include Elasticsearch::Model::Callbacks
 
   validates :password, presence: true, length: { minimum: 6 }, if: :new_user?
   validates :password_confirmation, presence: true, length: { minimum: 6 }, if: :new_user?
