@@ -1,7 +1,8 @@
+notices
 -editing segments
 -editing estimated value
 -sort by estimated value
--search projects by mcmc usernames 
+-search projects by mcmc usernames
 
 
 -add demo inv system
