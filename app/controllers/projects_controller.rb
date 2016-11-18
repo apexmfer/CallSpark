@@ -7,7 +7,16 @@ class ProjectsController < ApplicationController
     end
 
   def index
-    @projects = Project.order(updated_at: :DESC).paginate(:page => params[:page], :per_page => 10)
+
+    @sort_by = params[:sort_by]
+
+    @order_style = "ASC"
+
+    if @sort_by == "updated_at" then   @order_style = "DESC" end
+
+    @projects = Project.order(  @sort_by => @order_style ).paginate(:page => params[:page], :per_page => 10)
+
+
   end
 
   def show

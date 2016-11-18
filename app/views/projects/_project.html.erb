@@ -10,6 +10,7 @@
 <div class="project-container row">
 
   <div class="col-xs-6">
+    <div class="project-title-section">
     <div class="project-title">
     <% if project.primary_company %>
       <%= project.primary_company.name %>
@@ -18,6 +19,10 @@
 
     <div class="project-subtitle">
       <%= project.name %>
+    </div>
+    </div>
+    <div class="project-cost-section">
+      Estimated Cost: <%= humanized_money_with_symbol project.cost_estimate %>
     </div>
   </div>
 

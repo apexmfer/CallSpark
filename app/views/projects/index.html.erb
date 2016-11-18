@@ -22,7 +22,12 @@
             <div class="project-sort-selection-container">
                 Sort by:
                 <% project_sort_terms.keys.each do |key| %>
-                    <span data-attribute=<%= project_sort_terms[key] %> >  <%=key%> <span>
+
+                <% if @sort_by == project_sort_terms[key] then sort_term_class = "active" else  sort_term_class = ""  end  %>
+              
+                            <a href=" <%= url_for( :sort_by => project_sort_terms[key] ) %>" >
+                                  <span class="<%= sort_term_class %>" data-attribute=<%= project_sort_terms[key] %> >  <%=key%> <span>
+                        </a>
                 <% end %>
             </div>
 
