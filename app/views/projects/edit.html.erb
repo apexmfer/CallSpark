@@ -93,7 +93,7 @@
 
     <!-- Cancel -->
     <% if current_user.is_admin %>
-     <a href=<%= url_for @customer %> data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger col-md-2 col-md-offset-2">Delete</a>
+     <a href=<%= url_for @project %> data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger col-md-2 col-md-offset-2">Delete</a>
      <% end %>
   </p>
 <% end %>
