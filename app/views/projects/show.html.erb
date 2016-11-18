@@ -25,6 +25,11 @@
 
      <% end %>
 
+     <p>
+
+     Project Status: <%= @project.status_description %>
+     </p>
+
 
      <p>
        Segments:
@@ -98,33 +103,38 @@
     </p>
     <%end%>
 
-
+    <hr>
     <div class="dates-section">
-      <%if(@project.created_at  ) %>
+
         <p>
-        Project Created On: <%= format_standard_date @project.created_at %>
+        Project Created On: <%= format_standard_date(@project.created_at,true) %>
+        <%= render partial: 'interface/date_checkmark', locals:{date: @project.created_at } %>
         </p>
-       <%end%>
-      <%if(@project.data_received_date  ) %>
+
+
         <p>
-        Data Received On: <%= format_standard_date @project.data_received_date %>
+        Data Received On: <%= format_standard_date(@project.data_received_date,true) %>
+          <%= render partial: 'interface/date_checkmark', locals:{date: @project.data_received_date } %>
         </p>
-       <%end%>
-       <%if(@project.sized_date  ) %>
+
+
          <p>
-         Solution Sized On: <%= format_standard_date @project.sized_date %>
+         Solution Sized On: <%= format_standard_date(@project.sized_date,true) %>
+           <%= render partial: 'interface/date_checkmark', locals:{date: @project.sized_date } %>
          </p>
-        <%end%>
-        <%if(@project.proposal_date  ) %>
+
+
           <p>
-          Proposal Given On: <%= format_standard_date @project.proposal_date %>
+          Proposal Given On: <%= format_standard_date(@project.proposal_date,true) %>
+            <%= render partial: 'interface/date_checkmark', locals:{date: @project.proposal_date } %>
           </p>
-         <%end%>
-         <%if(@project.follow_up_date  ) %>
+
+
            <p>
-           Follow Up On: <%= format_standard_date @project.follow_up_date %>
+           Follow Up On: <%= format_standard_date(@project.follow_up_date,true) %>
+           <%= render partial: 'interface/date_checkmark', locals:{date: @project.follow_up_date } %>
            </p>
-          <%end%>
+
 
     </div>
 

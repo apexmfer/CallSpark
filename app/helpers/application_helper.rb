@@ -29,10 +29,13 @@ module ApplicationHelper
   end
 
 
-  def format_standard_date(date)
+  def format_standard_date(date,as_words)
 
      datetime_format = "%m/%d/%Y"
 
+     if as_words
+       datetime_format = "%B %d, %Y"
+    end
 
     if date
 
@@ -49,11 +52,11 @@ module ApplicationHelper
 
       else
 
-        return date.strftime("%m/%d/%Y")
+        return date.strftime(datetime_format)
 
       end
 
-          return Time.current.strftime("%m/%d/%Y")
+          return Time.current.strftime(datetime_format)
 
     end
 
@@ -61,8 +64,12 @@ module ApplicationHelper
     return ''
   end
 
-  def format_standard_datetime(date)
-    return date.strftime("%m/%d/%Y at %l:%M%p")
+  def format_standard_datetime(date, as_words )
+    if as_words
+        return date.strftime("%B %d, %Y at %l:%M%p")
+    else
+       return date.strftime("%m/%d/%Y at %l:%M%p")
+    end
   end
 
 

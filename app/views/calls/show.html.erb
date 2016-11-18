@@ -16,7 +16,7 @@ Caller: <a href="<%= url_for @call.getCustomer %>"> <%= @call.getCustomer.name %
 
 <p>
 
-Taken:   <%= format_standard_date @call.created_at %> 
+Taken:   <%= format_standard_date(@call.created_at,true) %> 
 
 </p>
 

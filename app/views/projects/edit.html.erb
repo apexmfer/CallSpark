@@ -49,7 +49,7 @@
     <div class="datetime-fields-container">
           <%= f.label "Data Received Date" %><br>
       <div class='input-group date' id='data_received_date_picker'>
-            <%= f.text_field :data_received_date, value: format_standard_date(@project.data_received_date), class:"form-control" %>
+            <%= f.text_field :data_received_date, value: format_standard_date(@project.data_received_date, false), class:"form-control" %>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -57,7 +57,7 @@
 
           <%= f.label "Solution Sized Date" %><br>
         <div class='input-group date' id='solution_sized_date_picker'>
-            <%= f.text_field :sized_date, value: format_standard_date(@project.sized_date ), class:"form-control" %>
+            <%= f.text_field :sized_date, value: format_standard_date(@project.sized_date, false ), class:"form-control" %>
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -65,7 +65,7 @@
 
           <%= f.label "Proposal Given Date" %><br>
         <div class='input-group date' id='proposal_given_date_picker'>
-              <%= f.text_field :proposal_date, value: format_standard_date(@project.proposal_date ), class:"form-control" %>
+              <%= f.text_field :proposal_date, value: format_standard_date(@project.proposal_date, false ), class:"form-control" %>
                <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -73,7 +73,7 @@
 
           <%= f.label "Follow Up Date" %><br>
         <div class='input-group date' id='follow_up_date_picker'>
-          <%= f.text_field :follow_up_date, value: format_standard_date(@project.follow_up_date ), class:"form-control" %>
+          <%= f.text_field :follow_up_date, value: format_standard_date(@project.follow_up_date, false ), class:"form-control" %>
 
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
@@ -91,7 +91,7 @@
   <p>
     <%= f.submit  "Submit Updates", class: "btn btn-primary-color savecall-button col-md-2 col-md-offset-2" %>
 
-    <!-- Cancel --> 
+    <!-- Cancel -->
     <% if current_user.is_admin %>
      <a href=<%= url_for @customer %> data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger col-md-2 col-md-offset-2">Delete</a>
      <% end %>

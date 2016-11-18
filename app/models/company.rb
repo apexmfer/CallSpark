@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
 
   has_many :calls, :through => :customers
   has_many :projects, :foreign_key => :primary_company_id
+   has_many :projects_as_secondary, :foreign_key => :secondary_company_id, class_name: 'Project'
 
   has_many :favorites, as: :favorited
 

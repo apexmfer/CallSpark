@@ -23,7 +23,7 @@
 
   <div class="col-xs-6">
     <div class="project-info">
-    Updated  <%= format_standard_date project.updated_at %>
+    Updated  <%= format_standard_date(project.updated_at,true) %>
     </div>
     <div class="project-subinfo">
       <%=   project.status_description %>

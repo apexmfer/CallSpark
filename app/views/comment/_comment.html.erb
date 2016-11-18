@@ -6,10 +6,10 @@
       <%= comment.user.name %>
 
       <div class="comment-timestamp">
-          <%= format_standard_datetime comment.updated_at %>
+          <%= format_standard_datetime(comment.updated_at,true) %>
       </div>
 
-      <% if current_user and current_user.is_admin %> 
+      <% if current_user and current_user.is_admin %>
       <div class="comment-options">
         <a href="#/" onclick="deleteComment(<%=comment.id%>)">
           Delete
