@@ -8,9 +8,11 @@ class ProjectsController < ApplicationController
 
   def index
 
-    @sort_by = params[:sort_by]
-
-    @order_style = "ASC"
+    @sort_by = "updated_at"
+    if params[:sort_by]
+      @sort_by = params[:sort_by]
+      @order_style = "ASC"
+    end
 
     if @sort_by == "updated_at" then   @order_style = "DESC" end
 
