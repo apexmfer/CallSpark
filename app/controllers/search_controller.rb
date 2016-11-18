@@ -37,19 +37,19 @@ class SearchController < ApplicationController
 		 @projects << @matching_companies.map{|item| item.projects_as_secondary  }
 		@projects = @projects.flatten.sort_by(&:"#{:updated_at}").reverse
 
+		@user_responses = User.order(updated_at: :DESC).search("*#{params[:query]}*")
+			@users = @user_responses.map{|response| User.find_by_id(response.id)  }
 
-
-				if( @matching_customers && @matching_customers.size == 0 && @matching_companies && @matching_companies.size == 0	&& @calls &&  @calls.size == 0 && @projects &&  @projects.size == 0  )
+				if( @matching_customers && @matching_customers.size == 0 && @matching_companies && @matching_companies.size == 0	&& @calls &&  @calls.size == 0 && @projects &&  @projects.size == 0 && @users &&  @users.size == 0   )
 						@noresults = true
 				end
 
-				if( @matching_customers == nil && @matching_companies ==nil && @calls == nil && @projects == nil  )
+				if( @matching_customers == nil && @matching_companies ==nil && @calls == nil && @projects == nil && @users=nil  )
 						@noresults = true
 				end
 
 
-		p 'alalala'
-		p @noresults
+
 
 	end
 

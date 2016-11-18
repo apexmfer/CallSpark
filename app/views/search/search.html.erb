@@ -51,7 +51,7 @@
              <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
             <% end %>
                 <% end %>
- 
+
         </td>
 
 
@@ -179,6 +179,32 @@
 </div>
 </div>
 
+
+
+<% if @users and @users.size > 0 %>
+<div class="panel panel-default" style="margin-top:10px;">
+
+  <div class="panel-heading">
+    <h3> Employees </h3>
+  </div>
+
+  <div class="panel-body">
+
+
+  <% @users.each do |item| %>
+
+     <div class="panel panel-default">
+
+      <div class="panel-body">
+       <a href="<%= url_for item %>"><%= item.name %></a>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+</div>
+<% end %>
 
 
 <script>
