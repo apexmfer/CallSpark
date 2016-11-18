@@ -43,6 +43,10 @@ class ProjectsController < ApplicationController
        @project.user = current_user
         @project.save
 
+        @customer = spawnCustomer(params[:customer],params[:primary_company],params[:phone],params[:email],nil,nil)
+
+          @project.customer = @customer
+
         if (primary_comp_id == nil or primary_comp_id.size == 0 or primary_comp_id == 0) and @project.customer!=nil
            @project.primary_company = @project.customer.company
            @project.save
@@ -56,7 +60,7 @@ class ProjectsController < ApplicationController
           end
         end
 
-        @project.save
+        @project.save!
 
 
           assignment = ProjectAssignment.create(project: @project, user: @current_user)

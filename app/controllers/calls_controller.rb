@@ -108,9 +108,9 @@ class CallsController < ApplicationController
 
         text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
 
+p params
 
-
-    @customer = spawnCustomer(params[:caller],params[:company],params[:phone],params[:email],params[:region_id],params[:BPID])
+    @customer = spawnCustomer(params[:call][:caller],params[:call][:company],params[:call][:phone],params[:call][:email],params[:call][:region_id],params[:call][:BPID])
 
 
 
