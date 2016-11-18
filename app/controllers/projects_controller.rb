@@ -70,6 +70,8 @@ class ProjectsController < ApplicationController
 
   def edit
       @project = Project.friendly.find(params[:id])
+
+          @assignments = @project.assigned_users
   end
 
 
@@ -129,12 +131,12 @@ class ProjectsController < ApplicationController
 
 private
 def new_project_params
-  params.require(:project).permit(:name,:customer_id,:primary_company_id,:secondary_company_id)
+  params.require(:project).permit(:name,:customer_id,:primary_company_id,:secondary_company_id,:cost_estimate)
 end
 
 
 def edit_project_params
-  params.require(:project).permit(:name,:customer_id,:primary_company_id,:secondary_company_id,:data_received_date,:sized_date,:proposal_date,:follow_up_date)
+  params.require(:project).permit(:name,:cost_estimate,:customer_id,:primary_company_id,:secondary_company_id,:data_received_date,:sized_date,:proposal_date,:follow_up_date)
 end
 
 

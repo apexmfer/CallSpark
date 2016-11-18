@@ -22,6 +22,9 @@ gem 'acts-as-taggable-on'
 
 gem 'acts_as_commentable_with_threading'
 
+gem 'autonumeric-rails'
+gem 'money-rails'
+
 gem 'friendly_id'
 
 gem 'font-awesome-sass', '~> 4.7.0'

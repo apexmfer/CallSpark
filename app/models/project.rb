@@ -13,6 +13,9 @@ class Project < ActiveRecord::Base
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
 
+
+  monetize :cost_estimate_cents, :allow_nil => true
+
   acts_as_commentable
 
   acts_as_taggable_on :product_segments

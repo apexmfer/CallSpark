@@ -21,7 +21,7 @@
     <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
 
   </div>
- 
+
   <div class="form-group ">
     <%= f.label "Primary Company" %><br>
     <%= f.text_field :primary_company, class:"form-control company-field" %>
@@ -60,6 +60,14 @@
     <%= f.label "Project Name" %><br>
     <%= f.text_field :name, class:"form-control" %>
    </div>
+
+   <div class="form-group ">
+    <%= f.label "Project Cost Estimate" %><br>
+    <%= f.text_field :cost_estimate_cents, class:"form-control" %>
+   </div>
+
+
+
 
    <div class="form-group ">
     <%= f.label "Product Segments" %><br>

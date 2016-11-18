@@ -18,6 +18,7 @@
 //= require chart.bundle
 //= require jquery.base64
 //= require moment
+//= require autonumeric
 //= require bootstrap.min
 //= require bootstrap-wysihtml5
 //= require bootstrap-table

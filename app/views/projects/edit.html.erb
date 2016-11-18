@@ -17,6 +17,11 @@
   </p>
 
   <p>
+  <%= f.label "Estimated Cost ($)" %><br>
+  <%= f.text_field :cost_estimate, data: {autonumeric:  {aSign: '$ ', mDec: 2} }  , class:"form-control"%>
+</p>
+
+  <p>
     <%= f.label "Primary Contact" %><br>
     <%= text_field_tag 'project[customer_name]', @project.customer_name , class:"form-control customer-field"%>
     <%= f.hidden_field :customer_id, class:"form-control customer-id-field" %>
@@ -40,6 +45,31 @@
   </p>
 
 
+
+  <div class="project-assignment-group">
+    Assigned To Project:
+
+    <ul class="project-assignment-list">
+       <% @assignments.each do |user| %>
+       <li class="project-assignment-row">
+         <span class="project-assignment-name">
+           <%=  user.name %>
+          </span>
+          <span class="project-assignment-options">
+            <a href="#/" onclick="removeProjectAssignment(<%=@project.id%>,<%=user.id%>)">
+            <div class="project-assignment-destroy-button">
+              X
+            </div>
+           </a>
+           </span>
+       </li>
+       <% end %>
+    </ul>
+
+    <input type="text" id="new-project-assignment-user-field" data-project-id=<%=@project.id %>  placeholder="Assign New User" class="form-control"><br>
+
+
+  </div>
 
   </div>
 
@@ -164,5 +194,58 @@ var availableCustomerTags =  <%= raw all_customers_for_autocomplete  %> ;
        format: 'MM/DD/YYYY',
       useCurrent: true
     });
+
+    var availableUserTags =  <%= raw all_users_for_autocomplete  %> ;
+
+        $( "#new-project-assignment-user-field" ).autocomplete({
+          source: availableUserTags,
+          focus: function(event, ui) {
+                // prevent autocomplete from updating the textbox
+                event.preventDefault();
+                // manually update the textbox
+                $(this).val(ui.item.label);
+          },
+          select: function(event, ui) {
+                // prevent autocomplete from updating the textbox
+                event.preventDefault();
+                // manually update the textbox and hidden field
+                $(this).val(ui.item.label);
+
+                var project_id = $(this).data('project-id')
+                //$(".primary-company-id-field:first").val(ui.item.value);
+                addUserToProjectList( project_id, ui.item.value   );
+          }
+        });
+
+        function addUserToProjectList(project_id,user_id)
+        {
+
+          $.ajax({
+          method: "POST",
+          url:  "/project_assignment",
+          data: {project_id: project_id, user_id: user_id}
+         })
+          .done(function( response ) {
+            console.log(response);
+            location.reload();
+
+          });
+
+        }
+        function removeProjectAssignment(project_id,user_id)
+        {
+          $.ajax({
+          method: "POST",
+          url:  "/project_assignment_remove",
+          data: {project_id: project_id, user_id: user_id}
+         })
+          .done(function( response ) {
+            console.log(response);
+            location.reload();
+
+          });
+        }
+
+
 
 </script>

@@ -18,6 +18,13 @@
                 <!-- /.col-lg-12 -->
             </div>
 
+            <%project_sort_terms = {"Last Updated"=>"updated_at","Project Cost"=>"cost_estimate_cents"  } %>
+            <div class="project-sort-selection-container">
+                Sort by:
+                <% project_sort_terms.keys.each do |key| %>
+                    <span data-attribute=<%= project_sort_terms[key] %> >  <%=key%> <span>
+                <% end %>
+            </div>
 
             <div class="project-tile-list">
               <% @projects.each do |project| %>
