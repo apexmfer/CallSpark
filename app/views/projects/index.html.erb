@@ -18,13 +18,19 @@
                 <!-- /.col-lg-12 -->
             </div>
 
+            <div class="project-export-container pull-right">
+              Download all projects:
+              <%= link_to "CSV", projects_export_path(format: "csv") %>
+
+            </div>
+
             <%project_sort_terms = {"Last Updated"=>"updated_at","Project Cost"=>"cost_estimate_cents"  } %>
             <div class="project-sort-selection-container">
                 Sort by:
                 <% project_sort_terms.keys.each do |key| %>
 
                 <% if @sort_by == project_sort_terms[key] then sort_term_class = "active" else  sort_term_class = ""  end  %>
-              
+
                             <a href=" <%= url_for( :sort_by => project_sort_terms[key] ) %>" >
                                   <span class="<%= sort_term_class %>" data-attribute=<%= project_sort_terms[key] %> >  <%=key%> <span>
                         </a>

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-   before_filter :require_login, except: [:index,:show]
+   before_filter :require_login, except: [:index,:show,:export]
     before_action :set_navbar_style
 
     def set_navbar_style
@@ -18,6 +18,19 @@ class ProjectsController < ApplicationController
 
     @projects = Project.order(  @sort_by => @order_style ).paginate(:page => params[:page], :per_page => 10)
 
+
+  end
+
+
+  def export
+
+    @projects = Project.all
+
+
+    respond_to do |format|
+     format.html
+        format.csv { render text: @projects.to_csv } 
+   end
 
   end
 

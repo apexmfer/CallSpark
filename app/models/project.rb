@@ -99,4 +99,35 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.to_csv
+   CSV.generate do |csv|
+     #csv << column_names
+     #all.each do |project|
+    #   csv << project.attributes.values_at(*column_names)
+    # end
+
+     csv << ["ID","Entry Date","Data Received Date","Sizing Completed Date","Solution Proposed Date","Follow Up Date","Project Name","Primary Account","Secondary Account","Project Segments","Assigned Engineers","Estimated Cost","Status"]
+
+     all.each do |project|
+       csv << [project.id,project.created_at, project.data_received_date, project.sized_date, project.proposal_date, project.follow_up_date , project.name,project.primary_company_name,project.secondary_company_name, project.segments_description, project.assigned_engineers_description, project.estimated_cost_description, project.status_description]
+     end
+
+   end
+ end
+
+ def segments_description
+
+  return product_segment_list.to_s.humanize
+ end
+ def assigned_engineers_description
+   result = ""
+   assigned_users.each do |user|
+     result += (user.name + ", ")
+   end
+  return result
+ end
+ def estimated_cost_description
+   return ActionController::Base.helpers.humanized_money_with_symbol cost_estimate
+ end
+
 end

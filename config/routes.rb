@@ -10,7 +10,12 @@ Testlog::Application.routes.draw do
  resources :article
  resources :comment
    resources :checkouts
- 
+
+
+
+	 get '/projects/export' => 'projects#export', :as => :projects_export
+
+
 
 resources :password_resets
 resources :projects
@@ -21,7 +26,6 @@ resources :users
 get '/calls/data' => 'calls#data'
 get '/customer/data' => 'customer#data'
 get '/company/data' => 'company#data'
-
 
   resources :demo_inventory
  resources :company
