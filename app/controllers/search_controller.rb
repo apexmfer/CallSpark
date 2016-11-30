@@ -35,7 +35,7 @@ class SearchController < ApplicationController
 		@projects << @matching_customers.map{|item| item.projects }
 		@projects << @matching_companies.map{|item| item.projects  }
 		 @projects << @matching_companies.map{|item| item.projects_as_secondary  }
-		@projects = @projects.flatten.sort_by(&:"#{:updated_at}").reverse
+		@projects = @projects.flatten.sort_by(&:"#{:updated_at}").reverse.uniq
 
 		@user_responses = User.order(updated_at: :DESC).search("*#{params[:query]}*")
 			@users = @user_responses.map{|response| User.find_by_id(response.id)  }
