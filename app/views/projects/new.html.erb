@@ -62,8 +62,10 @@
    </div>
 
    <div class="form-group ">
-    <%= f.label "Project Cost Estimate" %><br>
-    <%= f.text_field :cost_estimate_cents, class:"form-control" %>
+    <%= f.label "Project Cost Estimate ($)" %><br> 
+    <%= f.text_field :cost_estimate, data: {autonumeric:  {aSign: '$ ', mDec: 2} }  , class:"form-control"%>
+
+
    </div>
 
 
