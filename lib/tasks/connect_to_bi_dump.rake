@@ -59,14 +59,24 @@ namespace :db do
 
     #tell me all of the columns on this table
     #sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.smrs_orders_consolidatedVW') "
-    sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.vaVW') "
+
+  #   sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.inventoryVW') "
+
+
+    #list all tables
+  #sql = "SELECT * from  INFORMATION_SCHEMA.TABLES  ;"
+
+  #SQL SERVER Syntax
+    # sql = "SELECT TOP 1 * FROM inventoryVW"
+
+    sql = "SELECT COUNT(OrderNumber) AS numberOfOrders FROM Quote_OrdersVW ; "
 
     @result = @connection.connection.select_all(sql);
-
+    p @result.as_json
 
     @result.each do |row|
-      p row
-      # puts row["column_id"].to_s + " " + row["name"].to_s + " " + row["max_length"].to_s
+      #p row
+      puts row["column_id"].to_s + " " + row["name"].to_s + " " + row["max_length"].to_s
     end
 
 

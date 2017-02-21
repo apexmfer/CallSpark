@@ -19,13 +19,6 @@ development:
   host: localhost
 
 
-business:
-  adapter: odbc
-  dsn: InforBI_Dump
-  username: engineering
-  password: engineering
-  database: InforBI_Dump
-
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

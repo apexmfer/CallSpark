@@ -73,6 +73,7 @@ GEM
       sass-rails
       scrypt (= 1.2.1)
       will_paginate (= 3.0.7)
+    chronic (0.10.2)
     concurrent-ruby (1.0.2)
     elasticsearch (1.0.12)
       elasticsearch-api (= 1.0.12)
@@ -234,6 +235,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
@@ -269,6 +272,7 @@ DEPENDENCIES
   tiny_tds
   uglifier (>= 1.0.3)
   unicorn
+  whenever
   will_paginate
   will_paginate-bootstrap
 

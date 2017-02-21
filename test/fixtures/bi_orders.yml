@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_number: 1
+  order_suffix: 1
+  line_number: 1
+  ship_prod: MyString
+  prod_desc: MyString
+  warehouse: MyString
+  bi_customer_id: 1
+  customer_po: MyString
+  ship_to_name: MyString
+  ship_to_address1: MyString
+  ship_to_city: MyString
+  ship_to_state: MyString
+  prod_cost_cents: 1
+  price_cents: 1
+  sales_cents: 1
+  bi_inside_sales_rep_id: 1
+  bi_outside_sales_rep_id: 1
+  prod_category: MyString
+  bi_vendor_id: 1
+  qty_ord: 1
+  enter_date: 2017-02-21 11:55:07
+  promise_date: 2017-02-21 11:55:07
+  request_date: 2017-02-21 11:55:07
+
+two:
+  order_number: 1
+  order_suffix: 1
+  line_number: 1
+  ship_prod: MyString
+  prod_desc: MyString
+  warehouse: MyString
+  bi_customer_id: 1
+  customer_po: MyString
+  ship_to_name: MyString
+  ship_to_address1: MyString
+  ship_to_city: MyString
+  ship_to_state: MyString
+  prod_cost_cents: 1
+  price_cents: 1
+  sales_cents: 1
+  bi_inside_sales_rep_id: 1
+  bi_outside_sales_rep_id: 1
+  prod_category: MyString
+  bi_vendor_id: 1
+  qty_ord: 1
+  enter_date: 2017-02-21 11:55:07
+  promise_date: 2017-02-21 11:55:07
+  request_date: 2017-02-21 11:55:07
