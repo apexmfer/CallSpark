@@ -7,7 +7,7 @@ one:
   ship_prod: MyString
   prod_desc: MyString
   warehouse: MyString
-  bi_customer_id: 1
+  bi_customer_no: 1
   customer_po: MyString
   ship_to_name: MyString
   ship_to_address1: MyString
@@ -19,7 +19,7 @@ one:
   bi_inside_sales_rep_id: 1
   bi_outside_sales_rep_id: 1
   prod_category: MyString
-  bi_vendor_id: 1
+  bi_vendor_no: 1
   qty_ord: 1
   enter_date: 2017-02-21 11:55:07
   promise_date: 2017-02-21 11:55:07
@@ -32,7 +32,7 @@ two:
   ship_prod: MyString
   prod_desc: MyString
   warehouse: MyString
-  bi_customer_id: 1
+  bi_customer_no: 1
   customer_po: MyString
   ship_to_name: MyString
   ship_to_address1: MyString
@@ -44,7 +44,7 @@ two:
   bi_inside_sales_rep_id: 1
   bi_outside_sales_rep_id: 1
   prod_category: MyString
-  bi_vendor_id: 1
+  bi_vendor_no: 1
   qty_ord: 1
   enter_date: 2017-02-21 11:55:07
   promise_date: 2017-02-21 11:55:07

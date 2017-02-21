@@ -17,7 +17,7 @@ Testlog::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
- 
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -48,8 +48,8 @@ Testlog::Application.configure do
         :address              => "smtp.sendgrid.net",
         :port                 => 587,
       #  :domain               => "sendgrid.net",
-        :user_name            => ENV['SENDGRID_USERNAME'],
-        :password             => ENV['SENDGRID_PASSWORD'],
+        :user_name            => 'apikey',
+        :password             => ENV['SENDGRID_KEY'],
         :authentication       => :plain,
         :enable_starttls_auto => true
   }

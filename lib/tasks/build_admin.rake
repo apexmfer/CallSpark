@@ -20,7 +20,7 @@ end
 
      # Create admin_user account
      #:login, :name, :email, :time_zone, :access_level, :password, :password_confirmation
-     admin_user = Casein::AdminUser.create!(:login => 'admin',:name => 'admin', :email => dev_email,
+     admin_user = Casein::AdminUser.create(:login => 'admin',:name => 'admin', :email => dev_email,
      :password => "password",:password_confirmation => "password")
 
       puts 'Created casein admin...'

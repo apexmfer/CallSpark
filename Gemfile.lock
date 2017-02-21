@@ -194,6 +194,8 @@ GEM
     scrypt (1.2.1)
       ffi-compiler (>= 0.0.2)
       rake
+    sendgrid (1.2.4)
+      json
     sequel (3.20.0)
     sinatra (1.4.6)
       rack (~> 1.4)
@@ -266,6 +268,7 @@ DEPENDENCIES
   pg
   rails (~> 4.2.3)
   sass-rails
+  sendgrid
   sorcery
   sqlite3
   tapsicle

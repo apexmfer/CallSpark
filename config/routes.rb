@@ -2,6 +2,9 @@ Testlog::Application.routes.draw do
 
 	#Casein routes
 	namespace :casein do
+		resources :bi_vendors
+		resources :bi_customers
+		resources :bi_orders
 		resources :users
 	end
 

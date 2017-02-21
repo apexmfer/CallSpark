@@ -33,6 +33,7 @@ gem 'casein', '~>5.1.1'
 
 gem 'figaro'
 
+gem 'sendgrid'
 
 #gem for sql connections
 gem 'activerecord-sqlserver-adapter'

@@ -19,6 +19,12 @@ development:
   host: localhost
 
 
+sqlserver:
+  adapter: sqlserver
+  host: <%=ENV["ms_sql_db_host"]%>
+  username: <%=ENV["ms_sql_db_user"]%>
+  password: <%=ENV["ms_sql_db_password"]%>
+  database: <%=ENV["ms_sql_db_database"]%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
