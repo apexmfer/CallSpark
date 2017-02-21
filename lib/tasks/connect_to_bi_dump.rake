@@ -22,21 +22,51 @@ namespace :db do
       :database => ENV["ms_sql_db_database"]
     })
 
-     
+
 
     p 'established connection'
+    query_date_start = '2/1/2017'
+    query_date_end = '2/2/2017'
+
+    sql = "SELECT smrs_orders_consolidatedVW.OrderNumber,
+    smrs_orders_consolidatedVW.OrderSuffix,
+    smrs_orders_consolidatedVW.LineNumber,
+    smrs_orders_consolidatedVW.ShipProd,
+    smrs_orders_consolidatedVW.EnterDate,
+    smrs_orders_consolidatedVW.ShipDate,
+    smrs_orders_consolidatedVW.PromiseDate,
+    smrs_orders_consolidatedVW.ProdCategory,
+    smrs_orders_consolidatedVW.ProdDesc,
+    smrs_orders_consolidatedVW.ProdLine,
+    smrs_orders_consolidatedVW.VendorNo,
+    smrs_orders_consolidatedVW.VendorName,
+    smrs_orders_consolidatedVW.Territory,
+    smrs_orders_consolidatedVW.Region,
 
 
-    sql = "SELECT smrs_orders_consolidatedVW.VendorName, smrs_orders_consolidatedVW.VendorNo, smrs_orders_consolidatedVW.ProdDesc, smrs_orders_consolidatedVW.ShipProd, smrs_orders_consolidatedVW.QuantityShipped, smrs_orders_consolidatedVW.Sales, smrs_orders_consolidatedVW.ExtCommCost, smrs_orders_consolidatedVW.CustomerName, smrs_orders_consolidatedVW.OutsideSlsrepName, smrs_orders_consolidatedVW.ProdCategory FROM smrs_orders_consolidatedVW ORDER BY smrs_orders_consolidatedVW.Sales DESC"
+     smrs_orders_consolidatedVW.QuantityShipped,
+     smrs_orders_consolidatedVW.Sales,
+     smrs_orders_consolidatedVW.ExtCommCost,
+     smrs_orders_consolidatedVW.CustomerNo,
+     smrs_orders_consolidatedVW.CustomerName,
+     smrs_orders_consolidatedVW.InvoiceDate,
+     smrs_orders_consolidatedVW.InsideSlsrep,
+     smrs_orders_consolidatedVW.InsideSlsrepName,
+     smrs_orders_consolidatedVW.OutsideSlsrep,
+     smrs_orders_consolidatedVW.OutsideSlsrepName,
+     smrs_orders_consolidatedVW.ProdCategory
+     FROM smrs_orders_consolidatedVW WHERE InvoiceDate >= '"+query_date_start+"' AND InvoiceDate <= '"+query_date_end+"' ORDER BY smrs_orders_consolidatedVW.Sales DESC"
 
-    sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.smrs_orders_consolidatedVW') "
+    #tell me all of the columns on this table
+    #sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.smrs_orders_consolidatedVW') "
+    sql = "SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo.vaVW') "
 
     @result = @connection.connection.select_all(sql);
 
 
     @result.each do |row|
-      p "another one "
-       puts row
+      p row
+      # puts row["column_id"].to_s + " " + row["name"].to_s + " " + row["max_length"].to_s
     end
 
 
