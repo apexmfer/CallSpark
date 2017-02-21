@@ -115,15 +115,12 @@ def createBIOrderFromSQLOutput(sql_row)
     "prod_cost_cents"=>stringMoneyToCents(sql_row["ProdCost"]),
     "price_cents"=>stringMoneyToCents(sql_row["Price"]),
     "sales_cents"=>stringMoneyToCents(sql_row["Sales"]),
-    "sales_cents"=>stringMoneyToCents(sql_row["Sales"]),
     "bi_customer_no"=> bi_customer.no,
     "customer_po"=> sql_row["CustomerPO"],
     "ship_to_name"=>sql_row["ShipToName"],
     "ship_to_address1"=>sql_row["ShipToAddress1"],
     "ship_to_city"=>sql_row["ShipToCity"],
-    "ship_to_state"=>sql_row["ShipToState"],
-    "ship_to_name"=>sql_row["ShipToName"],
-    "ship_to_name"=>sql_row["ShipToName"],
+    "ship_to_state"=>sql_row["ShipToState"], 
     "bi_inside_sales_rep_id"=>bi_inside_sales_rep.id,
     "bi_outside_sales_rep_id"=>bi_outside_sales_rep.id,
     "prod_category"=>sql_row["ProdCategory"],
@@ -153,7 +150,7 @@ def stringToDatetime(date_string)
   if date_string
     return  (date_string)
   end
-  return nil 
+  return nil
 end
 
   # input is like "320.94"
