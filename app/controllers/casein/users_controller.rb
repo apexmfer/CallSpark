@@ -3,6 +3,7 @@
 module Casein
   class UsersController < Casein::CaseinController
 
+    include UsersHelper
     ## optional filters for defining usage according to Casein::AdminUser access_levels
     # before_filter :needs_admin, :except => [:action1, :action2]
     # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
@@ -41,6 +42,9 @@ module Casein
       p params
 
       if @user.update_attributes! user_params
+
+        assignBestMatchingBiOutsideSalesRepToUser(@user)
+
         flash[:notice] = 'User has been updated'
         redirect_to casein_users_path
       else
@@ -65,4 +69,3 @@ module Casein
 
   end
 end
- 
