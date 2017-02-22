@@ -9,7 +9,7 @@ namespace :db do
   desc 'try to connect'
   task import_and_process_dump_data: :environment do
 
-    wipe_business_data()
+    #wipe_business_data()
     import_business_data()
     process_business_data()
 
