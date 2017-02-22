@@ -14,6 +14,22 @@
       BPID: <%= @company.BPID %>
     </p>
 
+    <% if @company.bi_customer %>
+    <p>
+      BI Company Name: <%= @company.bi_customer.name %>
+    </p>
+    <p>
+      <% if @company.bi_customer.getOutsideSalesProfileName %>
+      BI Outside Sales: <%= @company.bi_customer.getOutsideSalesProfileName %>
+      <% end %>
+    </p>
+    <p>
+      <% if @company.bi_customer.getInsideSalesProfileName %>
+      BI Inside Sales: <%= @company.bi_customer.getInsideSalesProfileName %>
+      <% end %>
+    </p>
+    <% end %>
+
 
 </div>
 </div>
