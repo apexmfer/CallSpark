@@ -339,8 +339,11 @@ def assignBestMatchingBiCustomerToCompany(company)
 
 
   # we use the best match if and only if it has a higher score than 50%
-  if best_match_bi_customer_no && best_matching_bi_customer_score > 0.8
+  if best_match_bi_customer_no && best_matching_bi_customer_score > 0.9
     company.update_attributes(bi_customer_no: best_match_bi_customer_no)
+  else
+    company.update_attributes(bi_customer_no: nil)
+
   end
 
 end
