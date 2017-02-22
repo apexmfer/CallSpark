@@ -23,6 +23,13 @@ namespace :db do
     process_business_data()
 
   end
+
+  desc 'process the data'
+  task import_dump_data: :environment do
+
+    import_business_data()
+
+  end
 end
 
 
