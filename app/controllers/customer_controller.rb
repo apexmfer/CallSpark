@@ -3,7 +3,10 @@ class CustomerController < ApplicationController
 
 
    def show
-     @calls = customer.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
+
+       @customer = Customer.find(params[:id])
+      
+     @calls = @customer.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
    end
 
   def data
