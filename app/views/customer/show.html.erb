@@ -64,51 +64,41 @@ Region: <a href="<%=url_for customer.region%>"> <%= customer.region.name %> </a>
 
 <br>
 
-<h2>Calls from <%= customer.name %> </h2>
-
-<table class="table">
-  <thead>
-    <tr>
-
-     <th>Respondant</th>
-      <th>Topic</th>
-       <th>Time</th>
-
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% Call.where(:customer_id => customer.id).all.reverse.each do |call| %>
 
 
-      <% answerer = User.where(:id => call.user_id).first  %>
+<% if @calls  and @calls.size > 0 %>
+<div class="panel panel-default" style="margin-top:10px;">
 
-      <tr>
+  <div class="panel-heading">
+  <h2>Calls from <%= customer.name %> </h2>
+  </div>
 
+  <div class="panel-body">
 
+  <% @calls.each do |call| %>
 
-        <% if answerer != nil %>
-        	<td> <%= answerer.firstname %> </td>
-         <% else%>
-      		<td> </td>
-        <% end %>
+    <% if (call )  %>
 
-        <td><%= call.getCategoryName %></td>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= link_to ''.concat(call.getCategoryName).concat(' call from ').concat(call.getCustomerName).concat(" at ").concat(call.getCompanyName) , controller: "calls", action: "show", id: call.id %>
 
-        <td><%= time_ago_in_words(call.created_at) %> ago</td>
-
-        <td><%= link_to 'Show', call %></td>
-        <td><%= link_to 'Edit', edit_call_path(call) %></td>
-
-
-        <td><%= if current_user and current_user.is_admin then link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
-      </tr>
+        <div class="label label-primary pull-right"><%= time_ago_in_words(call.created_at)  %> ago</div>
+        </div>
+      <div class="panel-body">
+       <%= simple_format(call.text) %>
+      </div>
+    </div>
 
 
 
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+
+
+  <%= will_paginate @calls, :param_name => 'call_page', renderer: BootstrapPagination::Rails %>
+
+
+</div>
+</div>
+  <% end %>
