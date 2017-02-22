@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221195613) do
+ActiveRecord::Schema.define(version: 20170222143316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170221195613) do
   end
 
   create_table "bi_orders", force: :cascade do |t|
-    t.integer  "order_number",            null: false
+    t.integer  "order_number",                      null: false
     t.integer  "order_suffix"
     t.integer  "line_number"
     t.string   "ship_prod"
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 20170221195613) do
     t.integer  "bi_inside_sales_rep_id"
     t.integer  "bi_outside_sales_rep_id"
     t.string   "prod_category"
-    t.integer  "bi_vendor_no"
+    t.integer  "bi_vendor_no",            limit: 8
     t.integer  "qty_ord"
     t.datetime "enter_date"
     t.datetime "promise_date"
     t.datetime "request_date"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "bi_outside_sales_reps", force: :cascade do |t|
@@ -73,6 +73,34 @@ ActiveRecord::Schema.define(version: 20170221195613) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bi_quotes", force: :cascade do |t|
+    t.integer  "order_number",                      null: false
+    t.integer  "order_suffix"
+    t.integer  "line_number"
+    t.string   "ship_prod"
+    t.string   "prod_desc"
+    t.string   "warehouse"
+    t.integer  "bi_customer_no"
+    t.string   "customer_po"
+    t.string   "ship_to_name"
+    t.string   "ship_to_address1"
+    t.string   "ship_to_city"
+    t.string   "ship_to_state"
+    t.integer  "prod_cost_cents"
+    t.integer  "price_cents"
+    t.integer  "sales_cents"
+    t.integer  "bi_inside_sales_rep_id"
+    t.integer  "bi_outside_sales_rep_id"
+    t.string   "prod_category"
+    t.integer  "bi_vendor_no",            limit: 8
+    t.integer  "qty_ord"
+    t.datetime "enter_date"
+    t.datetime "promise_date"
+    t.datetime "request_date"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "bi_vendors", primary_key: "no", force: :cascade do |t|

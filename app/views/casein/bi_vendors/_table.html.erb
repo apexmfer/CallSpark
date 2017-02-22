@@ -4,15 +4,15 @@
 	<thead>
 		<tr>
 			<th><%= casein_sort_link "No", :no %></th>
-			<th><%= casein_sort_link "Number", :number %></th>
+			<th><%= casein_sort_link "Name", :number %></th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
-	
+
 	<% bi_vendors.each do |bi_vendor| %>
 		<tr>
 			<td><%= casein_table_cell_link bi_vendor.no, casein_bi_vendor_path(bi_vendor) %></td>
-			<td><%= casein_table_cell_link bi_vendor.number, casein_bi_vendor_path(bi_vendor) %></td>
+			<td><%= casein_table_cell_link bi_vendor.name, casein_bi_vendor_path(bi_vendor) %></td>
 			<td class="delete">
 				<%= link_to(casein_show_row_icon("trash"), casein_bi_vendor_path(bi_vendor), :method => :delete, :data => { :confirm => "Are you sure you want to delete this bi vendor?" }) %>
 			</td>

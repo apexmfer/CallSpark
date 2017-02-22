@@ -20,6 +20,7 @@ end
 
 def wipe_business_data
   p 'deleting all business data... '
+   BiQuote.destroy_all
    BiOrder.destroy_all
    BiCustomer.destroy_all
    BiVendor.destroy_all
@@ -30,6 +31,8 @@ end
 def import_business_data()
 
   #use a loop for this .. loop through each day and import a day at a time
+
+
 
 
       p 'importing business data... '
@@ -50,10 +53,43 @@ def import_business_data()
       query_date_min_formatted = date.strftime("%m/%d/%Y")
       query_date_max_formatted = date.strftime("%m/%d/%Y")
 
-      @connection = ActiveRecord::Base.establish_connection('sqlserver')
 
 
         #SQL SERVER Syntax
+
+
+        #IMPORT THE QUOTES FOR THIS DAY
+
+
+        @connection = ActiveRecord::Base.establish_connection('sqlserver')
+
+
+        sql = "SELECT *
+         FROM Quote_OrdersVW
+         WHERE EnterDate >= '"+query_date_min_formatted+"'
+         AND EnterDate <= '"+query_date_max_formatted+"' "
+
+
+         @result = @connection.connection.select_all(sql);
+        # p @result.as_json
+
+         number_of_rows = 0
+
+         @result.each do |row|
+            createBIQuoteFromSQLOutput( row )
+            number_of_rows+=1
+         end
+
+         p "Imported " + number_of_rows.to_s + " rows of quotes."
+
+
+
+
+        #IMPORT THE ORDERS FOR THIS DAY
+
+
+                 @connection = ActiveRecord::Base.establish_connection('sqlserver')
+
       sql = "SELECT *
        FROM Open_OrdersVW
        WHERE EnterDate >= '"+query_date_min_formatted+"'
@@ -66,14 +102,11 @@ def import_business_data()
        number_of_rows = 0
 
        @result.each do |row|
-         #p row
-         # puts row["column_id"].to_s + " " + row["name"].to_s + " " + row["max_length"].to_s
-
           createBIOrderFromSQLOutput( row )
           number_of_rows+=1
        end
 
-       p "Imported " + number_of_rows.to_s + " rows."
+       p "Imported " + number_of_rows.to_s + " rows of orders."
 
     end
 
@@ -85,25 +118,31 @@ def createBIOrderFromSQLOutput(sql_row)
 
  @connection = ActiveRecord::Base.establish_connection('development')
 
-  bi_customer = BiCustomer.create(  #make sure no dup
-    "no"=> sql_row["CustomerNo"].to_f.floor,
-    "name"=> sql_row["CustomerName"]
-  )
 
-  bi_vendor = BiVendor.create(  #make sure no dup
-    "no"=> sql_row["VendorNo"].to_f.floor,
-    "name"=> sql_row["VendorName"]
-  )
+    bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
+      "no"=> sql_row["CustomerNo"].to_f.floor,
+      "name"=> sql_row["CustomerName"]
+    )
 
-  bi_outside_sales_rep = BiOutsideSalesRep.create(  #make sure no dup
+    bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
+      "no"=> sql_row["VendorNo"].to_f.floor,
+      "name"=> sql_row["VendorName"]
+    )
+
+
+  bi_outside_sales_rep = BiOutsideSalesRep.find_or_create_by(  #make sure no dup
     "code"=> sql_row["OutsideSlsrep"],
     "name"=> sql_row["OutsideSlsrepName"]
   )
 
-  bi_inside_sales_rep = BiInsideSalesRep.create(  #make sure no dup
+  bi_inside_sales_rep = BiInsideSalesRep.find_or_create_by(  #make sure no dup
     "code"=> sql_row["InsideSlsrep"],
     "name"=> sql_row["InsideSlsrepName"]
   )
+
+  #RangeError: 999999999999 is out of range
+
+
 
   new_order = BiOrder.new(
     "order_number"=>sql_row["OrderNumber"],
@@ -120,7 +159,7 @@ def createBIOrderFromSQLOutput(sql_row)
     "ship_to_name"=>sql_row["ShipToName"],
     "ship_to_address1"=>sql_row["ShipToAddress1"],
     "ship_to_city"=>sql_row["ShipToCity"],
-    "ship_to_state"=>sql_row["ShipToState"], 
+    "ship_to_state"=>sql_row["ShipToState"],
     "bi_inside_sales_rep_id"=>bi_inside_sales_rep.id,
     "bi_outside_sales_rep_id"=>bi_outside_sales_rep.id,
     "prod_category"=>sql_row["ProdCategory"],
@@ -133,7 +172,70 @@ def createBIOrderFromSQLOutput(sql_row)
   )
 
 
+  if(new_order.save)
+    p 'saved: ' + new_order.to_s
 
+  else
+    p 'not able to save: ' + new_order.errors.full_messages.to_s
+  end
+
+end
+
+def createBIQuoteFromSQLOutput(sql_row)
+  p 'creating bi order from output '
+
+
+ @connection = ActiveRecord::Base.establish_connection('development')
+
+
+    bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
+      "no"=> sql_row["CustomerNo"].to_f.floor,
+      "name"=> sql_row["CustomerName"]
+    )
+
+    bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
+      "no"=> sql_row["VendorNo"].to_f.floor,
+      "name"=> sql_row["VendorName"]
+    )
+
+
+  bi_outside_sales_rep = BiOutsideSalesRep.find_or_create_by(  #make sure no dup
+    "code"=> sql_row["OutsideSlsrep"],
+    "name"=> sql_row["OutsideSlsrepName"]
+  )
+
+  bi_inside_sales_rep = BiInsideSalesRep.find_or_create_by(  #make sure no dup
+    "code"=> sql_row["InsideSlsrep"],
+    "name"=> sql_row["InsideSlsrepName"]
+  )
+
+
+  new_order = BiQuote.new(
+    "order_number"=>sql_row["OrderNumber"],
+    "order_suffix"=>sql_row["OrderSuffix"],
+    "line_number"=>sql_row["LineNumber"],
+    "ship_prod"=>sql_row["ShipProd"],
+    "warehouse"=>sql_row["Warehouse"],
+    "prod_desc"=>sql_row["ProdDesc"],
+    "prod_cost_cents"=>stringMoneyToCents(sql_row["ProdCost"]),
+    "price_cents"=>stringMoneyToCents(sql_row["Price"]),
+    "sales_cents"=>stringMoneyToCents(sql_row["Sales"]),
+    "bi_customer_no"=> bi_customer.no,
+    "customer_po"=> sql_row["CustomerPO"],
+    "ship_to_name"=>sql_row["ShipToName"],
+    "ship_to_address1"=>sql_row["ShipToAddress1"],
+    "ship_to_city"=>sql_row["ShipToCity"],
+    "ship_to_state"=>sql_row["ShipToState"],
+    "bi_inside_sales_rep_id"=>bi_inside_sales_rep.id,
+    "bi_outside_sales_rep_id"=>bi_outside_sales_rep.id,
+    "prod_category"=>sql_row["ProdCategory"],
+    "bi_vendor_no"=>bi_vendor.no,
+    "qty_ord"=>sql_row["QtyOrd"].to_f.floor,
+    "enter_date"=> stringToDatetime(sql_row["EnterDate"]),
+    "promise_date"=> stringToDatetime(sql_row["PromiseDate"]),
+    "request_date"=> stringToDatetime(sql_row["RequestDate"])
+    #ship date?
+  )
 
 
   if(new_order.save)
@@ -144,6 +246,7 @@ def createBIOrderFromSQLOutput(sql_row)
   end
 
 end
+
 
 
 def stringToDatetime(date_string)
