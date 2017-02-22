@@ -42,7 +42,7 @@ class Company < ActiveRecord::Base
     close_matches = []
 
       #amatch using JaroWinkler algo - maybe other algos are better who knows
-      amatch = JaroWinkler.new(company.name)
+      amatch = JaroWinkler.new(name)
 
 
       BiCustomer.all.each do |bi_cust|
