@@ -2,6 +2,10 @@
 
 #new tables to make
 
+1. sales overview
+2. vendor overview
+
+
 BiOrders
 BiQuotes
 BIInventory (later.. when i know how it works)
