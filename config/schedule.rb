@@ -18,7 +18,7 @@ ENV['RAILS_ENV'] = "development"
 # end
 
 every :day, :at => '2am' do # Use any day of the week or :weekend, :weekday
-    rake "db:import_and_process_dump_data"
+    rake "db:import_and_process_dump_data", :environment => 'development' 
 end
 
 
