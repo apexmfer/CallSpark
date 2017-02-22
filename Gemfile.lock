@@ -44,6 +44,8 @@ GEM
       activerecord (>= 4.0)
       activesupport (>= 4.0)
       awesome_nested_set (>= 3.0)
+    amatch (0.3.0)
+      tins (~> 1.0)
     arel (6.0.3)
     authlogic (3.4.4)
       activerecord (>= 3.2)
@@ -224,6 +226,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    tins (1.13.2)
     tiny_tds (1.1.0)
       mini_portile2 (~> 2.0)
     tiny_tds (1.1.0-x86-mingw32)
@@ -251,6 +254,7 @@ DEPENDENCIES
   activerecord-sqlserver-adapter
   acts-as-taggable-on
   acts_as_commentable_with_threading
+  amatch
   autonumeric-rails
   bootstrap-sass (~> 3.3.1)
   bootstrap-wysihtml5-rails

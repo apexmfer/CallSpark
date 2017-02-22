@@ -15,7 +15,7 @@ gem 'sqlite3'
 
 gem 'pg'
 gem 'tapsicle'
- 
+
 
 gem 'acts-as-taggable-on'
 
@@ -39,6 +39,9 @@ gem 'activerecord-sqlserver-adapter'
 gem 'tiny_tds'
 
 gem 'whenever'
+
+#fuzzy string matching 
+gem 'amatch'
 
 
 # Gems used only for assets and not required

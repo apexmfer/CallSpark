@@ -6,15 +6,19 @@
 			<th><%= casein_sort_link "No", :no %></th>
 			<th><%= casein_sort_link "Name", :name %></th>
 			<th><%= casein_sort_link "Customer type", :customer_type %></th>
+			<th><%= casein_sort_link "BI Inside Sales Rep ID", :bi_inside_sales_rep_id %></th>
+			<th><%= casein_sort_link "BI Outside Sales Rep ID", :bi_outside_sales_rep_id %></th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
-	
+
 	<% bi_customers.each do |bi_customer| %>
 		<tr>
 			<td><%= casein_table_cell_link bi_customer.no, casein_bi_customer_path(bi_customer) %></td>
 			<td><%= casein_table_cell_link bi_customer.name, casein_bi_customer_path(bi_customer) %></td>
 			<td><%= casein_table_cell_link bi_customer.customer_type, casein_bi_customer_path(bi_customer) %></td>
+			<td><%= casein_table_cell_link bi_customer.bi_inside_sales_rep_id, casein_bi_customer_path(bi_customer) %></td>
+			<td><%= casein_table_cell_link bi_customer.bi_outside_sales_rep_id, casein_bi_customer_path(bi_customer) %></td>
 			<td class="delete">
 				<%= link_to(casein_show_row_icon("trash"), casein_bi_customer_path(bi_customer), :method => :delete, :data => { :confirm => "Are you sure you want to delete this bi customer?" }) %>
 			</td>

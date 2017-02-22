@@ -13,6 +13,8 @@ class Company < ActiveRecord::Base
 
   has_many :favorites, as: :favorited
 
+  #filled in by smart scripts
+  belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no"
 
 
   def isFavorited(favoriting_user)
@@ -23,6 +25,14 @@ class Company < ActiveRecord::Base
 
     return false
 
+  end
+
+
+
+  def getOutsideSalesRep
+    if bi_customer  
+      return bi_customer.bi_outside_sales_rep
+    end
   end
 
 end

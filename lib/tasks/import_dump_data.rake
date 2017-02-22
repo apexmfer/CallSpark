@@ -1,7 +1,7 @@
 
 #this runs every night thanks to Cron and Whenever gem!
 require 'date'
-
+require 'amatch'
 
 namespace :db do
 
@@ -119,15 +119,6 @@ def createBIOrderFromSQLOutput(sql_row)
  @connection = ActiveRecord::Base.establish_connection('development')
 
 
-    bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
-      "no"=> sql_row["CustomerNo"].to_f.floor,
-      "name"=> sql_row["CustomerName"]
-    )
-
-    bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
-      "no"=> sql_row["VendorNo"].to_f.floor,
-      "name"=> sql_row["VendorName"]
-    )
 
 
   bi_outside_sales_rep = BiOutsideSalesRep.find_or_create_by(  #make sure no dup
@@ -139,6 +130,27 @@ def createBIOrderFromSQLOutput(sql_row)
     "code"=> sql_row["InsideSlsrep"],
     "name"=> sql_row["InsideSlsrepName"]
   )
+
+
+      bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
+        "no"=> sql_row["CustomerNo"].to_f.floor,
+        "name"=> sql_row["CustomerName"]
+      )
+
+      #For every bi_customer, set the outside and inside reps (then we can send emails )
+      if bi_customer
+        if bi_outside_sales_rep
+          bi_customer.update_attributes(bi_outside_sales_rep_id: bi_outside_sales_rep.id )
+        end
+        if bi_inside_sales_rep
+          bi_customer.update_attributes(bi_inside_sales_rep_id: bi_inside_sales_rep.id)
+        end
+      end
+
+      bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
+        "no"=> sql_row["VendorNo"].to_f.floor,
+        "name"=> sql_row["VendorName"]
+      )
 
   #RangeError: 999999999999 is out of range
 
@@ -188,15 +200,6 @@ def createBIQuoteFromSQLOutput(sql_row)
  @connection = ActiveRecord::Base.establish_connection('development')
 
 
-    bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
-      "no"=> sql_row["CustomerNo"].to_f.floor,
-      "name"=> sql_row["CustomerName"]
-    )
-
-    bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
-      "no"=> sql_row["VendorNo"].to_f.floor,
-      "name"=> sql_row["VendorName"]
-    )
 
 
   bi_outside_sales_rep = BiOutsideSalesRep.find_or_create_by(  #make sure no dup
@@ -207,6 +210,17 @@ def createBIQuoteFromSQLOutput(sql_row)
   bi_inside_sales_rep = BiInsideSalesRep.find_or_create_by(  #make sure no dup
     "code"=> sql_row["InsideSlsrep"],
     "name"=> sql_row["InsideSlsrepName"]
+  )
+
+
+  bi_customer = BiCustomer.find_or_create_by(  #make sure no dup
+    "no"=> sql_row["CustomerNo"].to_f.floor,
+    "name"=> sql_row["CustomerName"]
+  )
+
+  bi_vendor = BiVendor.find_or_create_by(  #make sure no dup
+    "no"=> sql_row["VendorNo"].to_f.floor,
+    "name"=> sql_row["VendorName"]
   )
 
 
@@ -267,5 +281,47 @@ def process_business_data
     #some sort of scripts that apply intelligence to the data such as .. who is shopping us out
     #comparing quotes to orders... maybe link them up and them loop through the links
     #maybe import customers and acct mgrs using this as well but set a flag 'imported_from_bi' true
+
+
+    p 'Assigning best matching companies using fuzzy string match'
+
+    #for every call logger company, set the bi_customer_no ... need to find best match
+    Company.each do |company|
+      assignBestMatchingBiCustomerToCompany(company)
+    end
+
+    #build the QuoteAnalytic models which basically bundle up all related quotes to an order and show which pieces were shopped out... these are tied to BI Customer no
+
+
+
+end
+
+
+def assignBestMatchingBiCustomerToCompany(company)
+
+
+  best_match_bi_customer_no = nil
+  best_matching_bi_customer_score = 0
+  matching_bi_customer_score = 0
+
+  #amatch using JaroWinkler algo - maybe other algos are better who knows
+  amatch = JaroWinkler.new(company.name)
+
+
+  BiCustomer.each do |bi_cust|
+    matching_bi_customer_score = amatch.match(bi_cust.name)
+
+    if(matching_bi_customer_score > best_matching_bi_customer_score)
+      best_match_bi_customer_no = bi_cust.no
+      best_matching_bi_customer_score = matching_bi_customer_score
+    end
+
+  end
+
+
+  # we use the best match if and only if it has a higher score than 50%
+  if best_match_bi_customer_no && best_matching_bi_customer_score > 0.8
+    company.update_attributes(bi_customer_no: best_match_bi_customer_no)
+  end
 
 end
