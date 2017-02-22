@@ -30,9 +30,31 @@ class Company < ActiveRecord::Base
 
 
   def getOutsideSalesRep
-    if bi_customer  
+    if bi_customer
       return bi_customer.bi_outside_sales_rep
     end
+  end
+
+
+  def findCloseMatchBICustomers
+
+    close_matches = []
+
+      #amatch using JaroWinkler algo - maybe other algos are better who knows
+      amatch = JaroWinkler.new(company.name)
+
+
+      BiCustomer.all.each do |bi_cust|
+        matching_bi_customer_score = amatch.match(bi_cust.name)
+
+        if(matching_bi_customer_score > 0.8)
+            close_matches << bi_cust
+        end
+
+      end
+
+
+      return close_matches
   end
 
 end

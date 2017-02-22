@@ -1,7 +1,4 @@
-
-<% @company = Company.find(params[:id])  %>
-
-
+ 
 
 <h2>Update <%= @company.name %> </h2>
 
@@ -12,7 +9,7 @@
 
 <div class="row">
 
-  <div class="col-lg-6">
+  <div class="col-sm-6">
 
   <div class="form-group">
     <p>
@@ -25,7 +22,7 @@
 		<%= f.label :address %><br>
 		<%= f.text_field :address, class:"form-control" %>
 	</p>
-	
+
  <p>
     <%= f.label :BPID %><br>
     <%= f.text_field :BPID, class:"form-control" %>
@@ -34,9 +31,19 @@
 
  </div>
   </div>
+<div class="col-sm-6">
 
+<% if @company.bi_customer == nil %>
 
+  <h4> Similar BI Customer Matches </h4>
+    <% @similar_bi_customers.each do |bi_cust| %>
+    <p>
+      <%= bi_cust.name %>
+    </p>
+    <% end %>
+<% end %>
 
+</div>
 
  </div>
 

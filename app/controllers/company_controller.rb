@@ -11,6 +11,19 @@ class CompanyController < ApplicationController
 
   end
 
+  def edit
+
+    @company = Company.find(params["id"])
+
+
+
+    if @company.bi_customer == nil
+      @similar_bi_customers = @company.findCloseMatchBICustomers
+    end
+
+
+  end
+
 
 
   def data
