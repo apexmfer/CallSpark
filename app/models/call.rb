@@ -66,6 +66,22 @@ class Call < ActiveRecord::Base
 
  end
 
+ def getRecipientName
+
+    if(user)
+        return user.getProfileName
+    end
+
+  end
+
+
+  def getOutsideSalesRep
+    if customer and customer.company
+      return customer.company.getOutsideSalesRep
+    end
+
+  end
+
 
 
 end

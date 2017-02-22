@@ -18,4 +18,20 @@ module UsersHelper
     end
 
 
+    def assignBestMatchingBiOutsideSalesRepToUser(user)
+
+      formatted_user_code = user.bi_outside_sales_rep_code.strip.downcase
+
+      BiOutsideSalesRep.each do |rep|
+
+        formatted_rep_code = rep.code.strip.downcase
+        if formatted_rep_code == formatted_user_code
+          user.update_attributes(bi_outside_sales_rep_id: rep.id)
+          p 'Matched ' + user.getProfileName + ' with ' + rep.getProfileName
+        end
+
+      end
+    end
+
+
 end

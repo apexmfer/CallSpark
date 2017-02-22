@@ -21,9 +21,17 @@
 
 <div class="row">
 	<div class="col-lg-6">
-		<%= casein_text_field f, f.object, :bi_outside_sales_rep_code %>
+		<%= casein_text_field f, f.object, :bi_outside_sales_rep_id %>
 	</div>
+	<div class="col-lg-6">
+	 <%= casein_text_field f, f.object, :bi_outside_sales_rep_code %>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-lg-6">
 		<%= casein_check_box f, f.object, :receive_outside_sales_emails %>
 	</div>
+	<div class="col-lg-6">
+	 	</div>
 </div>

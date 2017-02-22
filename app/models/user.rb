@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
- 
+
   authenticates_with_sorcery!
 
       include Elasticsearch::Model
@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :favorite_customers, through: :favorite_companies, source: :customers
   has_many :favorite_calls, through: :favorite_companies, source: :calls
 
+  belongs_to :bi_outside_sales_rep
 
   def name
 
@@ -28,6 +29,9 @@ class User < ActiveRecord::Base
 
   end
 
+  def getProfileName
+    return name
+  end
 
 
   enum privilege_level: {

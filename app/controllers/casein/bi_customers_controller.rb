@@ -2,21 +2,21 @@
 
 module Casein
   class BiCustomersController < Casein::CaseinController
-  
+
     ## optional filters for defining usage according to Casein::AdminUser access_levels
     # before_filter :needs_admin, :except => [:action1, :action2]
     # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
-  
+
     def index
       @casein_page_title = 'Bi customers'
   		@bi_customers = BiCustomer.order(sort_order(:no)).paginate :page => params[:page]
     end
-  
+
     def show
       @casein_page_title = 'View bi customer'
       @bi_customer = BiCustomer.find params[:id]
     end
-  
+
     def new
       @casein_page_title = 'Add a new bi customer'
     	@bi_customer = BiCustomer.new
@@ -24,7 +24,7 @@ module Casein
 
     def create
       @bi_customer = BiCustomer.new bi_customer_params
-    
+
       if @bi_customer.save
         flash[:notice] = 'Bi customer created'
         redirect_to casein_bi_customers_path
@@ -33,12 +33,12 @@ module Casein
         render :action => :new
       end
     end
-  
+
     def update
       @casein_page_title = 'Update bi customer'
-      
+
       @bi_customer = BiCustomer.find params[:id]
-    
+
       if @bi_customer.update_attributes bi_customer_params
         flash[:notice] = 'Bi customer has been updated'
         redirect_to casein_bi_customers_path
@@ -47,7 +47,7 @@ module Casein
         render :action => :show
       end
     end
- 
+
     def destroy
       @bi_customer = BiCustomer.find params[:id]
 
@@ -55,11 +55,11 @@ module Casein
       flash[:notice] = 'Bi customer has been deleted'
       redirect_to casein_bi_customers_path
     end
-  
+
     private
-      
+
       def bi_customer_params
-        params.require(:bi_customer).permit(:no, :name, :customer_type)
+        params.require(:bi_customer).permit(:no, :name, :customer_type,:bi_inside_sales_rep_id,:bi_outside_sales_rep_id)
       end
 
   end
