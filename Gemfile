@@ -15,8 +15,7 @@ gem 'sqlite3'
 
 gem 'pg'
 gem 'tapsicle'
-
-gem 'activerecord-sqlserver-adapter'
+ 
 
 gem 'acts-as-taggable-on'
 
