@@ -126,7 +126,7 @@ class CallsController < ApplicationController
 
     @outside_sales_rep = @call.getOutsideSalesRep
 
-    if @outside_sales_rep and @outside_sales_rep.getUser
+    if @outside_sales_rep and @outside_sales_rep.getUser and @outside_sales_rep.getUser.receive_outside_sales_emails
       OutsideSalesMailer.outside_sales_email(@outside_sales_rep.getUser,@call).deliver
     end
 
