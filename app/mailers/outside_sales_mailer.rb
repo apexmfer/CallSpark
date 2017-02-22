@@ -1,7 +1,7 @@
 
 
 class OutsideSalesMailer < ActionMailer::Base
-  default from: "mcmctechcloud@mc-mc.com"
+  default from: "mcmctechcloud@mcmctechcloud.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
