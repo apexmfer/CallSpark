@@ -182,7 +182,7 @@ def createBIOrderFromSQLOutput(sql_row)
 end
 
 def createBIQuoteFromSQLOutput(sql_row)
-  p 'creating bi order from output '
+  p 'creating bi quote from output '
 
 
  @connection = ActiveRecord::Base.establish_connection('development')
@@ -210,7 +210,7 @@ def createBIQuoteFromSQLOutput(sql_row)
   )
 
 
-  new_order = BiQuote.new(
+  new_quote = BiQuote.new(
     "order_number"=>sql_row["OrderNumber"],
     "order_suffix"=>sql_row["OrderSuffix"],
     "line_number"=>sql_row["LineNumber"],
@@ -238,11 +238,11 @@ def createBIQuoteFromSQLOutput(sql_row)
   )
 
 
-  if(new_order.save)
-    p 'saved: ' + new_order.to_s
+  if(new_quote.save)
+    p 'saved: ' + new_quote.to_s
 
   else
-    p 'not able to save: ' + new_order.errors.full_messages.to_s
+    p 'not able to save: ' + new_quote.errors.full_messages.to_s
   end
 
 end
