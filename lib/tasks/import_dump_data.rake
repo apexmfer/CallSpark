@@ -2,6 +2,7 @@
 #this runs every night thanks to Cron and Whenever gem!
 require 'date'
 require 'amatch'
+ include Amatch
 
 namespace :db do
 
@@ -13,6 +14,13 @@ namespace :db do
     process_business_data()
 
 
+
+  end
+
+  desc 'process the data'
+  task process_dump_data: :environment do
+
+    process_business_data()
 
   end
 end
@@ -283,10 +291,14 @@ def process_business_data
     #maybe import customers and acct mgrs using this as well but set a flag 'imported_from_bi' true
 
 
+
+     @connection = ActiveRecord::Base.establish_connection('development')
+
+
     p 'Assigning best matching companies using fuzzy string match'
 
     #for every call logger company, set the bi_customer_no ... need to find best match
-    Company.each do |company|
+    Company.all.each do |company|
       assignBestMatchingBiCustomerToCompany(company)
     end
 
@@ -308,7 +320,7 @@ def assignBestMatchingBiCustomerToCompany(company)
   amatch = JaroWinkler.new(company.name)
 
 
-  BiCustomer.each do |bi_cust|
+  BiCustomer.all.each do |bi_cust|
     matching_bi_customer_score = amatch.match(bi_cust.name)
 
     if(matching_bi_customer_score > best_matching_bi_customer_score)
