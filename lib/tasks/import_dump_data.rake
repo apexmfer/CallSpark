@@ -3,8 +3,6 @@
 require 'date'
 
 
- include CompanyHelper
-
 namespace :db do
 
   desc 'try to connect'
@@ -307,7 +305,7 @@ def process_business_data
 
     #for every call logger company, set the bi_customer_no ... need to find best match
     Company.all.each do |company|
-      assignBestMatchingBiCustomerToCompany(company)
+      ApplicationController.helpers.assignBestMatchingBiCustomerToCompany(company)
     end
 
     #build the QuoteAnalytic models which basically bundle up all related quotes to an order and show which pieces were shopped out... these are tied to BI Customer no
