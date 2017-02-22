@@ -3,6 +3,6 @@ class BiOutsideSalesRep < ActiveRecord::Base
       has_many :bi_customers
 
       def getProfileName
-        return name + ' (' + code + ')'
+        return name + ' (' + code.strip + ')'
       end
 end

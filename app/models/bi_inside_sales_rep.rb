@@ -4,7 +4,7 @@ class BiInsideSalesRep < ActiveRecord::Base
 
 
   def getProfileName
-    return name + ' (' + code + ')'
+    return name + ' (' + code.strip + ')'
   end
 
 end
