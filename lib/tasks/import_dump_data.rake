@@ -1,8 +1,9 @@
 
 #this runs every night thanks to Cron and Whenever gem!
 require 'date'
-require 'amatch'
- include Amatch
+
+
+ include CompanyHelper
 
 namespace :db do
 

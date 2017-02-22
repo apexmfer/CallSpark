@@ -1,7 +1,7 @@
 class CompanyController < ApplicationController
    before_filter :require_login, except: [:index,:show,:data]
 
-
+    include CompanyHelper
 
   def show
     @company = Company.find(params["id"])
@@ -58,8 +58,17 @@ class CompanyController < ApplicationController
         matchingCompany.name = name;
         matchingCompany.address = address;
         matchingCompany.BPID = bpid;
-        matchingCompany.save
-        redirect_to matchingCompany, notice: 'Company updated'
+
+
+        if ( matchingCompany.save )
+          
+          assignBestMatchingBiCustomerToCompany(matchingCompany)
+
+          redirect_to matchingCompany, notice: 'Company updated'
+        else
+          render text: matchingCompany.errors.full_messages
+        end
+
       else
          redirect_to '/company', alert: 'No company match found!'
       end

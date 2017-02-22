@@ -6,6 +6,8 @@ class Company < ActiveRecord::Base
 
    include Amatch
 
+   include CompanyHelper
+
   has_many :customers
 
   has_many :calls, :through => :customers
