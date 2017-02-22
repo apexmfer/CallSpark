@@ -1,9 +1,10 @@
 class Company < ActiveRecord::Base
   # attr_accessible :title, :body
-
+  require 'amatch'
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+   include Amatch
 
   has_many :customers
 
