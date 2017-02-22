@@ -60,8 +60,9 @@ module Casein
     private
 
       def user_params
-        params.require(:user).permit(:email, :firstname, :lastname, :privilege_level)
+        params.require(:user).permit(:email, :firstname, :lastname, :privilege_level,:bi_outside_sales_rep_id,:bi_outside_sales_rep_code,:receive_outside_sales_emails)
       end
 
   end
 end
+ 
