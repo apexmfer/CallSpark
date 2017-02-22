@@ -2,7 +2,7 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-
+ENV['RAILS_ENV'] = "development"
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
@@ -22,6 +22,6 @@ every :day, :at => '2am' do # Use any day of the week or :weekend, :weekday
 end
 
 
-## need to use 'whenever --update-crontab'  to update the cron file 
+## need to use 'whenever --update-crontab'  to update the cron file
 
 # Learn more: http://github.com/javan/whenever

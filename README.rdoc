@@ -13,4 +13,8 @@ FEATURES
 
 
 
-Created by Indie Bucket software (Andy Mazzola)
+Created by Indie Bucket software
+
+
+
+## NEED sudo apt-get install freetds-dev
