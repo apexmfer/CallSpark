@@ -22,7 +22,7 @@ module UsersHelper
 
       formatted_user_code = user.bi_outside_sales_rep_code.strip.downcase
 
-      BiOutsideSalesRep.each do |rep|
+      BiOutsideSalesRep.all.each do |rep|
 
         formatted_rep_code = rep.code.strip.downcase
         if formatted_rep_code == formatted_user_code
