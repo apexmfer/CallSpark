@@ -1,6 +1,13 @@
 class InitiativeController < ApplicationController
   def show
     @initiative = Initiative.find_by_id(params[:id])
+
+
+    @product_segments = @initiative.focused_product_segments
+
+    @target_companies = @initiative.bi_target_companies
+    
+    @target_vendors = @initiative.bi_target_vendors
   end
 
   def index
