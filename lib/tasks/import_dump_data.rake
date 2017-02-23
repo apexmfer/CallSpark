@@ -61,6 +61,9 @@ def import_business_data()
 
     (query_date_start..query_date_end).each do |date|
 
+      p "Importing date " + date.to_s + "."
+
+
       query_date_min = date
       query_date_max = date + 1.day
 
