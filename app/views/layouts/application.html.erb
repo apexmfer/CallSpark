@@ -78,7 +78,7 @@
 
             	 <% if current_user %>
 
- 
+
 
 
                 <li class="dropdown">
@@ -182,6 +182,10 @@
 
                         <li>
                             <a <%= cssClassActive('project') %> href="<%= url_for projects_path %>"><i class="fa fa-wrench fa-fw" style="color:<%= color(1) %>" ></i> Projects Overview </a>
+                        </li>
+
+                        <li>
+                            <a <%= cssClassActive('initiative') %> href="<%= url_for initiative_index_path %>"><i class="fa fa-flag fa-fw" style="color:<%= color(1) %>" ></i> Initiatives </a>
                         </li>
 
 

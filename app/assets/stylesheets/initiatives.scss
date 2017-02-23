@@ -1,0 +1,98 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+
+.product-segment-labels-container
+{
+  display:inline;
+  .label
+  {
+    margin:5px;
+    font-size:12px;
+    line-height: 24px;
+  }
+}
+
+
+.initiative-container
+{
+  color:#111;
+  margin-top:10px;
+  padding:10px;
+  border-top: 1px solid $mcmc_gray_primary;
+
+  .initiative-title
+  {
+    display: inline-block;
+    font-size:16px;
+    font-weight: bold;
+  }
+  .initiative-subtitle
+  {
+      display: inline-block;
+      font-size:14px;
+  }
+  .initiative-info
+  {
+
+  }
+  .initiative-subinfo
+  {
+
+  }
+}
+
+.initiative-container:hover
+{
+  background-color: $mcmc_gray_primary;
+}
+
+
+.initiative-assignment-list
+{
+  margin:10px;
+  list-style:none;
+
+  .initiative-assignment-row
+  {
+    background-color: #ddd;
+    padding:5px;
+    border-radius: 3px;
+
+  }
+  .initiative-assignment-options
+  {
+    float:right;
+  }
+  .initiative-assignment-destroy-button
+  {
+    background-color: $edit-color;
+    padding:1px 5px;
+    border-radius: 3px;
+    color:#fff;
+  }
+}
+.dates-section
+{
+  p
+  {
+    font-size: 16px;
+  }
+}
+
+
+.initiative-sort-selection-container
+{
+  span
+  {
+    margin-left:5px;
+    margin-right:5px;
+
+  }
+  .active
+  {
+    font-weight: bold;
+  }
+}

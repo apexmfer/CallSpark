@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222171627) do
+ActiveRecord::Schema.define(version: 20170223170907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,11 +240,40 @@ ActiveRecord::Schema.define(version: 20170222171627) do
   add_index "favorites", ["favorited_type", "favorited_id"], name: "index_favorites_on_favorited_type_and_favorited_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
+  create_table "initiative_targets", force: :cascade do |t|
+    t.integer  "bi_targetted_no"
+    t.string   "bi_targetted_type"
+    t.integer  "initiative_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "initiatives", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "enabled",    default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "partdetails", force: :cascade do |t|
     t.string   "catalog_number"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "product_segment_focus", force: :cascade do |t|
+    t.integer  "focused_no"
+    t.string   "focused_type"
+    t.integer  "product_segment_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "product_segments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "project_assignments", force: :cascade do |t|

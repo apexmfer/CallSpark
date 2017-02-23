@@ -1,0 +1,36 @@
+
+
+
+
+
+<!--     users in color bubbles  -->
+
+
+<a href="<%=url_for initiative%>">
+<div class="initiative-container row">
+
+  <div class="col-xs-6">
+    <div class="initiative-title-section">
+    <div class="initiative-title">
+        <%= initiative.name %>
+    </div>
+
+    <div class="initiative-subtitle">
+
+    </div>
+    </div>
+    <div class="initiative-cost-section">
+
+    </div>
+  </div>
+
+  <div class="col-xs-6">
+    <div class="initiative-info">
+        Updated  <%= format_standard_date(initiative.updated_at,true) %>
+    </div>
+    <div class="initiative-subinfo">
+     
+    </div>
+  </div>
+</div>
+</a>

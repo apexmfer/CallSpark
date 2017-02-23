@@ -62,7 +62,7 @@
    </div>
 
    <div class="form-group ">
-    <%= f.label "Project Cost Estimate ($)" %><br> 
+    <%= f.label "Project Cost Estimate ($)" %><br>
     <%= f.text_field :cost_estimate, data: {autonumeric:  {aSign: '$ ', mDec: 2} }  , class:"form-control"%>
 
 
@@ -75,7 +75,7 @@
     <%= f.label "Product Segments" %><br>
 
 
-     <%= render partial: "interface/toggle_tags", locals:{types: Project.product_segment_types.keys } %>
+     <%= render partial: "interface/toggle_tags", locals:{types: Project.product_segment_type_names  } %>
 
 
 

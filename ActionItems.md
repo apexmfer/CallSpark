@@ -2,6 +2,22 @@
 
 #new tables to make
 
+DUE BY TODAY
+-Make an initiative model  + show page
+-Make associations from the initiative to 1. Vendors and 2. Target Accts
+- associate product groups with bi_vendors and with bi_companies and with initiatives
+-Display top accts per vendor and glaring holes in the businesses
+
+
+-add a vendor datatable and a vendor showpage!  (shows top customers using that vendor and top customers to target) (customers that spend the highest $$ on similar items)
+
+
+-fix up associatiosn
+
+-put tabs on the company show page
+
+
+
 1. sales overview
 2. vendor overview
 

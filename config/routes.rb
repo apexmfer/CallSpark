@@ -1,7 +1,13 @@
 Testlog::Application.routes.draw do
 
+ 
+
 	#Casein routes
 	namespace :casein do
+		resources :product_segments
+		resources :product_segment_focus
+		resources :initiative_targets
+		resources :initiatives
 		resources :companies
 		resources :bi_quotes
 		resources :bi_inside_sales_reps
@@ -17,6 +23,7 @@ Testlog::Application.routes.draw do
  resources :article
  resources :comment
    resources :checkouts
+   resources :initiative
 
 
 

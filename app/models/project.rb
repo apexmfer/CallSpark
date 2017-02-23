@@ -20,22 +20,35 @@ class Project < ActiveRecord::Base
 
   acts_as_taggable_on :product_segments
 
-  enum product_segment_types: {
-   "AC Motor": 0,
-   "PT Gearing": 1,
-   "Linear Actuator": 2,
-   "Rack and Pinion": 3,
-   "Precision Gearing": 4,
-   "Guidance and Bearings": 5,
-   "VFD": 6,
-   "Servo": 7,
- }
+#  enum product_segment_types: {
+#   "AC Motor": 0,
+#   "PT Gearing": 1,
+#   "Linear Actuator": 2,
+#   "Rack and Pinion": 3,
+#   "Precision Gearing": 4,
+#   "Guidance and Bearings": 5,
+#   "VFD": 6,
+#   "Servo": 7,
+ #}
+
+
+
 
  enum status: {
   "Data Collection": 0,
   "Quoted": 1,
   "Ordered": 2
 }
+
+
+def product_segment_types
+  return ProductSegment.all
+end
+
+def product_segment_type_names
+  return ProductSegment.all.map{|segment| {segment.name} }
+end
+
 
   def status_description
 

@@ -1,0 +1,8 @@
+<h3>Initiatives</h3>
+
+ 
+<div class="initiative-tile-list">
+  <% @initiatives.each do |initiative| %>
+    <%= render partial: 'initiative', locals:{initiative:initiative}%>
+  <% end %>
+</div>
