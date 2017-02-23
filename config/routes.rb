@@ -1,6 +1,7 @@
 Testlog::Application.routes.draw do
 
- 
+
+
 
 	#Casein routes
 	namespace :casein do
@@ -24,6 +25,7 @@ Testlog::Application.routes.draw do
  resources :comment
    resources :checkouts
    resources :initiative
+   resources :bi_vendor
 
 
 

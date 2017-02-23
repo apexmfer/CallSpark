@@ -41,12 +41,12 @@ class Project < ActiveRecord::Base
 }
 
 
-def product_segment_types
+def self.product_segment_types
   return ProductSegment.all
 end
 
-def product_segment_type_names
-  return ProductSegment.all.map{|segment| {segment.name} }
+def self.product_segment_type_names
+  return ProductSegment.all.map{|segment|  segment.name   }
 end
 
 

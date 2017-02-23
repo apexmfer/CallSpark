@@ -1,6 +1,6 @@
 
 
-<div class="btn-group toggle-tags-buttons" data-toggle="buttons">
+<div class="btn-group " >
 
   <% types.each do |type| %>
     <label class="btn toggle-tag-btn"  data-category-name="<%= type %>">
@@ -14,7 +14,17 @@
 
 <script>
   $(".toggle-tag-btn").on( "click", function() {
-        refillToggleTagsField();
+
+    if($(this).hasClass("active") )
+    {
+        $(this).removeClass("active")
+    }else{
+      $(this).addClass("active")
+    }
+
+
+
+         refillToggleTagsField();
    });
 
    function refillToggleTagsField()
