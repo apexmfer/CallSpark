@@ -20,6 +20,10 @@ Testlog::Application.routes.draw do
 	end
 
 
+  get '/bi_vendor/data' => 'bi_vendor#data'
+  get '/calls/data' => 'calls#data'
+  get '/customer/data' => 'customer#data'
+  get '/company/data' => 'company#data'
 
  resources :article
  resources :comment
@@ -39,9 +43,6 @@ resources :projects
 resources :user_sessions
 resources :users
 
-get '/calls/data' => 'calls#data'
-get '/customer/data' => 'customer#data'
-get '/company/data' => 'company#data'
 
   resources :demo_inventory
  resources :company

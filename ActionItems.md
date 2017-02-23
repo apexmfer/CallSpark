@@ -9,7 +9,9 @@ DUE BY TODAY
 -Display top accts per vendor and glaring holes in the businesses
 
 
--add a vendor datatable and a vendor showpage!  (shows top customers using that vendor and top customers to target) (customers that spend the highest $$ on similar items)
+-add a vendor showpage and add to search!
+  (shows top customers using that vendor and top customers to target)
+  (customers that spend the highest $$ on similar items)
 
 
 -fix up associatiosn

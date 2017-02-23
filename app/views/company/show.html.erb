@@ -4,9 +4,19 @@
 <h2><%= @company.name %> </h2>
 
 
- <div class="panel panel-default">
-  <div class="panel-heading">Company Information</div>
-  <div class="panel-body">
+
+<ul class="nav nav-tabs nav-tabs-dark">
+  <li class="active"><a data-toggle="tab" href="#overview">Overview</a></li>
+  <li><a data-toggle="tab" href="#employees">Employees</a></li>
+  <li><a data-toggle="tab" href="#projects">Projects</a></li>
+</ul>
+
+<div class="tab-content tab-content-padded">
+  <div id="overview" class="tab-pane fade in active">
+
+
+
+
     <p>
     Address: <%= @company.address %>
     </p>
@@ -30,64 +40,104 @@
     </p>
     <% end %>
 
-
-</div>
-</div>
+    <br>
 
 
+    <div class="edit-asset-buttons-container">
+     <a href = "<%= url_for edit_company_path(@company) %>">
+            	<button type="button" class="btn btn-warning col-md-4 col-md-offset-4">Edit Company Info</button>
+       </a>
 
- <a href = "<%= url_for edit_company_path(@company) %>">
-        	<button type="button" class="btn btn-warning col-md-4 col-md-offset-4">Edit Company Info</button>
-   </a>
 
-   <% if current_user %>
-      <% if @company.isFavorited(current_user) %>
-        <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= @company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star" ></i> <span>Favorited</span> </div>
-       <% else %>
-        <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= @company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
-       <% end %>
+       <% if current_user %>
+          <% if @company.isFavorited(current_user) %>
+            <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= @company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star" ></i> <span>Favorited</span> </div>
+           <% else %>
+            <div class="btn btn-default pull-right favorite-company-button" data-company-id=<%= @company.id %> onclick="toggleFavoriteCompany(this)"> <i class="fa fa-star-o" ></i> <span>Add To Favorites</span> </div>
+           <% end %>
+        <% end %>
+
+     </div>
+
+
+  </div>
+  <div id="employees" class="tab-pane fade">
+
+
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Calls in past year</th>
+          <th>Notes</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.name %></td>
+
+            <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
+
+
+            <td><%= customer.notes %></td>
+
+
+            <td><%= customer.getFormattedPhone %></td>
+            <td><%= customer.email %></td>
+
+            <td><%= link_to 'Show', customer %></td>
+            <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+            <td><%= if current_user and current_user.is_admin then  link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+  </div>
+  <div id="projects" class="tab-pane fade">
+
+
+
+    <% if @projects.length > 0 %>
+    <div class="panel panel-default" style="margin-top:10px;">
+
+
+
+
+        <div class="project-tile-list">
+          <% @projects.each do |project| %>
+            <%= render partial: 'projects/project', locals:{project:project}%>
+          <% end %>
+        </div>
+
+
+
+
+      <%= will_paginate @projects, :param_name => 'project_page', renderer: BootstrapPagination::Rails %>
+
+    </div>
     <% end %>
-<br>
-
-<h3>Employees</h3>
 
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Calls in past year</th>
-      <th>Notes</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.name %></td>
-
-        <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
+  </div>
+</div>
 
 
-        <td><%= customer.notes %></td>
 
 
-        <td><%= customer.getFormattedPhone %></td>
-        <td><%= customer.email %></td>
 
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= if current_user and current_user.is_admin then  link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <% if @calls  and @calls.size > 0 %>
 <div class="panel panel-default" style="margin-top:10px;">
@@ -124,30 +174,4 @@
 
 </div>
 </div>
-  <% end %>
-
-
-
-  <% if @projects.length > 0 %>
-  <div class="panel panel-default" style="margin-top:10px;">
-
-    <div class="panel-heading">
-    <h3> Projects </h3>
-    </div>
-
-    <div class="panel-body">
-
-      <div class="project-tile-list">
-        <% @projects.each do |project| %>
-          <%= render partial: 'projects/project', locals:{project:project}%>
-        <% end %>
-      </div>
-
-
-
-  </div>
-
-    <%= will_paginate @projects, :param_name => 'project_page', renderer: BootstrapPagination::Rails %>
-
-  </div>
   <% end %>

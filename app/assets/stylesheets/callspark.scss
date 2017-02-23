@@ -19,3 +19,32 @@
   width:100%;
   margin:10px;
 }
+
+
+.nav-tabs-dark
+{
+
+  li
+  {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #999;
+    color: #eee;
+  }
+  li.active
+  {
+    background-color: #eee;
+    color: #222;
+  }
+}
+
+
+.tab-content-padded
+{
+  padding: 10px 0px;
+}
+
+.edit-asset-buttons-container
+{
+  margin: 20px 0px;
+}
