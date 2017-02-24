@@ -3,6 +3,8 @@ class CreateSalesMetrics < ActiveRecord::Migration
     create_table :sales_metrics do |t|
       t.integer :metric_type
       t.integer :value_cents
+
+      t.integer :measured_count
       t.integer :measured_id
       t.string :measured_type
 

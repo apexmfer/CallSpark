@@ -5,6 +5,8 @@ Testlog::Application.routes.draw do
 
 	#Casein routes
 	namespace :casein do
+		resources :sales_metrics
+		resources :sals_metrics
 		resources :product_segments
 		resources :product_segment_focus
 		resources :initiative_targets

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224132720) do
+ActiveRecord::Schema.define(version: 20170224135100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "bi_customers", ["bi_inside_sales_rep_id"], name: "bi_inside_sales_rep_id_ix", using: :btree
+  add_index "bi_customers", ["bi_outside_sales_rep_id"], name: "bi_outside_sales_rep_id_ix", using: :btree
 
   create_table "bi_inside_sales_reps", force: :cascade do |t|
     t.string   "code",       null: false
@@ -68,6 +71,9 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.datetime "updated_at",                        null: false
   end
 
+  add_index "bi_orders", ["bi_customer_no"], name: "bi_order_customer_no_ix", using: :btree
+  add_index "bi_orders", ["bi_vendor_no"], name: "bi_order_vendor_no_ix", using: :btree
+
   create_table "bi_outside_sales_reps", force: :cascade do |t|
     t.string   "code",       null: false
     t.string   "name",       null: false
@@ -102,6 +108,9 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
+
+  add_index "bi_quotes", ["bi_customer_no"], name: "bi_quote_customer_no_ix", using: :btree
+  add_index "bi_quotes", ["bi_vendor_no"], name: "bi_quote_vendor_no_ix", using: :btree
 
   create_table "bi_vendors", primary_key: "no", force: :cascade do |t|
     t.string   "name",       null: false
@@ -200,6 +209,8 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.integer  "bi_customer_no"
   end
 
+  add_index "companies", ["bi_customer_no"], name: "bi_customer_no_ix", using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "phone_number"
@@ -248,6 +259,8 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.datetime "updated_at",        null: false
   end
 
+  add_index "initiative_targets", ["bi_targetted_id", "bi_targetted_type"], name: "bi_initiative_targets_ix", using: :btree
+
   create_table "initiatives", force: :cascade do |t|
     t.string   "name"
     t.boolean  "enabled",    default: true
@@ -269,6 +282,8 @@ ActiveRecord::Schema.define(version: 20170224132720) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  add_index "product_segment_focus", ["focused_id", "focused_type"], name: "bi_product_segment_focus_ix", using: :btree
 
   create_table "product_segments", force: :cascade do |t|
     t.string   "name"
@@ -311,11 +326,15 @@ ActiveRecord::Schema.define(version: 20170224132720) do
   create_table "sales_metrics", force: :cascade do |t|
     t.integer  "metric_type"
     t.integer  "value_cents"
+    t.integer  "measured_count"
     t.integer  "measured_id"
     t.string   "measured_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
+
+  add_index "sales_metrics", ["measured_id", "measured_type"], name: "bi_sales_metric_measured_ix", using: :btree
+  add_index "sales_metrics", ["metric_type"], name: "index_sales_metrics_on_metric_type", using: :btree
 
   create_table "supportlinks", force: :cascade do |t|
     t.string   "name"

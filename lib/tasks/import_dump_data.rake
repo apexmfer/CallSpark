@@ -320,8 +320,40 @@ def process_business_data
 
 
 
-    #build the QuoteAnalytic models which basically bundle up all related quotes to an order and show which pieces were shopped out... these are tied to BI Customer no
+    #build the SalesMetric models which basically bundle up all related quotes to an order and show which pieces were shopped out... these are tied to BI Customer no
+    p 'destroying old sales metrics..'
+    SalesMetric.destroy_all
+
+    BiVendor.all.each do |vendor|
+      calculateVendorSalesMetricsByCustomer(vendor)
+    end
+
+end
 
 
+
+def calculateVendorSalesMetricsByCustomer(vendor)
+  BiCustomer.all.each do |bi_cust|
+
+    total_cost_cents = 0;
+    total_sales_cents = 0;
+    order_line_items_count = 0;
+
+    #indexed to make it faster
+   vendor.bi_orders.where(bi_customer_no: bi_cust.no ).each do |order|
+    # order
+    quantity = order.qty_ord
+    total_cost_cents+=(order.prod_cost_cents*quantity)
+    total_sales_cents+=(order.price_cents*quantity)
+    order_line_items_count+=quantity
+   end
+
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:vendor_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, measured_id:vendor.no, measured_type: "BiVendor" )
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:vendor_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, measured_id:vendor.no, measured_type: "BiVendor" )
+
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, measured_id:bi_cust.no, measured_type: "BiCustomer" )
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, measured_id:bi_cust.no, measured_type: "BiCustomer" )
+   p 'created new sales metrics between ' + vendor.name + ' - ' + bi_cust.name
+ end
 
 end

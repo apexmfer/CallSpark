@@ -9,6 +9,8 @@ class BiCustomer < ActiveRecord::Base
   has_many :initiative_targets, as: :targetted
     has_many :initiatives, through: :initiative_targets
 
+    has_many :bi_quotes
+    has_many :bi_orders
 
   def getOutsideSalesProfileName
     if bi_outside_sales_rep
@@ -21,4 +23,6 @@ class BiCustomer < ActiveRecord::Base
         return bi_inside_sales_rep.getProfileName
       end
   end
+
+  has_many :sales_metrics, as: :measured
 end
