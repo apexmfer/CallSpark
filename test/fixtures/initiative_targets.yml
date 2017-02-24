@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  bi_targetted_no: 1
+  bi_targetted_id: 1
   bi_targetted_type: MyString
   initiative_id: 1
 
 two:
-  bi_targetted_no: 1
+  bi_targetted_id: 1
   bi_targetted_type: MyString
   initiative_id: 1

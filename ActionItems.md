@@ -21,7 +21,7 @@ DUE BY TODAY
 
 
 1. sales overview
-2. vendor overview
+2. vendor overview  DONE 
 
 
 BiOrders

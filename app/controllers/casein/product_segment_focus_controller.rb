@@ -9,7 +9,7 @@ module Casein
 
     def index
       @casein_page_title = 'Product segment focus'
-  		@product_segment_focus = ProductSegmentFocus.order(sort_order(:focused_no)).paginate :page => params[:page]
+  		@product_segment_focus = ProductSegmentFocus.order(sort_order(:focused_id)).paginate :page => params[:page]
     end
 
     def show
@@ -59,7 +59,7 @@ module Casein
     private
 
       def product_segment_focus_params
-        params.require(:product_segment_focus).permit(:focused_no, :focused_type, :product_segment_id)
+        params.require(:product_segment_focus).permit(:focused_id, :focused_type, :product_segment_id)
       end
 
   end

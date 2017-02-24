@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223170907) do
+ActiveRecord::Schema.define(version: 20170224132720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(version: 20170223170907) do
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "initiative_targets", force: :cascade do |t|
-    t.integer  "bi_targetted_no"
+    t.integer  "bi_targetted_id"
     t.string   "bi_targetted_type"
     t.integer  "initiative_id"
     t.datetime "created_at",        null: false
@@ -263,7 +263,7 @@ ActiveRecord::Schema.define(version: 20170223170907) do
   end
 
   create_table "product_segment_focus", force: :cascade do |t|
-    t.integer  "focused_no"
+    t.integer  "focused_id"
     t.string   "focused_type"
     t.integer  "product_segment_id"
     t.datetime "created_at",         null: false
@@ -306,6 +306,15 @@ ActiveRecord::Schema.define(version: 20170223170907) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sales_metrics", force: :cascade do |t|
+    t.integer  "metric_type"
+    t.integer  "value_cents"
+    t.integer  "measured_id"
+    t.string   "measured_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "supportlinks", force: :cascade do |t|

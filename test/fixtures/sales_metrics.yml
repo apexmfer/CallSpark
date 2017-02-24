@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  metric_type: 1
+  value_cents: 1
+  measured_id: 1
+  measured_type: MyString
+
+two:
+  metric_type: 1
+  value_cents: 1
+  measured_id: 1
+  measured_type: MyString

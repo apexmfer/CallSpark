@@ -1,7 +1,7 @@
 class CreateProductSegmentFocus < ActiveRecord::Migration
   def change
     create_table :product_segment_focus do |t|
-      t.integer :focused_no
+      t.integer :focused_id
       t.string :focused_type
       t.integer :product_segment_id
 

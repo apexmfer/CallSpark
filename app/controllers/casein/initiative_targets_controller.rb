@@ -9,7 +9,7 @@ module Casein
   
     def index
       @casein_page_title = 'Initiative targets'
-  		@initiative_targets = InitiativeTarget.order(sort_order(:bi_targetted_no)).paginate :page => params[:page]
+  		@initiative_targets = InitiativeTarget.order(sort_order(:bi_targetted_id)).paginate :page => params[:page]
     end
   
     def show
@@ -59,7 +59,7 @@ module Casein
     private
       
       def initiative_target_params
-        params.require(:initiative_target).permit(:bi_targetted_no, :bi_targetted_type, :initiative_id)
+        params.require(:initiative_target).permit(:bi_targetted_id, :bi_targetted_type, :initiative_id)
       end
 
   end
