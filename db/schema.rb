@@ -325,6 +325,8 @@ ActiveRecord::Schema.define(version: 20170224135100) do
 
   create_table "sales_metrics", force: :cascade do |t|
     t.integer  "metric_type"
+    t.integer  "bi_vendor_no"
+    t.integer  "bi_customer_no"
     t.integer  "value_cents"
     t.integer  "measured_count"
     t.integer  "measured_id"
@@ -333,6 +335,8 @@ ActiveRecord::Schema.define(version: 20170224135100) do
     t.datetime "updated_at",     null: false
   end
 
+  add_index "sales_metrics", ["bi_customer_no"], name: "metric_customer_no_ix", using: :btree
+  add_index "sales_metrics", ["bi_vendor_no"], name: "metric_vendor_no_ix", using: :btree
   add_index "sales_metrics", ["measured_id", "measured_type"], name: "bi_sales_metric_measured_ix", using: :btree
   add_index "sales_metrics", ["metric_type"], name: "index_sales_metrics_on_metric_type", using: :btree
 

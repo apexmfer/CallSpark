@@ -6,6 +6,10 @@ class AddIndicesToBiData < ActiveRecord::Migration
     add_index :bi_quotes, :bi_customer_no, :name => 'bi_quote_customer_no_ix'
     add_index :bi_quotes, :bi_vendor_no, :name => 'bi_quote_vendor_no_ix'
 
+    add_index :sales_metrics, :bi_customer_no, :name => 'metric_customer_no_ix'
+    add_index :sales_metrics, :bi_vendor_no, :name => 'metric_vendor_no_ix'
+
+
     add_index :bi_customers, :bi_outside_sales_rep_id, :name => 'bi_outside_sales_rep_id_ix'
     add_index :bi_customers, :bi_inside_sales_rep_id, :name => 'bi_inside_sales_rep_id_ix'
 

@@ -2,6 +2,9 @@ class SalesMetric < ActiveRecord::Base
 
   belongs_to :measured, polymorphic: true
 
+  belongs_to :bi_vendor
+  belongs_to :bi_customer
+
 
   enum metric_type: {
     customer_sales: 0,
