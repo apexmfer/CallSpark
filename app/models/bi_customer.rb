@@ -1,7 +1,7 @@
 class BiCustomer < ActiveRecord::Base
   validates :no, presence: true, uniqueness:true
 
-  has_many :company#, foreign_key: "bi_customer_no"
+  has_many :companies#, foreign_key: "bi_customer_no"
 
   belongs_to :bi_outside_sales_rep
   belongs_to :bi_inside_sales_rep
@@ -13,6 +13,11 @@ class BiCustomer < ActiveRecord::Base
     has_many :bi_orders
 
       has_many :sales_metrics, foreign_key: :bi_customer_no
+
+
+  def company
+    return companies.last
+  end
 
   def getOutsideSalesProfileName
     if bi_outside_sales_rep

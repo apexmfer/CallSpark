@@ -13,7 +13,11 @@
     <p>Some content.</p>
   </div>
   <div id="customers" class="tab-pane fade">
-
+    <%   @sales_metrics.each do |metric| %>
+    <p>
+      <%= metric.company_name %>  -   <%= metric.value_cents %>
+      <p/>
+    <% end %>
     <p>Some content in menu 1.</p>
   </div>
   <div id="products" class="tab-pane fade">

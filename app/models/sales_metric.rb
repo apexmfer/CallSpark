@@ -13,5 +13,18 @@ class SalesMetric < ActiveRecord::Base
     vendor_costs: 3
   }
 
+  def company
+    if bi_customer and bi_customer.company
+      return bi_customer.company
+    end
+  end
+
+  def company_name
+    if company
+      return company.name
+    end
+  end
+
+
 
 end

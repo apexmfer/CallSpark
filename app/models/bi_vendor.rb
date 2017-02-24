@@ -7,7 +7,7 @@ class BiVendor < ActiveRecord::Base
     has_many :initiative_targets, as: :targetted
     has_many :initiatives, through: :initiative_targets
 
-    has_many :sales_metrics, foreign_key: :bi_vendor_no
+    has_many :sales_metrics, foreign_key: :bi_vendor_no, primary_key: :no 
 
 
     def getTotalSalesMetricsPerCustomer
