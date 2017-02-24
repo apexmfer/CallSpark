@@ -5,6 +5,10 @@ class BiVendorController < ApplicationController
 
   def show
     @vendor = BiVendor.find_by_no(params[:id])
+
+
+    @sales_metrics = @vendor.getTotalSalesMetricsPerCustomer
+    @costs_metrics = @vendor.getTotalCostsMetricsPerCustomer
   end
 
   def data

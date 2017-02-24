@@ -5,6 +5,8 @@
 		<tr>
 			<th><%= casein_sort_link "Id", :id %></th>
 			<th><%= casein_sort_link "Metric type", :metric_type %></th>
+			<th><%= casein_sort_link "Bi Vendor No", :bi_vendor_no %></th>
+			<th><%= casein_sort_link "Bi Customer no", :bi_customer_no %></th>
 			<th><%= casein_sort_link "Value cents", :value_cents %></th>
 			<th><%= casein_sort_link "Measured count", :measured_count %></th>
 			<th><%= casein_sort_link "Measured", :measured_id %></th>
@@ -12,11 +14,13 @@
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
-	
+
 	<% sales_metrics.each do |sales_metric| %>
 		<tr>
 			<td><%= casein_table_cell_link sales_metric.id, casein_sales_metric_path(sales_metric) %></td>
 			<td><%= casein_table_cell_link sales_metric.metric_type, casein_sales_metric_path(sales_metric) %></td>
+			<td><%= casein_table_cell_link sales_metric.bi_vendor_no, casein_sales_metric_path(sales_metric) %></td>
+			<td><%= casein_table_cell_link sales_metric.bi_customer_no, casein_sales_metric_path(sales_metric) %></td>
 			<td><%= casein_table_cell_link sales_metric.value_cents, casein_sales_metric_path(sales_metric) %></td>
 			<td><%= casein_table_cell_link sales_metric.measured_count, casein_sales_metric_path(sales_metric) %></td>
 			<td><%= casein_table_cell_link sales_metric.measured_id, casein_sales_metric_path(sales_metric) %></td>

@@ -27,21 +27,21 @@ class BiCustomer < ActiveRecord::Base
   end
 
   def getTotalSalesMetricsPerVendor
-    return SalesMetric.where(metric_type: SalesMetric.metric_types[:vendor_sales], measured_type:'BiCustomer' )
+    return sales_metrics.where(metric_type: SalesMetric.metric_types[:vendor_sales] )
   end
 
-  def getTotalSalesMetricsPerVendor
-    return SalesMetric.where(metric_type: SalesMetric.metric_types[:vendor_costs], measured_type:'BiCustomer' )
+  def getTotalCostsMetricsPerVendor
+    return sales_metrics.where(metric_type: SalesMetric.metric_types[:vendor_costs]  )
   end
 
 
 
   def getTotalSalesMetricsWithVendor(vend)
-    return SalesMetric.where(metric_type: SalesMetric.metric_types[:customer_sales],measured_id: vend.no, measured_type:'BiVendor' ).last
+    return sales_metrics.where(metric_type: SalesMetric.metric_types[:vendor_sales], bi_vendor_no: vend.no)
   end
 
   def getTotalCostsMetricsWithVendor(vend)
-    return SalesMetric.where(metric_type: SalesMetric.metric_types[:customer_costs],measured_id: vend.no, measured_type:'BiVendor' ).last
+    return sales_metrics.where(metric_type: SalesMetric.metric_types[:vendor_costs], bi_vendor_no: vend.no  )
   end
 
   has_many :sales_metrics, as: :measured
