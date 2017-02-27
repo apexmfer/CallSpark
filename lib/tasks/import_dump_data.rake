@@ -29,6 +29,24 @@ namespace :db do
     import_business_data()
 
   end
+
+
+  desc 'inspect db'
+  task inspect_indexes: :environment do
+
+
+      ActiveRecord::Base.connection.tables.each do |table|
+        puts ActiveRecord::Base.connection.indexes(table).inspect
+      end
+
+  end
+
+
+
+
+
+
+
 end
 
 
@@ -351,8 +369,9 @@ def calculateVendorSalesMetricsByCustomer(vendor)
    if total_sales_cents > 0 || total_cost_cents > 0
      SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
      SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
+     p 'created new sales metrics between ' + vendor.name + ' - ' + bi_cust.name
+
    end
-   p 'created new sales metrics between ' + vendor.name + ' - ' + bi_cust.name
  end
 
 end

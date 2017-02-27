@@ -22,7 +22,7 @@ class Company < ActiveRecord::Base
   has_many :favorites, as: :favorited
 
   #filled in by smart scripts
-  belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no"
+  belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no", primary_key: "no"
 
 
   def isFavorited(favoriting_user)

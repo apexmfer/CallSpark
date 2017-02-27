@@ -2,6 +2,10 @@ class BiCustomer < ActiveRecord::Base
   validates :no, presence: true, uniqueness:true
 
 
+   has_many :sales_metrics, foreign_key: :bi_customer_no, primary_key: :no
+
+   #  SalesMetric Load (1.4ms)  SELECT "sales_metrics".* FROM "sales_metrics" WHERE "sales_metrics"."measured_id" = $1 AND "sales_metrics"."measured_type" = $2 AND "sales_metrics"."metric_type" = $3 AND (value_cents > 0)  ORDER BY "sales_metrics"."value_cents" DESC  [["measured_id", 21334], ["measured_type", "BiCustomer"], ["metric_type", 0]]
+
 
   has_many :companies, foreign_key: "bi_customer_no", primary_key:'no'
 
@@ -14,7 +18,6 @@ class BiCustomer < ActiveRecord::Base
     has_many :bi_quotes
     has_many :bi_orders
 
-      has_many :sales_metrics, foreign_key: :bi_customer_no
 
 
   def company
@@ -51,5 +54,5 @@ class BiCustomer < ActiveRecord::Base
     return sales_metrics.where(metric_type: SalesMetric.metric_types[:customer_costs], bi_vendor_no: vend.no  )
   end
 
-  has_many :sales_metrics, as: :measured
+
 end
