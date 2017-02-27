@@ -9,7 +9,7 @@ class BiVendorController < ApplicationController
 
     @sales_metrics = @vendor.getTotalSalesMetricsPerCustomer.order(value_cents: :DESC)
     @costs_metrics = @vendor.getTotalCostsMetricsPerCustomer.order(value_cents: :DESC)
-    @sales_metrics = @vendor.sales_metrics
+    @sales_metrics = @vendor.sales_metrics.order(value_cents: :DESC)
 
 
   end

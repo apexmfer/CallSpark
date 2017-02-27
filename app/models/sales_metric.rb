@@ -20,8 +20,10 @@ class SalesMetric < ActiveRecord::Base
   end
 
   def company_name
-    if company
+    if company and company.name
       return company.name
+    elsif bi_customer
+      return bi_customer.name
     end
   end
 
