@@ -10,6 +10,12 @@ class CompanyController < ApplicationController
     @projects = @company.projects.order("updated_at" + " DESC").paginate(:page => params[:project_page], :per_page => 10)
     @available_product_segments = ProductSegment.all
 
+
+    @bi_customer = @company.bi_customer
+    if @bi_customer
+      @sales_metrics = @bi_customer.getTotalSalesMetricsPerVendor.order(value_cents: :DESC)
+      @costs_metrics = @bi_customer.getTotalCostsMetricsPerVendor.order(value_cents: :DESC)
+    end 
   end
 
   def edit

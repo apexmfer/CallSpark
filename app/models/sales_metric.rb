@@ -21,10 +21,17 @@ class SalesMetric < ActiveRecord::Base
   end
 
   def company_name
-
-    #this takes a long time
+ 
    if bi_customer
       return bi_customer.name
+    end
+  end
+
+
+  def vendor_name
+
+   if vendor
+      return vendor.name
     end
   end
 
