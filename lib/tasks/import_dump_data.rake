@@ -340,7 +340,7 @@ def calculateVendorSalesMetricsByCustomer(vendor)
     order_line_items_count = 0;
 
     #indexed to make it faster
-   vendor.bi_orders.where(bi_customer_no: bi_cust.no ).each do |order|
+   vendor.bi_orders.where(bi_customer_no: bi_cust.no ).where('enter_date > ?', (Time.now - 3.months) ).each do |order|
     # order
     quantity = order.qty_ord
     total_cost_cents+=(order.prod_cost_cents*quantity)
@@ -351,7 +351,7 @@ def calculateVendorSalesMetricsByCustomer(vendor)
    if total_sales_cents > 0 || total_cost_cents > 0
      SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
      SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
-   end 
+   end
    p 'created new sales metrics between ' + vendor.name + ' - ' + bi_cust.name
  end
 

@@ -8,7 +8,7 @@
 <ul class="nav nav-tabs nav-tabs-dark">
   <li class="active"><a data-toggle="tab" href="#overview">Overview</a></li>
   <li><a data-toggle="tab" href="#employees">Employees</a></li>
-    <% if @sales_metrics %> <li><a data-toggle="tab" href="#sales">Sales</a></li><% end %> 
+    <% if @sales_metrics %> <li><a data-toggle="tab" href="#sales">Sales</a></li><% end %>
   <li><a data-toggle="tab" href="#projects">Projects</a></li>
   <li><a data-toggle="tab" href="#categories">Product Segments</a></li>
 
@@ -110,6 +110,11 @@
   </div>
 
   <div id="sales" class="tab-pane fade">
+
+    <p>Total Spend (90 day)</p>
+    $<%= @total_spend %>
+    <br>
+
     <% if @sales_metrics %>
     <%   @sales_metrics.each do |metric| %>
       <p>

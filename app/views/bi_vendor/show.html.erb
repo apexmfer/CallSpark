@@ -11,11 +11,17 @@
 <div class="tab-content tab-content-padded">
   <div id="overview" class="tab-pane fade in active">
 
-    <p>Total Spend</p>
-    $<%= @total_spend %>
+    <p>Total Cost (90 day)</p>
+    $<%= @total_cost %>
 
   </div>
   <div id="customers" class="tab-pane fade">
+
+    <p>Total Revenue (90 day)</p>
+    $<%= @total_revenue %>
+
+    <br> 
+
     <%   @sales_metrics.each do |metric| %>
     <p>
       <%= metric.company_name %>  -  $<%= metric.value_formatted %>

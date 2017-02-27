@@ -12,9 +12,14 @@ class BiVendorController < ApplicationController
   #  @sales_metrics = @vendor.sales_metrics.order(value_cents: :DESC)
     @available_product_segments = ProductSegment.all
 
-    @total_spend = 0
+    @total_revenue = 0
     @sales_metrics.each do |metric|
-      @total_spend += metric.value
+      @total_revenue += metric.value
+    end
+
+    @total_cost = 0
+    @costs_metrics.each do |metric|
+      @total_cost += metric.value
     end
 
 

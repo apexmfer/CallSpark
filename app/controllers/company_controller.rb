@@ -15,6 +15,12 @@ class CompanyController < ApplicationController
     if @bi_customer
       @sales_metrics = @bi_customer.getTotalSalesMetricsPerVendor.order(value_cents: :DESC)
       @costs_metrics = @bi_customer.getTotalCostsMetricsPerVendor.order(value_cents: :DESC)
+
+
+      @total_spend = 0
+      @sales_metrics.each do |metric|
+        @total_spend += metric.value
+      end
     end 
   end
 
