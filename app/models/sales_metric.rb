@@ -2,8 +2,8 @@ class SalesMetric < ActiveRecord::Base
 
   belongs_to :measured, polymorphic: true
 
-  belongs_to :bi_vendor
-  belongs_to :bi_customer
+  belongs_to :bi_vendor, foreign_key: 'bi_vendor_no', primary_key:'no'
+  belongs_to :bi_customer, foreign_key: 'bi_customer_no', primary_key:'no'
 
 
   enum metric_type: {
@@ -20,7 +20,9 @@ class SalesMetric < ActiveRecord::Base
   end
 
   def company_name
-    if company and company.name
+
+
+    if company and company.name and company.name.strip.length > 0
       return company.name
     elsif bi_customer
       return bi_customer.name
