@@ -348,8 +348,8 @@ def calculateVendorSalesMetricsByCustomer(vendor)
     order_line_items_count+=quantity
    end
 
-   SalesMetric.create(metric_type: SalesMetric.metric_types[:vendor_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
-   SalesMetric.create(metric_type: SalesMetric.metric_types[:vendor_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_sales],value_cents:total_sales_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
+   SalesMetric.create(metric_type: SalesMetric.metric_types[:customer_costs],value_cents:total_cost_cents,measured_count:order_line_items_count, bi_vendor_no:vendor.no, bi_customer_no: bi_cust.no )
 
    p 'created new sales metrics between ' + vendor.name + ' - ' + bi_cust.name
  end

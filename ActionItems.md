@@ -2,6 +2,16 @@
 
 #new tables to make
 
+bundle exec rake elasticsearch:start
+
+bundle exec rake environment elasticsearch:import:model CLASS='Customer'
+
+
+https://hackhands.com/building-has_many-model-relationship-form-cocoon/
+
+
+
+
 DUE BY TODAY
 -Make an initiative model  + show page
 -Make associations from the initiative to 1. Vendors and 2. Target Accts
@@ -21,7 +31,7 @@ DUE BY TODAY
 
 
 1. sales overview
-2. vendor overview  DONE 
+2. vendor overview  DONE
 
 
 BiOrders

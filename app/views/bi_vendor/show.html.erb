@@ -15,7 +15,7 @@
   <div id="customers" class="tab-pane fade">
     <%   @sales_metrics.each do |metric| %>
     <p>
-      <%= metric.company_name %>  -   <%= metric.value_cents %>
+      <%= metric.company_name %>  -  $<%= metric.value_formatted %>
       <p/>
     <% end %>
 

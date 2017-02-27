@@ -64,6 +64,45 @@
 </div>
 
 
+<div class="panel panel-default
+
+<% if(@matching_vendors.length <1)  %>
+ hidden
+<% end %>
+
+">
+ <div class="panel-heading">Vendors</div>
+ <div class="panel-body">
+
+ <div class="table-responsive">
+   <table id="vendortable" class="table table-bordered table-hover table-striped">
+ <thead>
+   <tr>
+     <th>Name</th>
+      <th> No </th>
+
+
+   </tr>
+ </thead>
+
+ <tbody>
+   <% @matching_vendors.each do |vendor| %>
+     <tr>
+       <td> <a href="<%= url_for vendor %>"> <%= vendor.name %> </a> </td>
+
+
+       <td><%= vendor.no %></td>
+
+
+     </tr>
+   <% end %>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
+
+
 
 <% if @projects.length > 0 %>
 <div class="panel panel-default" style="margin-top:10px;">

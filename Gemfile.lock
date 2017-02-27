@@ -76,6 +76,7 @@ GEM
       scrypt (= 1.2.1)
       will_paginate (= 3.0.7)
     chronic (0.10.2)
+    cocoon (1.2.9)
     concurrent-ruby (1.0.2)
     elasticsearch (1.0.12)
       elasticsearch-api (= 1.0.12)
@@ -260,6 +261,7 @@ DEPENDENCIES
   bootstrap-wysihtml5-rails
   bootstrap3-datetimepicker-rails (~> 4.14.30)
   casein (~> 5.1.1)
+  cocoon
   elasticsearch-model
   elasticsearch-rails
   figaro

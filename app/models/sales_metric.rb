@@ -5,6 +5,7 @@ class SalesMetric < ActiveRecord::Base
   belongs_to :bi_vendor, foreign_key: 'bi_vendor_no', primary_key:'no'
   belongs_to :bi_customer, foreign_key: 'bi_customer_no', primary_key:'no'
 
+ monetize :value_cents
 
   enum metric_type: {
     customer_sales: 0,
@@ -21,14 +22,15 @@ class SalesMetric < ActiveRecord::Base
 
   def company_name
 
-
-    if company and company.name and company.name.strip.length > 0
-      return company.name
-    elsif bi_customer
+    #this takes a long time
+   if bi_customer
       return bi_customer.name
     end
   end
 
+  def value_formatted
+    return value
+  end
 
 
 end

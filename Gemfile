@@ -40,8 +40,12 @@ gem 'tiny_tds'
 
 gem 'whenever'
 
-#fuzzy string matching 
+#fuzzy string matching
 gem 'amatch'
+
+
+#money
+gem 'cocoon'
 
 
 # Gems used only for assets and not required
