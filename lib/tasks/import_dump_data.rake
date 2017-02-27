@@ -16,6 +16,12 @@ namespace :db do
 
   end
 
+  desc 'wipe the data'
+  task wipe_dump_data: :environment do
+
+    wipe_business_data()
+
+  end
   desc 'process the data'
   task process_dump_data: :environment do
 
