@@ -1,0 +1,10 @@
+<div class="nested-fields" >
+  <div class="field" >
+    <%= f.label :product_segment_id %>
+    <br>
+
+    <%= f.collection_select :product_segment_id, @available_product_segments,:id,:name, include_blank: true %>
+  </div>
+
+  <%= link_to_remove_association "remove segment", f %>
+</div>

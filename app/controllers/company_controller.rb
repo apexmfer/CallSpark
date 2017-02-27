@@ -8,6 +8,7 @@ class CompanyController < ApplicationController
     @calls = @company.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
     @customers = @company.customers
     @projects = @company.projects.order("updated_at" + " DESC").paginate(:page => params[:project_page], :per_page => 10)
+    @available_product_segments = ProductSegment.all
 
   end
 
@@ -46,27 +47,26 @@ class CompanyController < ApplicationController
   end
 
     def update
-        name = params['company']['name']
-        address = params['company']['address']
-        bpid = params['company']['BPID']
 
 
-      matchingCompany = Company.find(params['id'])
-     # matchingCompany = Company.where(:name => name).first
-
-      if(matchingCompany != nil)
-        matchingCompany.name = name;
-        matchingCompany.address = address;
-        matchingCompany.BPID = bpid;
+     @company = Company.find(params['id'])
+      # @company = Company.where(:name => name).first
 
 
-        if ( matchingCompany.save )
-          
-          assignBestMatchingBiCustomerToCompany(matchingCompany)
 
-          redirect_to matchingCompany, notice: 'Company updated'
+      if(@company != nil)
+
+
+        @updated = @company.update_attributes(company_params)
+
+
+        if ( @updated )
+
+          assignBestMatchingBiCustomerToCompany(@company)
+
+          redirect_to @company, notice: 'Company updated'
         else
-          render text: matchingCompany.errors.full_messages
+          render text: @company.errors.full_messages
         end
 
       else
@@ -83,6 +83,8 @@ class CompanyController < ApplicationController
 
   end
 
-
+  def company_params
+   params.require(:company).permit(:name,:address,:BPID, focused_product_segments_attributes: [:id, :focused_id, :focused_type, :product_segment_id, :_destroy])
+ end
 
 end

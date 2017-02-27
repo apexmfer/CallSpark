@@ -5,9 +5,10 @@
 
 <ul class="nav nav-tabs nav-tabs-dark">
   <li class="active"><a data-toggle="tab" href="#overview">Overview</a></li>
-  <li><a data-toggle="tab" href="#categories">Product Categories</a></li>
-    <li><a data-toggle="tab" href="#accounts">Target Accounts</a></li>
+  <li><a data-toggle="tab" href="#accounts">Target Accounts</a></li>
   <li><a data-toggle="tab" href="#vendors">Vendors</a></li>
+  <li><a data-toggle="tab" href="#categories">Product Segments</a></li>
+
 </ul>
 
 <div class="tab-content tab-content-padded">
@@ -15,10 +16,7 @@
 
     <p>Some content.</p>
   </div>
-  <div id="categories" class="tab-pane fade">
 
-    <p>Some content in menu 1.</p>
-  </div>
   <div id="accounts" class="tab-pane fade">
 
     <p>Some content in menu 2.</p>
@@ -26,5 +24,23 @@
   <div id="vendors" class="tab-pane fade">
 
     <p>Some content in menu 2.</p>
+  </div>
+  <div id="categories" class="tab-pane fade">
+
+  <%= form_for @initiative do |f| %>
+
+
+  <div class="segment-focus-cocoon">
+    <%= f.fields_for :focused_product_segments do |segment| %>
+      <%= render 'product_segments/focused_product_segment_fields', f: segment %>
+     <% end %>
+   <div class="links">
+      <%= link_to_add_association 'add segment focus', f, :focused_product_segments, partial:'product_segments/focused_product_segment_fields' %>
+    </div>
+  <%= f.submit %>
+  </div>
+  <% end %>
+
+
   </div>
 </div>

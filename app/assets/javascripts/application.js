@@ -28,3 +28,4 @@
 //= require favorite-company
 //= require plugins/dataTables/jquery.dataTables
 //= require plugins/dataTables/dataTables.bootstrap
+//= require cocoon

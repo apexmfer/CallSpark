@@ -2,6 +2,11 @@ require 'elasticsearch/model'
 class BiVendor < ActiveRecord::Base
     validates :no, presence: true, uniqueness:true
 
+
+    has_many :focused_product_segments, as: :focused, class_name: 'ProductSegmentFocus'
+    accepts_nested_attributes_for :focused_product_segments, reject_if: :all_blank, allow_destroy: true
+
+
     has_many :bi_quotes, foreign_key: :bi_vendor_no
     has_many :bi_orders, foreign_key: :bi_vendor_no
 

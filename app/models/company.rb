@@ -8,6 +8,11 @@ class Company < ActiveRecord::Base
 
    include CompanyHelper
 
+
+   has_many :focused_product_segments, as: :focused, class_name: 'ProductSegmentFocus'
+   accepts_nested_attributes_for :focused_product_segments, reject_if: :all_blank, allow_destroy: true
+
+
   has_many :customers
 
   has_many :calls, :through => :customers
