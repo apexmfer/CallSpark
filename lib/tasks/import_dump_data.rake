@@ -58,10 +58,10 @@ end
 
 def wipe_business_data
   p 'deleting all business data... '
-   BiQuote.destroy_all
-   BiOrder.destroy_all
-   BiCustomer.destroy_all
-   BiVendor.destroy_all
+   BiQuote.delete_all
+   BiOrder.delete_all
+   BiCustomer.delete_all
+   BiVendor.delete_all
   p 'deleted all business data. '
 end
 
@@ -346,7 +346,7 @@ def process_business_data
 
     #build the SalesMetric models which basically bundle up all related quotes to an order and show which pieces were shopped out... these are tied to BI Customer no
     p 'destroying old sales metrics..'
-    SalesMetric.destroy_all
+    SalesMetric.delete_all
 
     BiVendor.all.each do |vendor|
       calculateVendorSalesMetricsByCustomer(vendor)
