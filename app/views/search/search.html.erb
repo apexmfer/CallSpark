@@ -137,7 +137,7 @@
 
 
 
-  <% @calls.compact.sort_by(&:"#{:created_at}").reverse.each do |call| %>
+  <% @calls.compact.each do |call| %>
 
 
     <% if (call )  %>

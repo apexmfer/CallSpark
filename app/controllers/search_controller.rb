@@ -12,8 +12,11 @@ class SearchController < ApplicationController
 
 		@noresults = false
 
-		@callresponses = Call.search "*#{params[:query]}*"
-		@calls = @callresponses.map{|response| Call.find_by_id(response.id)  }
+		@callresponses = Call.search("*#{params[:query]}*", size:1000 )
+		p @callresponses
+		p 'TESTING'
+		p @callresponses.length
+		@calls = @callresponses.map{|response| Call.find_by_id(response.id)  }.sort_by(&:created_at).reverse[0..99]
 
 		#@matching_companies = Company.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"])
 		#@matching_customers = Customer.find(:all, :conditions => ['name LIKE ?', "%#{params['query']}%"])
