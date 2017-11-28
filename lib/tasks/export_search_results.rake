@@ -2,15 +2,17 @@
 require 'csv'
 require 'date'
 
+#rake db:export_search_results['powerflex']
+# rake db:export_search_results['powerflex+pf+520+525']
 
 namespace :db do
 
   desc 'export results of search'
-  task export_search_results: :environment do
+  task :export_search_results, [:query] => [:environment] do |t,args|
 	
 	p 'running query and export' 
 
-    	query = 'powerflex'
+    	query = args[:query]
     	results = querySearchResults(query)
 	
 	exportSearchResultsToCSV(results)    
