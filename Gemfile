@@ -27,7 +27,7 @@ gem 'money-rails'
 
 gem 'friendly_id'
 
-gem 'font-awesome-sass', '~> 4.7.0'
+#gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'casein', '~>5.1.1'
 
@@ -53,14 +53,14 @@ gem 'cocoon'
 # in production environments by default.
 group :assets do
 
-  gem 'sass-rails'
+   gem 'sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier' 
 
-  gem 'bootstrap-sass', '~> 3.3.1'
+  gem 'bootstrap-sass'
 end
 
 gem 'jquery-rails'

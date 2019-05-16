@@ -2,7 +2,7 @@
 
 A call logging app used for small businesses to track inbound phone calls.
 
-Use ruby version 2.2.10  (rvm install 2.2.10, rvm use 2.2.10)
+Use ruby version 2.5.1  (rvm install 2.5.1, rvm use 2.2.10)
 
 
 FEATURES
