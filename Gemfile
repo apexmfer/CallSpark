@@ -27,7 +27,7 @@ gem 'money-rails'
 
 gem 'friendly_id'
 
-#gem 'font-awesome-sass', '~> 4.7.0'
+ gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'casein', '~>5.1.1'
 
@@ -58,7 +58,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier' 
+  gem 'uglifier'
 
   gem 'bootstrap-sass'
 end
