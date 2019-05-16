@@ -6,6 +6,8 @@ class CallsController < ApplicationController
 
       @call = Call.find_by_id(params[:id])
 
+      #render 'show'
+
    end
 
     def data

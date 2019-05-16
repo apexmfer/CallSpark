@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227181058) do
+ActiveRecord::Schema.define(version: 20190222183838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "accountassignments", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.integer  "bpid"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -129,10 +122,11 @@ ActiveRecord::Schema.define(version: 20170227181058) do
     t.integer  "customer_id"
     t.integer  "category_id"
     t.text     "text"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "region_id"
+    t.string   "color"
   end
 
   add_index "calls", ["region_id"], name: "index_calls_on_region_id", using: :btree
@@ -160,22 +154,22 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   end
 
   create_table "cases", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "category_hints", force: :cascade do |t|
     t.integer  "category_id"
     t.integer  "parent_id"
     t.text     "text"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "checkouts", force: :cascade do |t|
@@ -186,8 +180,8 @@ ActiveRecord::Schema.define(version: 20170227181058) do
     t.datetime "expected_time_in"
     t.datetime "actual_time_in"
     t.text     "notes"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -208,22 +202,22 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name",           limit: 255
+    t.string   "name"
     t.integer  "BPID"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "address",        limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address"
     t.integer  "bi_customer_no"
   end
 
   add_index "companies", ["bi_customer_no"], name: "bi_customer_no_ix", using: :btree
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.string   "phone_number", limit: 255
-    t.string   "email",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "company_id"
     t.text     "notes"
     t.integer  "region_id"
@@ -234,25 +228,17 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   create_table "demohardwares", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "barcode"
-    t.string   "series",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.string   "initials",   limit: 255
-    t.string   "name",       limit: 255
-    t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "series"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.text     "description"
     t.date     "date"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -284,9 +270,9 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   end
 
   create_table "partdetails", force: :cascade do |t|
-    t.string   "catalog_number", limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "catalog_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description"
   end
 
@@ -333,9 +319,9 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   end
 
   create_table "regions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sales_metrics", force: :cascade do |t|
@@ -356,11 +342,11 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   add_index "sales_metrics", ["metric_type"], name: "index_sales_metrics_on_metric_type", using: :btree
 
   create_table "supportlinks", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "url",        limit: 255
+    t.string   "name"
+    t.string   "url"
     t.integer  "sortorder"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -384,14 +370,14 @@ ActiveRecord::Schema.define(version: 20170227181058) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                           limit: 255, null: false
-    t.string   "crypted_password",                limit: 255, null: false
-    t.string   "salt",                            limit: 255, null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "firstname",                       limit: 255
-    t.string   "lastname",                        limit: 255
-    t.string   "reset_password_token",            limit: 255
+    t.string   "email",                           null: false
+    t.string   "crypted_password",                null: false
+    t.string   "salt",                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer  "privilege_level"

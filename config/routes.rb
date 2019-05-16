@@ -6,7 +6,7 @@ Testlog::Application.routes.draw do
 	#Casein routes
 	namespace :casein do
 		resources :sales_metrics
-	 
+
 		resources :product_segments
 		resources :product_segment_focus
 		resources :initiative_targets
@@ -102,6 +102,9 @@ resources :region
    get 'supportlink/destroy' => 'supportlink#destroy'
    get 'supportlink/moveup' => 'supportlink#moveup'
    get 'supportlink/movedown' => 'supportlink#movedown'
+
+
+ 
 
 get 'calls/new/:id' => 'calls#new'
 get 'calls/listinfo/:id' => 'calls#listinfo'

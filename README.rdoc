@@ -2,6 +2,9 @@
 
 A call logging app used for small businesses to track inbound phone calls.
 
+Use ruby version 2.2.10  (rvm install 2.2.10, rvm use 2.2.10)
+
+
 FEATURES
 1. Sorcery user registration and login
 2. Create new calls and define custom call topics, customers, and call text
@@ -13,8 +16,41 @@ FEATURES
 
 
 
-Created by Indie Bucket software
 
+## SET UP ENVIRONMENT
+1. Make sure you have Node and Ruby (node -v  and   ruby -v)
+    * If not, install them or run '/bin/bash --login'
+2. Make sure that elasticsearch is running and properly cached
 
+3.  Run 'bundle' to install all of the gems listed in GEMFILE
+4.  Run 'rake db:migrate' to build the local database
+5.  Rails start  (starts the localserver)
 
 ## NEED sudo apt-get install freetds-dev
+
+
+
+
+
+### Configuring Database
+sudo -i -u postgres
+Psql
+Create user sparky with password 'techsupport2008';
+Create database callspark_dev with owner sparky;
+Create database callspark_test with owner sparky;
+Create database callspark_prod with owner sparky;
+
+
+
+## CONFIGURING ELASTICSEARCH
+ * Elasticsearch runs on port 9200 of the server
+
+Rails console
+ bundle exec rake environment elasticsearch:import:model CLASS='User'
+bundle exec rake environment elasticsearch:import:model CLASS='Call'
+bundle exec rake environment elasticsearch:import:model CLASS='Project'
+bundle exec rake environment elasticsearch:import:model CLASS='Company'
+bundle exec rake environment elasticsearch:import:model CLASS='Customer'
+
+
+User.__elasticsearch__.create_index!

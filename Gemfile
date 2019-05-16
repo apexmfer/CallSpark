@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 #gem 'rails', '3.2.19'
-gem 'rails',  '~> 4.2.3'
+gem 'rails',  '~> 4.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,7 +13,8 @@ gem 'nestive'
 
 gem 'sqlite3'
 
-gem 'pg'
+gem 'pg', '~> 0.20.0'
+
 gem 'tapsicle'
 
 
@@ -30,7 +31,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'casein', '~>5.1.1'
 
-gem 'figaro'
+gem 'figaro'#handles environment variables, application.yml
 
 gem 'sendgrid'
 

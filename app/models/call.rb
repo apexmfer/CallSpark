@@ -22,6 +22,9 @@ class Call < ActiveRecord::Base
    end
 
 
+
+
+
  end
 
   def getCustomer
