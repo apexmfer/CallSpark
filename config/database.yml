@@ -12,7 +12,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: mcsparkysparks_development
+  database: callspark_dev
   pool: 5
   username: <%=ENV["DB_USERNAME"]%>
   password: <%=ENV["DB_PASSWORD"]%>
@@ -38,7 +38,7 @@ sqlserver:
 test:
   adapter: postgresql
   encoding: unicode
-  database: mcsparkysparks_test
+  database: callspark_test
   pool: 5
   username: <%=ENV["DB_USERNAME"]%>
   password: <%=ENV["DB_PASSWORD"]%>
@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: mcsparkysparks_production
+  database: callspark_prod
   pool: 5
   username: <%=ENV["DB_USERNAME"]%>
   password: <%=ENV["DB_PASSWORD"]%>

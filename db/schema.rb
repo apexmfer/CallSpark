@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190222183838) do
+ActiveRecord::Schema.define(version: 20170227181058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(version: 20190222183838) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "region_id"
-    t.string   "color"
   end
 
   add_index "calls", ["region_id"], name: "index_calls_on_region_id", using: :btree
