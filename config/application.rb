@@ -13,6 +13,13 @@ module Testlog
 
     config.generators.javascript_engine = :js
 
+    # Enable escaping HTML in JSON.
+    config.active_support.escape_html_entities_in_json = true
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

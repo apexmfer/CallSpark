@@ -41,7 +41,11 @@ Create database callspark_test with owner sparky;
 Create database callspark_prod with owner sparky;
 
 
+#Install Elasticsearch 7
+https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
+https://tecadmin.net/setup-elasticsearch-on-ubuntu/
 
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04
 ## CONFIGURING ELASTICSEARCH
  * Elasticsearch runs on port 9200 of the server
 
@@ -54,3 +58,5 @@ bundle exec rake environment elasticsearch:import:model CLASS='Customer'
 
 
 User.__elasticsearch__.create_index!
+
+sudo service elasticsearch start

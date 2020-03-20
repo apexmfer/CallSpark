@@ -41,6 +41,10 @@ include ActionView::Helpers::NumberHelper
 
   #This creates a new customer with a form and does special checks to make a new company
   def spawnCustomer(customer_name, company_name, raw_phone, raw_email, region_id, bpid  )
+    p 'spawn customer'
+    p customer_name
+    p company_name
+
 
     callername = (customer_name).titleize
     companyname = format_as_company_name(company_name)
@@ -61,7 +65,6 @@ include ActionView::Helpers::NumberHelper
     companyMatchNil = (company == nil)
 
       if companyMatchNil and companyname.length >= 1
-
 
         company = Company.new(:name => companyname,
         :BPID => bpid
@@ -103,11 +106,12 @@ include ActionView::Helpers::NumberHelper
 
     end
 
+       company.save!
     #save our updates
-    customer.save
+    customer.save!
 
         if( company != nil )
-        company.save
+           company.save
          end
 
 

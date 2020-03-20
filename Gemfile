@@ -83,8 +83,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 gem 'sorcery', '~> 0.14.0'
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '~> 7.0.0'
+gem 'elasticsearch-rails', '~> 7.0.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

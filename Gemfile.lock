@@ -299,8 +299,8 @@ DEPENDENCIES
   bootstrap-wysihtml5-rails
   bootstrap3-datetimepicker-rails (~> 4.14.30)
   cocoon
-  elasticsearch-model
-  elasticsearch-rails
+  elasticsearch-model (~> 7.0.0)
+  elasticsearch-rails (~> 7.0.0)
   font-awesome-sass (~> 4.7.0)
   friendly_id (~> 5.2.4)
   jquery-rails

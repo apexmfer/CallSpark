@@ -114,6 +114,13 @@ class CallsController < ApplicationController
 
     @customer = spawnCustomer(params[:call][:caller],params[:call][:company],params[:call][:phone],params[:call][:email],params[:call][:region_id],params[:call][:BPID])
 
+    if @customer == nil
+      p 'NIL CUSTOMER '
+      return
+    end
+
+    p 'customer is '
+    p @customer
 
 
     @call = Call.new(:customer_id => @customer.id,
@@ -124,17 +131,21 @@ class CallsController < ApplicationController
 
       )
 
-  if @call.save
+      if @call.save!
 
-    @outside_sales_rep = @call.getOutsideSalesRep
+        @outside_sales_rep = @call.getOutsideSalesRep
 
-    if @outside_sales_rep and @outside_sales_rep.getUser and @outside_sales_rep.getUser.receive_outside_sales_emails
-      OutsideSalesMailer.outside_sales_email(@outside_sales_rep.getUser,@call).deliver
-    end
+        if @outside_sales_rep and @outside_sales_rep.getUser and @outside_sales_rep.getUser.receive_outside_sales_emails
+          OutsideSalesMailer.outside_sales_email(@outside_sales_rep.getUser,@call).deliver
+        end
 
-    redirect_to @call
+        redirect_to @call
 
-  end
+      else
+            p 'ERROR'
+      end
+
+
 
   end
 
