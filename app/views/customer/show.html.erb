@@ -95,7 +95,7 @@ Region: <a href="<%=url_for @customer.region%>"> <%= @customer.region.name %> </
   <% end %>
 
 
-  <%= will_paginate @calls, :param_name => 'call_page', renderer: BootstrapPagination::Rails %>
+ will_paginate @calls, :param_name => 'call_page', renderer: BootstrapPagination::Rails 
 
 
 </div>

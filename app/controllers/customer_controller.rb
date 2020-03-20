@@ -1,12 +1,15 @@
 class CustomerController < ApplicationController
-   before_filter :require_login, except: [:index,:show,:data]
+   before_action :require_login, except: [:index,:show,:data]
 
 
    def show
 
        @customer = Customer.find(params[:id])
-      
-     @calls = @customer.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
+
+  #   @calls = .paginate(:page => params[:call_page], :per_page => 10)
+
+     @calls = Kaminari.paginate_array(@customer.calls.order("created_at" + " DESC")).page(params[:call_page]).per(10)
+
    end
 
   def data

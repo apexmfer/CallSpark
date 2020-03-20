@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-   before_filter :require_login, except: [:index,:show,:export]
+   before_action :require_login, except: [:index,:show,:export]
     before_action :set_navbar_style
 
     def set_navbar_style
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
      format.html
-        format.csv { render text: @projects.to_csv } 
+        format.csv { render text: @projects.to_csv }
    end
 
   end

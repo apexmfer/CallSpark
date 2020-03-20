@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
-  before_filter :require_login
-  
+  before_action :require_login
+
     def regions
       @newregion = Region.new
     end

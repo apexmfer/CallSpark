@@ -1,7 +1,7 @@
 class CategoryController < ApplicationController
 
-    before_filter :require_login
-    
+    before_action :require_login
+
   def create
 
     newname = (params['newcategory']['name']).titleize
