@@ -2,20 +2,25 @@
 source 'https://rubygems.org'
 
 #gem 'rails', '3.2.19'
-gem 'rails',  '~> 4.2.11'
+gem 'rails', '~> 5.2.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'activerecord', '~> 5.2.0'
+gem 'activesupport', '~> 5.2.4'
+gem 'bootsnap', '~> 1.1.2'
+
+
 gem 'bootstrap-wysihtml5-rails'
 
-gem 'nestive'
+gem 'nestive-rails'
 
-gem 'sqlite3'
+gem 'sqlite3', '~>1.3.11'
 
 gem 'pg', '~> 0.20.0'
 
-gem 'tapsicle'
+#gem 'tapsicle', '~> 0.4.1'
 
 
 gem 'acts-as-taggable-on'
@@ -25,18 +30,14 @@ gem 'acts_as_commentable_with_threading'
 gem 'autonumeric-rails'
 gem 'money-rails'
 
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.2.4'
 
  gem 'font-awesome-sass', '~> 4.7.0'
-
-gem 'casein', '~>5.1.1'
-
-gem 'figaro'#handles environment variables, application.yml
 
 gem 'sendgrid'
 
 #gem for sql connections
-gem 'activerecord-sqlserver-adapter'
+gem 'activerecord-sqlserver-adapter', '~>5.2.0'
 gem 'tiny_tds'
 
 gem 'whenever'
@@ -47,6 +48,9 @@ gem 'amatch'
 
 #money
 gem 'cocoon'
+
+
+gem 'rails_admin', '~> 2.0.2'
 
 
 # Gems used only for assets and not required
@@ -66,8 +70,7 @@ end
 gem 'jquery-rails'
 
 
-gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+#gem 'will_paginate', '>= 3.0.7'
 
 
 gem 'momentjs-rails', '>= 2.9.0'
@@ -78,7 +81,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 #gem "less-rails"
 #gem 'twitter-bootstrap-rails', '~> 2.1.7'
 
-gem 'sorcery'
+gem 'sorcery', '~> 0.14.0'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
@@ -91,6 +94,8 @@ gem 'elasticsearch-rails'
 
 # Use unicorn as the app server
  gem 'unicorn'
+
+ gem 'listen'
 
 # Deploy with Capistrano
 # gem 'capistrano'
