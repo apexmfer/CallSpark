@@ -4,23 +4,7 @@ Rails.application.routes.draw do
 
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   	#Casein routes
-  	namespace :casein do
-  		resources :sales_metrics
-
-  		resources :product_segments
-  		resources :product_segment_focus
-  		resources :initiative_targets
-  		resources :initiatives
-  		resources :companies
-  		resources :bi_quotes
-  		resources :bi_inside_sales_reps
-  		resources :bi_outside_sales_reps
-  		resources :bi_vendors
-  		resources :bi_customers
-  		resources :bi_orders
-  		resources :users
-  	end
-
+   
 
     get '/bi_vendor/data' => 'bi_vendor#data'
     get '/calls/data' => 'calls#data'
@@ -175,4 +159,3 @@ Rails.application.routes.draw do
     # Note: This route will make all actions in every controller accessible via GET requests.
     # get ':controller(/:action(/:id))(.:format)'
   end
-  

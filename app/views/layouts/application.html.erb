@@ -13,7 +13,7 @@
 
   <title>Engineering Cloud</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application.js" %>
   <%= favicon_link_tag '/favicon-cloud.ico' %>
   <%= csrf_meta_tags %>
 
@@ -188,7 +188,7 @@
                         <li>
                             <a <%= cssClassActive('initiative') %> href="<%= url_for initiative_index_path %>"><i class="fa fa-flag fa-fw" style="color:<%= color(1) %>" ></i> Initiatives </a>
                         </li>
-                         --> 
+                         -->
 
 
                         <!-- HIDDEN FOR NOW

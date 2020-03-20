@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-   before_filter :init_variables
+   before_action :init_variables
 
 
   private
@@ -20,7 +20,7 @@ include ActionView::Helpers::NumberHelper
   def sentencify(input)
     if input
       return input.gsub(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
-    end 
+    end
   end
 
   def capFirstLetter(word)

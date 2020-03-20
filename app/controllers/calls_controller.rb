@@ -1,5 +1,5 @@
 class CallsController < ApplicationController
-   before_filter :require_login, except: [:index,:show,:data]
+   before_action :require_login, except: [:index,:show,:data]
 
    def show
 
