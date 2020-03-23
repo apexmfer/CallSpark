@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @calls = Call.where(:user_id => @user.id).all.reverse
-    @projects = @user.projects.order("updated_at" + " DESC").paginate(:page => params[:project_page], :per_page => 10)
+    @projects = @user.projects.order("updated_at" + " DESC").page(params[:project_page]).per(10)
 
 
 

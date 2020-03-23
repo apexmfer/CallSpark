@@ -31,8 +31,10 @@
 
   </div>
 
-    <%= will_paginate @projects, :param_name => 'project_page', renderer: BootstrapPagination::Rails %>
 
+  <%= paginate @projects, :param_name => 'project_page' %>
+
+ 
   </div>
   <% end %>
 
@@ -79,4 +81,4 @@
     <% end %>
   </tbody>
 </table>
-<% end %> 
+<% end %>

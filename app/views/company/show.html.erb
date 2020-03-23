@@ -144,9 +144,8 @@
 
 
 
-
-      <%= will_paginate @projects, :param_name => 'project_page', renderer: BootstrapPagination::Rails %>
-
+        <%= paginate @calls, :param_name => 'project_page' %>
+          
     </div>
     <% end %>
 
@@ -207,8 +206,7 @@
     <% end %>
   <% end %>
 
-
-  <%= will_paginate @calls, :param_name => 'call_page', renderer: BootstrapPagination::Rails %>
+  <%= paginate @calls, :param_name => 'call_page' %>
 
 
 </div>

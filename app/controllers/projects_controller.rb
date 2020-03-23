@@ -16,7 +16,8 @@ class ProjectsController < ApplicationController
 
     if @sort_by == "updated_at" then   @order_style = "DESC" end
 
-    @projects = Project.order(  @sort_by => @order_style ).paginate(:page => params[:page], :per_page => 10)
+    #@projects = Project.order(  @sort_by => @order_style ).paginate(:page => params[:page], :per_page => 10)
+    @projects = Project.order(  @sort_by => @order_style ).page(params[:page]).per(10)
 
 
   end
@@ -42,7 +43,7 @@ class ProjectsController < ApplicationController
 
     @assignments = @project.assigned_users
 
-    @comments = @project.root_comments.order(updated_at: :DESC ).paginate(:page => params[:comment_page], :per_page => 10)
+    @comments = @project.root_comments.order(updated_at: :DESC ).page(params[:comment_page]).per(10)
   end
 
     def create

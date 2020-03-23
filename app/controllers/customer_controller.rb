@@ -9,7 +9,7 @@ class CustomerController < ApplicationController
   #   @calls = .paginate(:page => params[:call_page], :per_page => 10)
 
       #kaminari
-     @calls = @customer.calls.order("created_at" + " DESC").page(params[:page]).per(10)
+     @calls = @customer.calls.order("created_at" + " DESC").page(params[:call_page]).per(10)
 
    end
 
