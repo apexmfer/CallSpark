@@ -10,6 +10,8 @@ class Call < ActiveRecord::Base
  belongs_to :customer
   belongs_to :user
    belongs_to :category
+   belongs_to :initiative
+   
 
  def getCustomerName
 

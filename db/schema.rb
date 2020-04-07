@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_183402) do
+ActiveRecord::Schema.define(version: 2020_04_07_123928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "account_managers", id: :serial, force: :cascade do |t|
+  create_table "account_managers", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.string "initials"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -130,6 +131,11 @@ ActiveRecord::Schema.define(version: 2020_03_20_183402) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.integer "region_id"
+    t.datetime "called_at"
+    t.integer "initiative_id"
+    t.text "question_for_call"
+    t.text "resolution_for_call"
+    t.boolean "notified_account_manager"
     t.index ["region_id"], name: "index_calls_on_region_id"
   end
 
@@ -209,6 +215,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_183402) do
     t.datetime "updated_at"
     t.string "address"
     t.integer "bi_customer_no"
+    t.integer "service_contract_type"
     t.index ["bi_customer_no"], name: "bi_customer_no_ix"
   end
 
@@ -221,6 +228,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_183402) do
     t.integer "company_id"
     t.text "notes"
     t.integer "region_id"
+    t.integer "job_role_id"
     t.index ["region_id"], name: "index_customers_on_region_id"
   end
 
@@ -262,6 +270,12 @@ ActiveRecord::Schema.define(version: 2020_03_20_183402) do
   create_table "initiatives", id: :serial, force: :cascade do |t|
     t.string "name"
     t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "job_roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -8,10 +8,10 @@
   <%= render partial: 'comment/comment',locals: {comment: c, user: user}  %>
 <% end %>
 
-<% end %> 
+<% end %>
 
 <div class="pagination-container">
-  <%= will_paginate @comments, :param_name => 'comment_page', renderer: BootstrapPagination::Rails %>
+  <%= paginate @comments, :param_name => 'comment_page'  %>
 </div>
 
   <% if user %>

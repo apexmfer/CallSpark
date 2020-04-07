@@ -22,7 +22,23 @@ class Company < ActiveRecord::Base
   has_many :favorites, as: :favorited
 
   #filled in by smart scripts
-  belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no", primary_key: "no", optional:true 
+  belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no", primary_key: "no", optional:true
+
+
+
+  enum service_contract_type: {
+      none:0,
+      techconnect: 1,
+      toolkit:2,
+      assurance: 3,
+      bundled: 4,
+      parts_management_agreement: 5,
+      extended_parts_labor_warranty: 6,
+      esafe: 7,
+      customer_block_of_time: 8
+
+  }
+
 
 
   def isFavorited(favoriting_user)

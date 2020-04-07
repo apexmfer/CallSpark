@@ -1,6 +1,60 @@
 
 
+# Todo
+
+-Add acct managers data (make an import script)
+-Add initiatives / fix initiatives data
+-Add job roles (import script)
+
+-Build out the front end of the new call form + javascript
+
+
+
+
 #new tables to make
+
+Already have: Phone, email, product category, notes ,mcmc region, Company Name, Caller , BPID
+
+New field and datatable called Job Role [IT, Mechanical Eng, Controls Engineer] (katy Asman)
+
+New field and datatable for MCMC Initiative :  Mechatronics, Drives Commissioning Assistance, Safety, Motivity, Small to Mid Size End User, Services (FLUKE other, IBE, Repair), CAP / VMI​
+
+New field and datatable for Service Contract Type, tied to company
+
+New data table with all of the account managers and their initials.  They get tied to companies.
+
+New fields: Date of Call (called_at), Reason for Call,  Resolution, Service Contract Type dropdown, Account Manager dropdown,  'sent to account manager'
+
+
+
+Additional Features:
+
+1) Make it so 'Notes' exports to csv. Also Reason and Resolution.
+2) rename BPID to RA BPID *done*
+3) Disallow from editing the product categories , only I will be able to.*done*
+
+
+Delete the following Product Categories:  remove 'information'  x2 (just use Software).  Remove ESafe.  remove Industrial Motion Control.  Remove Drives Servo.   remove Powerflex VFD
+
+
+
+[make sure deleting these doesnt F up the call record]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bundle exec rake elasticsearch:start
 

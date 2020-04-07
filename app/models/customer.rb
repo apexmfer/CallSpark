@@ -12,6 +12,8 @@ class Customer < ActiveRecord::Base
     has_many :calls
     has_many :projects
 
+    belongs_to :job_roles
+
     def company
 
       return Company.where(id: company_id).first
