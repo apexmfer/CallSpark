@@ -27,7 +27,7 @@ class Company < ActiveRecord::Base
 
 
   enum service_contract_type: {
-      none:0,
+      no_contract:0,
       techconnect: 1,
       toolkit:2,
       assurance: 3,

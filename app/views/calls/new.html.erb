@@ -14,12 +14,19 @@
 <div class="row">
 	<div class="col-lg-3">
 
+
+    <div class="form-group" id="callername_group">
+      <%= f.label :called_at %><br>
+      <%= f.date_field :called_at, :value => Time.now.strftime('%Y-%m-%d'), class:"form-control customer-field" %>
+    </div>
+
+
   <div class="form-group" id="callername_group">
     <%= f.label :caller %><br>
     <%= f.text_field :caller, class:"form-control customer-field" %>
   </div>
 
-  <input id="hidden_caller_id" type="hidden" name="code"></p>
+  <input id="hidden_caller_id" type="hidden" name="code"></input>
 
    <div class="form-group" id="category_group">
     <%= f.label :category %><br>
@@ -27,9 +34,18 @@
      </div>
 
      <div class="form-group" id="region_group">
+      <%= f.label :initiative %><br>
+      <%= f.select("initiative_id", Initiative.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+       </div>
+
+     <div class="form-group" id="region_group">
       <%= f.label :region %><br>
       <%= f.select("region_id", Region.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
        </div>
+
+
+
+
 
 
   </div>
@@ -58,11 +74,37 @@
     <%= f.text_field :email, class:"form-control email-field" %>
   </div>
 
+
+  <div class="form-group" id="region_group">
+   <%= f.label "Notified Account Manager?" %><br>
+   <%= f.select("notified_account_manager", ['false','true'], { include_blank: false }, class:"form-control") %>
+    </div>
+
+
+
   </div>
  </div>
+
+<br>
+
+<div class="row">
+ <p>
+   <%= f.label "Caller Question" %><br>
+   <%= f.text_area(:question_for_call, :rows => 2, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+ </p>
+</div>
+
+<div class="row">
+ <p>
+   <%= f.label "Resolution / Answer" %><br>
+   <%= f.text_area(:resolution_for_call, :rows => 2, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+ </p>
+</div>
+
+
  <div class="row">
   <p>
-    <%= f.label :text %><br>
+    <%= f.label "Additional Notes" %><br>
     <%= f.text_area(:text, :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
   </p>
  </div>
