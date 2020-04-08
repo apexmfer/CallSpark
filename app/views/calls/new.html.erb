@@ -28,10 +28,34 @@
 
   <input id="hidden_caller_id" type="hidden" name="code"></input>
 
+
+
+    <div class="form-group" id="region_group">
+     <%= f.label "Job Role" %><br>
+     <%= f.select("job_role_id", JobRole.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+      </div>
+
+
+   <div class="form-group ">
+     <%= f.label :phone %><br>
+     <%= f.text_field :phone, class:"form-control phone-field" %>
+   </div>
+
+   <div class="form-group ">
+     <%= f.label :email %><br>
+     <%= f.text_field :email, class:"form-control email-field" %>
+   </div>
+   
    <div class="form-group" id="category_group">
-    <%= f.label :category %><br>
+    <%= f.label "Product Category" %><br>
     <%= f.select("category_id", Category.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
      </div>
+
+     <div class="form-group" id="category_group">
+      <%= f.label "Product Vendor" %><br>
+      <%= f.select("product_vendor_id", ProductVendor.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+       </div>
+
 
      <div class="form-group" id="region_group">
       <%= f.label :initiative %><br>
@@ -65,14 +89,23 @@
   </div>
 
   <div class="form-group ">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone, class:"form-control phone-field" %>
-  </div>
+   <%= f.label "MCMC Account Number" %><br>
+   <%= f.text_field :mcmc_account_number, class:"form-control bpid-field" %>
+ </div>
+
+
 
   <div class="form-group ">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class:"form-control email-field" %>
-  </div>
+    <%= f.label "Service Contract Type" %><br>
+     <%= f.select("initiative_id", Company.service_contract_types.map { |key, value| [key.humanize, key] }, { include_blank: true }, class:"form-control") %>
+   </div>
+
+
+    <div class="form-group" id="region_group">
+     <%= f.label "Account Manager" %><br>
+     <%= f.select("account_manager_id", AccountManager.order("lastname").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>
+      </div>
+
 
 
   <div class="form-group" id="region_group">
@@ -90,14 +123,14 @@
 <div class="row">
  <p>
    <%= f.label "Caller Question" %><br>
-   <%= f.text_area(:question_for_call, :rows => 2, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+   <%= f.text_area(:question_for_call, :rows => 2, :class => "logarea  ", :placeholder => 'Add text.') %>
  </p>
 </div>
 
 <div class="row">
  <p>
    <%= f.label "Resolution / Answer" %><br>
-   <%= f.text_area(:resolution_for_call, :rows => 2, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+   <%= f.text_area(:resolution_for_call, :rows => 2, :class => "logarea  ", :placeholder => 'Add text.') %>
  </p>
 </div>
 
@@ -105,7 +138,7 @@
  <div class="row">
   <p>
     <%= f.label "Additional Notes" %><br>
-    <%= f.text_area(:text, :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Enter text.') %>
+    <%= f.text_area(:text, :rows => 5, :class => "logarea wysihtml5", :placeholder => 'Add text.') %>
   </p>
  </div>
 

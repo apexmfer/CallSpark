@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_123928) do
+ActiveRecord::Schema.define(version: 2020_04_08_125012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_123928) do
     t.text "question_for_call"
     t.text "resolution_for_call"
     t.boolean "notified_account_manager"
+    t.integer "product_vendor_id"
     t.index ["region_id"], name: "index_calls_on_region_id"
   end
 
@@ -216,6 +217,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_123928) do
     t.string "address"
     t.integer "bi_customer_no"
     t.integer "service_contract_type"
+    t.integer "mcmc_account_number"
     t.index ["bi_customer_no"], name: "bi_customer_no_ix"
   end
 
@@ -297,6 +299,12 @@ ActiveRecord::Schema.define(version: 2020_04_07_123928) do
   end
 
   create_table "product_segments", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_vendors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
