@@ -38,8 +38,31 @@ Email: <%= @call.getCustomer.email %>
 <p>
 Company:
  <a href="<%= url_for @call.getCustomer.company %>"> <%=  @call.getCustomer.company.name %> </a>
-
 </p>
+
+
+<% if @call.initiative %>
+<p>
+Initiative: <%= @call.initiative.name %>
+</p>
+<% end %>
+
+<% if @call.product_vendor %>
+<p>
+Product Vendor: <%= @call.product_vendor.name %>
+</p>
+<% end %>
+
+<% if @call.category %>
+<p>
+Product Category: <%= @call.category.name %>
+</p>
+<% end %>
+
+
+
+
+
 <%end%>
 
 <%if(@call.region != nil) %>
@@ -78,9 +101,9 @@ Resolution: <%= @call.resolution_for_call %>
 
  <div class="panel panel-default">
   <div class="panel-heading">
-  	<%= @call.getCategoryName  %> Support
+  	Call Notes
 
-  	<div class="label label-primary pull-right"><%= time_ago_in_words(@call.created_at) %> ago</div>
+  	<div class="label label-primary pull-right"><%= time_ago_in_words(@call.called_at) %> ago</div>
   	</div>
   <div class="panel-body">
    <%= simple_format(@call.text) %>

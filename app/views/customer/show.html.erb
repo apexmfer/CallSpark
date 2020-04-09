@@ -28,6 +28,12 @@ Phone: <%= @customer.getFormattedPhone %>
 Email: <%= @customer.email %>
 </p>
 
+<% if @customer.job_role %>
+<p>
+Job Role: <%= @customer.job_role.name %>
+</p>
+<% end %>
+
 
 <%if(@customer.region != nil) %>
 <p>
