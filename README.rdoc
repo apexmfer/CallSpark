@@ -49,14 +49,21 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-el
 ## CONFIGURING ELASTICSEARCH
  * Elasticsearch runs on port 9200 of the server
 
+
+## how to add indexes to elasticsearch
 Rails console
+
+User.__elasticsearch__.create_index!
+ProductVendor.__elasticsearch__.create_index!
+
  bundle exec rake environment elasticsearch:import:model CLASS='User'
 bundle exec rake environment elasticsearch:import:model CLASS='Call'
 bundle exec rake environment elasticsearch:import:model CLASS='Project'
 bundle exec rake environment elasticsearch:import:model CLASS='Company'
 bundle exec rake environment elasticsearch:import:model CLASS='Customer'
+bundle exec rake environment elasticsearch:import:model CLASS='ProductVendor'
 
 
-User.__elasticsearch__.create_index!
+
 
 sudo service elasticsearch start

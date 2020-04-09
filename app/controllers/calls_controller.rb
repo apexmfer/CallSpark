@@ -110,9 +110,17 @@ class CallsController < ApplicationController
 
         text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
 
+        p 'params are'
           p params
 
-    @customer = spawnCustomer(params[:call][:caller],params[:call][:company],params[:call][:phone],params[:call][:email],params[:call][:region_id],params[:call][:BPID])
+    @customer = spawnCustomer(
+      params[:call][:caller],
+      params[:call][:job_role_id],
+      params[:call][:company],
+      params[:call][:phone],
+      params[:call][:email],
+      params[:call][:region_id],
+      params[:call][:BPID])
 
     if @customer == nil
       p 'NIL CUSTOMER '
@@ -123,11 +131,14 @@ class CallsController < ApplicationController
     p @customer
 
 
-    @call = Call.new(:customer_id => @customer.id,
-    :category_id => params[:call][:category_id],
+    @call = Call.new(
+      :customer_id => @customer.id,
+     :category_id => params[:call][:category_id],
      :text => text,
      :user_id => current_user.id,
-     :region_id => params[:call][:region_id]
+     :region_id => params[:call][:region_id],
+     :initiative_id => params[:call][:initiative_id],
+     :product_vendor_id => params[:call][:product_vendor_id]
 
       )
 

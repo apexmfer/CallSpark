@@ -12,7 +12,7 @@ class Customer < ActiveRecord::Base
     has_many :calls
     has_many :projects
 
-    belongs_to :job_roles
+    belongs_to :job_role
 
     def company
 

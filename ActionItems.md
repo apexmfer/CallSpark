@@ -8,6 +8,11 @@
 
 -Build out the front end of the new call form + javascript
 
+-add 'Other' and 'Competitive' vendor selections to the select field
+
+
+-Add these new fields to the 'call show' page
+-Add these new fields to the CSV export
 
 
 

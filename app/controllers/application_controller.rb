@@ -40,7 +40,7 @@ include ActionView::Helpers::NumberHelper
 
 
   #This creates a new customer with a form and does special checks to make a new company
-  def spawnCustomer(customer_name, company_name, raw_phone, raw_email, region_id, bpid  )
+  def spawnCustomer(customer_name, job_role_id, company_name, raw_phone, raw_email, region_id, bpid  )
     p 'spawn customer'
     p customer_name
     p company_name
@@ -87,7 +87,8 @@ include ActionView::Helpers::NumberHelper
       end
 
       customer = Customer.new(:name => callername,
-     :company_id => company_id,
+      :company_id => company_id,
+      :job_role_id => job_role_id,
       :phone_number => phone,
       :email => email,
       :region_id => region_id
@@ -100,6 +101,7 @@ include ActionView::Helpers::NumberHelper
        customer.company_id =  company.id;
       end
 
+     customer.job_role_id = job_role_id;
      customer.phone_number =  phone;
      customer.email = email;
      customer.region_id = region_id;
