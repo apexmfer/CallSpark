@@ -16,9 +16,15 @@ Caller: <a href="<%= url_for @call.getCustomer %>"> <%= @call.getCustomer.name %
 
 <p>
 
-Taken:   <%= format_standard_date(@call.created_at,true) %> 
+Taken:   <%= format_standard_date(@call.called_at,true) %>
 
 </p>
+
+<% if @call.getCustomer.job_role %>
+<p>
+Job Role: <%= @call.getCustomer.job_role.name %>
+</p>
+<% end %>
 
 <p>
 Phone: <%= @call.getCustomer.getFormattedPhone %>
@@ -54,6 +60,14 @@ Respondant:
 <% end %>
 
 
+
+<p>
+Question: <%= @call.question_for_call %>
+</p>
+
+<p>
+Resolution: <%= @call.resolution_for_call %>
+</p>
 
 
   </div>

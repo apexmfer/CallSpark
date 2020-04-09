@@ -138,7 +138,9 @@ class CallsController < ApplicationController
      :user_id => current_user.id,
      :region_id => params[:call][:region_id],
      :initiative_id => params[:call][:initiative_id],
-     :product_vendor_id => params[:call][:product_vendor_id]
+     :product_vendor_id => params[:call][:product_vendor_id],
+     :question_for_call => params[:call][:question_for_call],
+     :resolution_for_call => params[:call][:resolution_for_call]
 
       )
 

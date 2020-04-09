@@ -8,10 +8,10 @@ class CompanyController < ApplicationController
 
 
   #  @calls = @company.calls.order("created_at" + " DESC").paginate(:page => params[:call_page], :per_page => 10)
-    @calls = @company.calls.order("created_at" + " DESC").page(params[:call_page]),per(10)
+    @calls = @company.calls.order("created_at" + " DESC").page(params[:call_page]).per(10)
 
    @customers = @company.customers
-    @projects = @company.projects.order("updated_at" + " DESC").page(params[:project_page]),per(10)
+    @projects = @company.projects.order("updated_at" + " DESC").page(params[:project_page]).per(10)
     @available_product_segments = ProductSegment.all
 
 
