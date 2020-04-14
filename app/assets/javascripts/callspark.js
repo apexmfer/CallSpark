@@ -8,7 +8,7 @@
 
 
 /*
-auto load job role, mcmc account number, account manager id , service contract type 
+auto load job role, mcmc account number, account manager id , service contract type
 
 */
 
@@ -40,6 +40,11 @@ auto load job role, mcmc account number, account manager id , service contract t
                    $( ".bpid-field:first" ).val(company.BPID);
                     $( ".email-field:first" ).val(customer.email);
                      $( ".phone-field:first" ).val(customer.phone_number);
+
+                      $( ".job-role-field:first" ).val(customer.job_role_id);
+                        $( ".mcmc-account-number-field:first" ).val(company.mcmc_account_number);
+                          $( ".account-manager-field:first" ).val(company.account_manager_id);
+                            $( ".service-contract-type-field:first" ).val(company.service_contract_type);
 
              })
               .fail(function() {
