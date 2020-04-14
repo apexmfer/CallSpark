@@ -40,7 +40,7 @@ include ActionView::Helpers::NumberHelper
 
 
   #This creates a new customer with a form and does special checks to make a new company
-  def spawnCustomer(customer_name, job_role_id, company_name, raw_phone, raw_email, region_id, bpid  )
+  def findOrCreateNewCustomer(customer_name, job_role_id, company_name, raw_phone, raw_email, region_id, bpid, mcmc_account_number, account_manager_id  )
     p 'spawn customer'
     p customer_name
     p company_name
@@ -66,13 +66,14 @@ include ActionView::Helpers::NumberHelper
 
       if companyMatchNil and companyname.length >= 1
 
-        company = Company.new(:name => companyname,
-        :BPID => bpid
+        company = Company.new(
+        :name => companyname,
+        :BPID => bpid,
+        :mcmc_account_number => mcmc_account_number,
+        :account_manager_id => account_manager_id
         )
 
-           company.save
-
-
+         company.save!
       end
 
 

@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
        @project.user = current_user
         @project.save
 
-        @customer = spawnCustomer(params[:project][:customer],params[:project][:primary_company],params[:phone],params[:email],nil,nil)
+        @customer = findOrCreateNewCustomer(params[:project][:customer],params[:project][:primary_company],params[:phone],params[:email],nil,nil)
 
           @project.customer = @customer
 

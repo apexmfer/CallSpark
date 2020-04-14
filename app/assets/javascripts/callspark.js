@@ -7,14 +7,21 @@
 
 
 
+/*
+auto load job role, mcmc account number, account manager id , service contract type 
 
-
-
+*/
 
 
     //When a customer is chosen from autocomplete, autofill all other data
 
     $( ".customer-field:first" ).on( "autocompleteselect", function( event, ui ){
+ //$( "#call_caller" ).on( "autocompleteselect", function( event, ui ){
+
+        console.log('autocomplete select')
+
+
+
 
                 var cust_id = ui.item.value;
 

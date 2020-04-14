@@ -24,6 +24,7 @@ class Company < ActiveRecord::Base
   #filled in by smart scripts
   belongs_to :bi_customer, class_name: "BiCustomer", foreign_key: "bi_customer_no", primary_key: "no", optional:true
 
+  belongs_to :account_manager, optional: true 
 
 
   enum service_contract_type: {

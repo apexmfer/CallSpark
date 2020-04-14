@@ -27,31 +27,42 @@
     <p>
       BI Company Name: <%= @company.bi_customer.name %>
     </p>
-    <p>
+
       <% if @company.bi_customer.getOutsideSalesProfileName %>
+      <p>
       BI Outside Sales: <%= @company.bi_customer.getOutsideSalesProfileName %>
+      </p>
       <% end %>
-    </p>
-    <p>
+
+
       <% if @company.bi_customer.getInsideSalesProfileName %>
+      <p>
       BI Inside Sales: <%= @company.bi_customer.getInsideSalesProfileName %>
+      </p>
       <% end %>
-    </p>
+
     <% end %>
 
 
-
+        <% if @company.address %>
         <p>
         Address: <%= @company.address %>
         </p>
+        <% end %>
 
         <p>
         RA BPID: <%= @company.BPID %>
         </p>
 
         <p>
-        MCMC Accout Number: <%= @company.mcmc_account_number %>
+        MCMC Account Number: <%= @company.mcmc_account_number %>
         </p>
+
+        <% if @company.account_manager %>
+        <p>
+        MCMC Account Manager: <%= @company.account_manager.name %>
+        </p>
+        <% end %>
 
 
     <br>
@@ -85,8 +96,7 @@
           <th>Notes</th>
           <th>Phone</th>
           <th>Email</th>
-          <th></th>
-          <th></th>
+        
           <th></th>
         </tr>
       </thead>
@@ -94,7 +104,7 @@
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td><%= customer.name %></td>
+            <td><a href="<%= url_for customer %>"> <%= customer.name %> </a> </td>
 
             <td><%= Call.where(customer_id: customer.id).where(created_at: (Time.now - 1.year)..Time.now).length %></td>
 
@@ -105,8 +115,7 @@
             <td><%= customer.getFormattedPhone %></td>
             <td><%= customer.email %></td>
 
-            <td><%= link_to 'Show', customer %></td>
-            <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+
             <td><%= if current_user and current_user.is_admin then  link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
           </tr>
         <% end %>

@@ -33,7 +33,7 @@ class CustomerController < ApplicationController
 
   def create
 
-    @customer = spawnCustomer( params[:customer])
+    @customer = findOrCreateNewCustomer( params[:customer])
 
     redirect_to @customer
   end

@@ -14,12 +14,7 @@ class Customer < ActiveRecord::Base
 
     belongs_to :job_role
 
-    def company
-
-      return Company.where(id: company_id).first
-
-    end
-
+   
     def getCompanyName
 
       if company != nil

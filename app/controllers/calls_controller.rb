@@ -106,21 +106,21 @@ class CallsController < ApplicationController
 
   def create
     #render text: params[:call].inspect
-        text = sentencify(params[:call][:text])
 
-        text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
+        p 'calll create params are'
+        p params
 
-        p 'params are'
-          p params
-
-    @customer = spawnCustomer(
+    @customer = findOrCreateNewCustomer(
       params[:call][:caller],
       params[:call][:job_role_id],
       params[:call][:company],
       params[:call][:phone],
       params[:call][:email],
       params[:call][:region_id],
-      params[:call][:BPID])
+      params[:call][:BPID],
+      params[:call][:mcmc_account_number],
+      params[:call][:account_manager_id]
+    )
 
     if @customer == nil
       p 'NIL CUSTOMER '
@@ -130,10 +130,22 @@ class CallsController < ApplicationController
     p 'customer is '
     p @customer
 
+    @called_at_time = params[:call][:called_at]
+
+    if(@called_at_time == nil)
+      @called_at_time = DateTime.current.to_date
+    end
+
+
+    #notes text for call
+    text = sentencify(params[:call][:text])
+    text = text.gsub(/&Amp;/,"").gsub(/&Nbsp;/,"").gsub(/Amp;/,"").gsub(/Nbsp;/,"")
+
+
 
     @call = Call.new(
       :customer_id => @customer.id,
-      :called_at => params[:call][:called_at],
+      :called_at => @called_at_time,
      :category_id => params[:call][:category_id],
      :text => text,
      :user_id => current_user.id,

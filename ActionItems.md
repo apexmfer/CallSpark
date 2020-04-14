@@ -6,13 +6,15 @@
 -Add initiatives / fix initiatives data
 -Add job roles (import script)
 
--Build out the front end of the new call form + javascript
+-Build out the front end of the new call form + javascript <-
 
 -add 'Other' and 'Competitive' vendor selections to the select field
 
 
--Add these new fields to the 'call show' page
--Add these new fields to the CSV export
+- Add new fields to the 'call edit' page
+- Make sure 'new call' form account manager dropdown totally works !!
+
+- Add these new fields to the CSV export
 
 
 

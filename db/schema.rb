@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_125012) do
     t.integer "bi_customer_no"
     t.integer "service_contract_type"
     t.integer "mcmc_account_number"
+    t.integer "account_manager_id"
     t.index ["bi_customer_no"], name: "bi_customer_no_ix"
   end
 

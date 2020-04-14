@@ -18,7 +18,7 @@ class CheckoutsController < ApplicationController
 
 
 
-    @customer = spawnCustomer(params[:customer],params[:company],params[:phone],params[:email],nil,nil)
+    @customer = findOrCreateNewCustomer(params[:customer],params[:company],params[:phone],params[:email],nil,nil)
 
 
     @checkout = Checkout.new(new_checkout_params)
