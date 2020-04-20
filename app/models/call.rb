@@ -14,6 +14,17 @@ class Call < ActiveRecord::Base
    belongs_to :product_vendor
 
 
+
+
+     enum origin_type: {
+         phone_call: 0,
+         inbox_email: 1,
+         other:2
+     }
+
+
+
+
  def getCustomerName
 
    customer = Customer.where(id: customer_id).first
