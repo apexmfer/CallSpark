@@ -20,6 +20,11 @@
       <%= f.date_field :called_at, :value => Time.now.strftime('%Y-%m-%d'), class:"form-control called-at-field" %>
     </div>
 
+    <div class="form-group ">
+      <%= f.label "Origin Type" %><br>
+       <%= f.select("origin_type", Call.origin_types.map { |key, value| [key.humanize, key] }, { include_blank: true }, class:"form-control origin-type-field") %>
+     </div>
+
     <div class="form-group" id="region_group">
      <%= f.label :region %><br>
      <%= f.select("region_id", Region.order("name").collect {|p| [ p.name, p.id ] }, { include_blank: true }, class:"form-control") %>

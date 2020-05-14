@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_125012) do
+ActiveRecord::Schema.define(version: 2020_04_20_135027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_125012) do
     t.text "resolution_for_call"
     t.boolean "notified_account_manager"
     t.integer "product_vendor_id"
+    t.integer "origin_type"
     t.index ["region_id"], name: "index_calls_on_region_id"
   end
 

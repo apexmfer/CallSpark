@@ -114,12 +114,14 @@ class CallsController < ApplicationController
       params[:call][:caller],
       params[:call][:job_role_id],
       params[:call][:company],
+      params[:call][:origin_type]
       params[:call][:phone],
       params[:call][:email],
       params[:call][:region_id],
       params[:call][:BPID],
       params[:call][:mcmc_account_number],
-      params[:call][:account_manager_id]
+      params[:call][:account_manager_id],
+      params[:call][:service_contract_type]
     )
 
     if @customer == nil
@@ -145,6 +147,7 @@ class CallsController < ApplicationController
 
     @call = Call.new(
       :customer_id => @customer.id,
+      :origin_type => params[:call][:origin_type],
       :called_at => @called_at_time,
      :category_id => params[:call][:category_id],
      :text => text,

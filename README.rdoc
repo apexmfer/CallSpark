@@ -6,7 +6,7 @@ Use ruby version 2.5.1  (rvm install 2.5.1, rvm use 2.2.10)
 
 
 FEATURES
-1. Sorcery user registration and login
+1. User registration and login using Sorcery
 2. Create new calls and define custom call topics, customers, and call text
 3. Customer names auto-complete once they have been used before, saving valuable time for future calls
 4. Previous conversation text auto-magically appears (AJAX) when a previous caller is being logged again, allowing the respodant to know what was talked about in the past
@@ -20,7 +20,7 @@ FEATURES
 ## SET UP ENVIRONMENT
 1. Make sure you have Node and Ruby (node -v  and   ruby -v)
     * If not, install them or run '/bin/bash --login'
-2. Make sure that elasticsearch is running and properly cached
+2. Make sure that elasticsearch is installed, running and properly cached
 
 3.  Run 'bundle' to install all of the gems listed in GEMFILE
 4.  Run 'rake db:migrate' to build the local database
@@ -31,8 +31,19 @@ FEATURES
 
 
 
+#Install Postgres
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
 
-### Configuring Database
+
+#Install Elasticsearch 7
+https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
+https://tecadmin.net/setup-elasticsearch-on-ubuntu/
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04
+
+
+
+### Configuring Postgres
 sudo -i -u postgres
 Psql
 Create user sparky with password 'techsupport2008';
@@ -41,29 +52,20 @@ Create database callspark_test with owner sparky;
 Create database callspark_prod with owner sparky;
 
 
-#Install Elasticsearch 7
-https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
-https://tecadmin.net/setup-elasticsearch-on-ubuntu/
-
-https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04
-## CONFIGURING ELASTICSEARCH
+## CONFIGURING ELASTICSEARCH ( how to add indexes to elasticsearch)
  * Elasticsearch runs on port 9200 of the server
 
-
-## how to add indexes to elasticsearch
 Rails console
 
-User.__elasticsearch__.create_index!
-ProductVendor.__elasticsearch__.create_index!
+~User.__elasticsearch__.create_index!
+~ProductVendor.__elasticsearch__.create_index!
 
- bundle exec rake environment elasticsearch:import:model CLASS='User'
-bundle exec rake environment elasticsearch:import:model CLASS='Call'
-bundle exec rake environment elasticsearch:import:model CLASS='Project'
-bundle exec rake environment elasticsearch:import:model CLASS='Company'
-bundle exec rake environment elasticsearch:import:model CLASS='Customer'
-bundle exec rake environment elasticsearch:import:model CLASS='ProductVendor'
-
-
+~bundle exec rake environment elasticsearch:import:model CLASS='User'
+~bundle exec rake environment elasticsearch:import:model CLASS='Call'
+~bundle exec rake environment elasticsearch:import:model CLASS='Project'
+~bundle exec rake environment elasticsearch:import:model CLASS='Company'
+~bundle exec rake environment elasticsearch:import:model CLASS='Customer'
+~bundle exec rake environment elasticsearch:import:model CLASS='ProductVendor'
 
 
 sudo service elasticsearch start
